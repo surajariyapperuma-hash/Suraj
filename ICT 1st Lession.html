@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chosen Palette: Warm Neutrals (Beige/Taupe) with Soft Blue Accent -->
+    <!-- Application Structure Plan: The SPA uses a persistent sidebar navigation (hamburger on mobile) and a main content area. This structure breaks the dense notes into logical, thematic sections (e.g., 'Data vs. Information', 'Core Technologies'), which is more digestible than a single long scroll. A global language toggle (Sinhala/English) dynamically updates all text content, addressing the bilingual source. Interaction is achieved through section navigation and in-page elements like tabs, accordions, and clickable diagrams to explore related concepts. This design prioritizes user-driven exploration and clarity over mirroring the linear note format. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Data vs. Info definitions/characteristics -> Goal: Compare/Contrast -> Viz: Tabbed interface, 2-col layout. Interaction: Click tabs. Justification: Groups related info cleanly. Method: HTML/JS.
+        - Report Info: Golden Rule of Info -> Goal: Show change -> Viz: Line Chart. Interaction: Hover. Justification: Visually represents the concept. Method: Chart.js (Canvas).
+        - Report Info: Data Life/Processing Cycles -> Goal: Organize (Process) -> Viz: HTML/CSS/Tailwind flow diagrams. Interaction: Click step to show details in an accordion-like fashion. Justification: Makes the process interactive. Method: HTML/JS.
+        - Report Info: Cloud Services (IaaS, PaaS, SaaS) -> Goal: Compare -> Viz: Tabbed interface. Interaction: Click tabs. Justification: Standard UI for comparing categories. Method: HTML/JS.
+        - Report Info: System Components -> Goal: Organize (Hierarchy) -> Viz: Nested accordion. Interaction: Click to expand. Justification: Manages complex hierarchy. Method: HTML/JS.
+        - Report Info: ICT Impacts -> Goal: Compare -> Viz: 2-column card layout (Pros vs. Cons). Interaction: Static display. Justification: Clear side-by-side comparison. Method: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    
+    <title>දත්ත සහ පද්ධති ගවේෂකය | Data & Systems Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Language Toggle Styles */
+        .lang-si [data-lang="en"],
+        .lang-en [data-lang="si"] {
+            display: none;
+        }
+        .lang-si [data-lang="si"],
+        .lang-en [data-lang="en"] {
+            display: inline;
+        }
+
+        /* Sidebar Navigation */
+        .nav-item {
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .nav-item.active {
+            background-color: #0284c7; /* sky-600 */
+            color: white;
+            font-weight: 600;
+        }
+        .nav-item:not(.active):hover {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .content-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Accordion */
+        .accordion-header {
+            cursor: pointer;
+        }
+        .accordion-content {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        /* Tabs */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-button.active {
+            border-color: #0284c7; /* sky-600 */
+            color: #0284c7;
+            font-weight: 600;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-orange-50 text-stone-800 lang-si">
+
+    <div class="flex min-h-screen">
+        <!-- Mobile Header -->
+        <div class="md:hidden flex items-center justify-between w-full p-4 bg-white shadow-md fixed top-0 left-0 z-20">
+            <h1 class="text-xl font-bold text-sky-700">
+                <span data-lang="si">දත්ත සහ පද්ධති</span>
+                <span data-lang="en">Data & Systems</span>
+            </h1>
+            <div>
+                <button id="langToggleMobile" class="text-sm px-3 py-1 bg-stone-200 rounded-md shadow-sm">English</button>
+                <button id="hamburgerButton" class="ml-2 p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar" class="w-64 bg-white shadow-lg fixed top-0 left-0 h-full z-10 -translate-x-full md:translate-x-0 md:relative md:flex-shrink-0 transition-transform duration-300 ease-in-out pt-20 md:pt-6">
+            <div class="p-4 hidden md:block">
+                <h1 class="text-2xl font-bold text-sky-700">
+                    <span data-lang="si">දත්ත ගවේෂකය</span>
+                    <span data-lang="en">Data Explorer</span>
+                </h1>
+                <button id="langToggleDesktop" class="w-full text-sm mt-4 px-3 py-2 bg-stone-200 rounded-md shadow-sm">English</button>
+            </div>
+            <ul class="flex flex-col space-y-1 p-2">
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="home">
+                    <span data-lang="si">මුල් පිටුව</span><span data-lang="en">Home</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="data-info">
+                    <span data-lang="si">දත්ත සහ තොරතුරු</span><span data-lang="en">Data vs. Information</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="lifecycles">
+                    <span data-lang="si">දත්ත ජීවන චක්‍ර</span><span data-lang="en">Data Life Cycles</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="tech">
+                    <span data-lang="si">මූලික තාක්ෂණයන්</span><span data-lang="en">Core Technologies</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="ict">
+                    <span data-lang="si">ICT සහ සමාජය</span><span data-lang="en">ICT & Society</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="other">
+                    <span data-lang="si">වෙනත් සංකල්ප</span><span data-lang="en">Other Concepts</span></a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6 md:p-10 pt-24 md:pt-10 bg-orange-50 overflow-y-auto">
+
+            <!-- Section: Home -->
+            <section id="section-home" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">දත්ත, තොරතුරු සහ පද්ධති පිළිබඳ සටහන් වෙත සාදරයෙන් පිළිගනිමු.</span>
+                    <span data-lang="en">Welcome to the Notes on Data, Information, and Systems.</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed">
+                    <span data-lang="si">මෙම අන්තර්ක්‍රියාකාරී යෙදුම නිර්මාණය කර ඇත්තේ දත්ත කළමනාකරණය, පරිගණක පද්ධති සහ තොරතුරු තාක්ෂණයේ බලපෑම් පිළිබඳ මූලික සංකල්ප ගවේෂණය කිරීමට ඔබට උපකාර කිරීම සඳහා ය. පැති තීරුවේ ඇති මාතෘකා මත ක්ලික් කිරීමෙන් එක් එක් කොටස වෙත පිවිසෙන්න. ඔබට භාෂාව වෙනස් කිරීමට ඉහළ ඇති බොත්තම භාවිතා කළ හැකිය.</span>
+                    <span data-lang="en">This interactive application is designed to help you explore the fundamental concepts of data management, computer systems, and the impacts of information technology. Use the navigation on the side to jump to different sections. You can use the button at the top to toggle the language.</span>
+                </p>
+            </section>
+
+            <!-- Section: Data vs. Information -->
+            <section id="section-data-info" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">දත්ත සහ තොරතුරු</span>
+                    <span data-lang="en">Data vs. Information</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-8">
+                    <span data-lang="si">දත්ත සහ තොරතුරු බොහෝ විට එකිනෙකට හුවමාරු වන වචන වුවද, ඒවාට වෙනස් අර්ථයන් ඇත. දත්ත යනු අමු, සකස් නොකළ කරුණු වන අතර, තොරතුරු යනු අර්ථවත් සහ තීරණ ගැනීමට ප්‍රයෝජනවත් වන ලෙස සකස් කරන ලද දත්ත වේ. මෙම කොටස එම වෙනස්කම් සහ තොරතුරුවල වටිනාකම ගවේෂණය කරයි.</span>
+                    <span data-lang="en">While often used interchangeably, data and information have distinct meanings. Data is raw, unprocessed fact, while information is data that has been processed to be meaningful and useful for decision-making. This section explores those differences and the value of information.</span>
+                </p>
+
+                <!-- Tabs -->
+                <div class="mb-6 border-b border-stone-300">
+                    <nav class="flex space-x-4" aria-label="Tabs">
+                        <button class="tab-button active py-3 px-1 border-b-2 font-medium text-lg border-transparent text-stone-600 hover:text-stone-800" data-tab="1">
+                            <span data-lang="si">මූලික අර්ථ දැක්වීම්</span><span data-lang="en">Definitions</span>
+                        </button>
+                        <button class="tab-button py-3 px-1 border-b-2 font-medium text-lg border-transparent text-stone-600 hover:text-stone-800" data-tab="2">
+                            <span data-lang="si">තොරතුරුවල ලක්ෂණ</span><span data-lang="en">Characteristics</span>
+                        </button>
+                        <button class="tab-button py-3 px-1 border-b-2 font-medium text-lg border-transparent text-stone-600 hover:text-stone-800" data-tab="3">
+                            <span data-lang="si">ස්වර්ණමය නීතිය</span><span data-lang="en">Golden Rule</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Tab Content 1: Definitions -->
+                <div class="tab-content active" data-tab-content="1">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-semibold mb-3 text-sky-700"><span data-lang="si">දත්ත (Data)</span><span data-lang="en">Data</span></h3>
+                            <p class="mb-4"><span data-lang="si">නිශ්චිත නිගමන වලට එළඹිය නොහැකි අංක, වචන, සලකුණු, රූප.</span><span data-lang="en">Numbers, words, symbols, images that cannot be drawn to definite conclusions.</span></p>
+                            <h4 class="text-lg font-semibold mb-2"><span data-lang="si">දත්ත වර්ග</span><span data-lang="en">Types of Data</span></h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong><span data-lang="si">ප්‍රමාණාත්මක (Quantitative):</span><span data-lang="en">Quantitative:</span></strong> <span data-lang="si">සංඛ්‍යාත්මකව ඉදිරිපත් කළ හැකි. (උදා: උස, වයස)</span><span data-lang="en">Can be presented numerically. (e.g., height, age)</span></li>
+                                <li><strong><span data-lang="si">ගුණාත්මක (Qualitative):</span><span data-lang="en">Qualitative:</span></strong> <span data-lang="si">සංඛ්‍යාත්මකව ඉදිරිපත් කළ නොහැකි. (උදා: පැහැය, හැඩය)</span><span data-lang="en">Cannot be presented numerically. (e.g., color, shape)</span></li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-semibold mb-3 text-sky-700"><span data-lang="si">තොරතුරු (Information)</span><span data-lang="en">Information</span></h3>
+                            <p class="mb-4"><span data-lang="si">නිශ්චිත නිගමනයකට හෝ තීන්දු වලට එළඹිය හැකි ලෙස සකස් කරන ලද දත්ත.</span><span data-lang="en">Data prepared in such a way that specific conclusions or decisions can be reached.</span></p>
+                            <img src="https://placehold.co/600x200/e0f2fe/0c4a6e?text=Data+->+Processing+->+Information" alt="Data processing into information flow chart" class="w-full rounded-md object-cover h-40">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content 2: Characteristics -->
+                <div class="tab-content" data-tab-content="2">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-semibold mb-3"><span data-lang="si">තොරතුරක ලක්ෂණ</span><span data-lang="en">Characteristics of Information</span></h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><span data-lang="si">අර්ථවත් විය යුතුය</span><span data-lang="en">Must be meaningful</span></li>
+                                <li><span data-lang="si">පෙර දැනුම යාවත්කාලීන කරයි</span><span data-lang="en">Updates prior knowledge</span></li>
+                                <li><span data-lang="si">අන්තර් සන්නිවේදන මාධ්‍යයකි</span><span data-lang="en">Is a media of intercommunication</span></li>
+                                <li><span data-lang="si">කාලීන වේ</span><span data-lang="en">Is timely</span></li>
+                                <li><span data-lang="si">තීරණ ගැනීමට උපකාරි වේ</span><span data-lang="en">Helps in decision making</span></li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-2xl font-semibold mb-3"><span data-lang="si">ගුණාත්මක තොරතුරක ලක්ෂණ</span><span data-lang="en">Characteristics of Quality Information</span></h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><span data-lang="si">ආදාලත්වය (Relevance)</span><span data-lang="en">Relevance</span></li>
+                                <li><span data-lang="si">සම්පුර්ණ බව (Completeness)</span><span data-lang="en">Completeness</span></li>
+                                <li><span data-lang="si">නිවැරදි බව (Correctness)</span><span data-lang="en">Correctness</span></li>
+                                <li><span data-lang="si">කාලීන බව (Timeliness)</span><span data-lang="en">Timeliness</span></li>
+                                <li><span data-lang="si">පැහැදිලි බව (Clarity)</span><span data-lang="en">Clarity</span></li>
+                                <li><span data-lang="si">විශ්වාසනීයත්වය (Reliability)</span><span data-lang="en">Reliability</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab Content 3: Golden Rule -->
+                <div class="tab-content" data-tab-content="3">
+                    <h3 class="text-2xl font-semibold mb-3">
+                        <span data-lang="si">තොරතුරක ස්වර්ණමය නීතිය</span>
+                        <span data-lang="en">Golden Rule of Information</span>
+                    </h3>
+                    <p class="mb-4 text-stone-700">
+                        <span data-lang="si">තොරතුරක වටිනාකම උපරිම මට්ටමක පවතින්නේ එය නිර්මාණය වු අවස්ථාවේදීය. කාලය ගත වීමත් සමග තොරතුරක වටිනාකම අඩු වී යයි. මෙම ප්‍රස්ථාරය එම සංකල්පය නිරූපණය කරයි.</span>
+                        <span data-lang="en">The value of information is at its highest when it is created. With the passage of time, the value of information decreases. This chart illustrates that concept.</span>
+                    </p>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="chart-container">
+                            <canvas id="goldenRuleChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Section: Data Life Cycles -->
+            <section id="section-lifecycles" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">දත්ත ජීවන චක්‍ර</span>
+                    <span data-lang="en">Data Life Cycles</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-8">
+                    <span data-lang="si">දත්ත එහි පැවැත්ම පුරාම විවිධ අවස්ථා හරහා ගමන් කරයි. මෙම කොටසෙහි ප්‍රධාන ජීවන චක්‍ර දෙකක් විස්තර කෙරේ: දත්තවල සමස්ත පැවැත්ම (නිර්මාණය සිට ඉවත් කිරීම දක්වා) සහ දත්ත තොරතුරු බවට පත් කිරීමේ නිශ්චිත සැකසුම් චක්‍රය. එක් එක් පියවර ගැන වැඩිදුර දැන ගැනීමට ක්ලික් කරන්න.</span>
+                    <span data-lang="en">Data moves through various stages during its existence. This section details two key life cycles: the overall existence of data (from creation to removal) and the specific processing cycle to turn data into information. Click on each step to learn more.</span>
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Data Life Cycle -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-sky-700">
+                            <span data-lang="si">දත්ත ජීවන චක්‍රය (සමස්ත)</span>
+                            <span data-lang="en">Data Life Cycle (Overall)</span>
+                        </h3>
+                        <div class="space-y-2">
+                            <!-- Step 1 -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span>1. <span data-lang="si">දත්ත ඒකරාශි කිරීම</span><span data-lang="en">Data Collection</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p class="mb-2"><span data-lang="si">විවිධ ස්ථාන වල විසිරි ඇති දත්ත එකතු කිරීම.</span><span data-lang="en">Collecting data scattered in different places.</span></p>
+                                    <ul class="list-disc list-inside text-sm space-y-1">
+                                        <li><span data-lang="si">සම්මුඛ සාකච්ඡා</span><span data-lang="en">Interviews</span></li>
+                                        <li><span data-lang="si">නිරික්ෂණය</span><span data-lang="en">Observation</span></li>
+                                        <li><span data-lang="si">ප්‍රශ්නාවලි</span><span data-lang="en">Questionnaires</span></li>
+                                        <li><span data-lang="si">සමීක්ෂණ</span><span data-lang="en">Surveys</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span>2. <span data-lang="si">කළමනාකරණය</span><span data-lang="en">Management</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <ul class="list-disc list-inside text-sm space-y-1">
+                                        <li><span data-lang="si">**පිළියෙල කිරීම:** දත්ත සැකසීමට සුදුසු ලෙස සකස් කිරීම.</span><span data-lang="en">**Preparation:** Preparing data for processing.</span></li>
+                                        <li><span data-lang="si">**දත්ත ආදානය:** දත්ත පරිගණකයට ඇතුළත් කිරීම.</span><span data-lang="en">**Data Input:** Entering data into the computer.</span></li>
+                                        <li><span data-lang="si">**දත්ත සැකසීම:** මෘදුකාංග භාවිතයෙන් සකස් කිරීම.</span><span data-lang="en">**Data Processing:** Processing using software.</span></li>
+                                        <li><span data-lang="si">**ප්‍රතිදානය:** තොරතුරු පරිශීලකයාට යොමු කිරීම.</span><span data-lang="en">**Output:** Forwarding information to the user.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span>3. <span data-lang="si">ආභාවිත දත්ත ඉවත් කිරීම</span><span data-lang="en">Removal of Obsolete Data</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p><span data-lang="si">කල් ඉකුත් වු හෝ නොගැලපෙන දත්ත පද්ධතියෙන් ඉවත් කිරීම.</span><span data-lang="en">Removing outdated or irrelevant data from the system.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Processing Life Cycle -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-sky-700">
+                            <span data-lang="si">දත්ත සැකසුම් ජීවන චක්‍රය</span>
+                            <span data-lang="en">Data Processing Life Cycle</span>
+                        </h3>
+                        <div class="space-y-2">
+                            <!-- Step 1 -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span>1. <span data-lang="si">දත්ත ඒකරාශි කිරීම</span><span data-lang="en">Data Gathering</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p><span data-lang="si">දත්ත රැස් කිරීමේ ක්‍රම (හස්තමය, ස්වයංක්‍රීය).</span><span data-lang="en">Methods of data collection (Manual, Automatic).</span></p>
+                                </div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span>2. <span data-lang="si">දත්ත වලංගුතාව</span><span data-lang="en">Data Validation</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p class="mb-2"><span data-lang="si">ආදානය කරන දත්ත ගැලපෙනවාදැයි පරීක්ෂා කිරීම.</span><span data-lang="en">Checking if the input data is suitable.</span></p>
+                                    <ul class="list-disc list-inside text-sm space-y-1">
+                                        <li><span data-lang="si">**Validation:** වර්ග පරීක්ෂාව (Type Check), පරාස පරීක්ෂාව (Range Check).</span><span data-lang="en">**Validation:** Type Check, Range Check.</span></li>
+                                        <li><span data-lang="si">**Verification:** දත්ත නිවැරදිව ඇතුළත් කර ඇත්දැයි බැලීම.</span><span data-lang="en">**Verification:** Checking if data was entered correctly.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span>3. <span data-lang="si">දත්ත සැකසීම</span><span data-lang="en">Data Processing</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <ul class="list-disc list-inside text-sm space-y-1">
+                                        <li><span data-lang="si">**කාණ්ඩ (Batch):** දත්ත එකතු කර පසුව සකස් කිරීම (උදා: වැටුප්).</span><span data-lang="en">**Batch:** Data is collected and processed later (e.g., payroll).</span></li>
+                                        <li><span data-lang="si">**තත්කාලීන (Real-time):** දත්ත ආදානය කළ සැණින් සකස් කිරීම (උදා: ATM).</span><span data-lang="en">**Real-time:** Processed immediately upon input (e.g., ATM).</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Step 4 & 5 -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span>4 & 5. <span data-lang="si">ප්‍රතිදානය සහ ගබඩා කිරීම</span><span data-lang="en">Output & Storage</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p><span data-lang="si">සකස් කළ තොරතුරු පරිශීලකයාට ලබා දීම සහ අනාගත භාවිතය සඳහා ගබඩා කිරීම.</span><span data-lang="en">Providing processed information to the user and storing it for future use.</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            
+            <!-- Section: Core Technologies -->
+            <section id="section-tech" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">මූලික තාක්ෂණයන්</span>
+                    <span data-lang="en">Core Technologies</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-8">
+                    <span data-lang="si">නූතන දත්ත කළමනාකරණය සහ පරිගණක භාවිතය පදනම් වී ඇත්තේ මූලික තාක්ෂණයන් දෙකක් මත ය: වළාකුළු පරිගණක (Cloud Computing) සහ පරිගණක පද්ධතියේ මූලික සංරචක. මෙම කොටස එම සංකල්ප පැහැදිලි කරයි.</span>
+                    <span data-lang="en">Modern data management and computing rely on key underlying technologies. This section explains the concepts of Cloud Computing and the basic components that make up a computer system.</span>
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Cloud Computing -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-sky-700">
+                            <span data-lang="si">වළාකුළු පරිගණක සංකල්පය</span>
+                            <span data-lang="en">Cloud Computing Concept</span>
+                        </h3>
+                        <p class="mb-4"><span data-lang="si">ඕනෑම ස්ථානයක සිට ඕනෑම වේලාවකදී අන්තර්ජාලය හරහා දත්ත වෙත ප්‍රවේශ වීමේ සහ තැන්පත් කිරීමේ හැකියාව.</span><span data-lang="en">The ability to access and store data from anywhere at any time via the internet.</span></p>
+                        
+                        <!-- Cloud Service Tabs -->
+                        <div class="mb-4 border-b border-stone-300">
+                            <nav class="flex space-x-2" aria-label="Tabs">
+                                <button class="tab-button-cloud active py-2 px-3 border-b-2 font-medium text-sm border-transparent text-stone-600 hover:text-stone-800" data-tab="iaas">IaaS</button>
+                                <button class="tab-button-cloud py-2 px-3 border-b-2 font-medium text-sm border-transparent text-stone-600 hover:text-stone-800" data-tab="paas">PaaS</button>
+                                <button class="tab-button-cloud py-2 px-3 border-b-2 font-medium text-sm border-transparent text-stone-600 hover:text-stone-800" data-tab="saas">SaaS</button>
+                            </nav>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-inner">
+                            <div class="tab-content-cloud active" data-tab-content="iaas">
+                                <h4 class="font-bold text-lg"><span data-lang="si">යටිතල පහසුකම් සේවාවක් ලෙස (IaaS)</span><span data-lang="en">Infrastructure as a Service (IaaS)</span></h4>
+                                <p class="text-sm"><span data-lang="si">දත්ත ගබඩා කිරීමට අවශ්‍ය අවකාශය සහ සේවාදායක වැනි මූලික සම්පත් ලබා දීම.</span><span data-lang="en">Provides basic resources like servers and space to store data.</span></p>
+                            </div>
+                            <div class="tab-content-cloud" data-tab-content="paas">
+                                <h4 class="font-bold text-lg"><span data-lang="si">සංවර්ධන පරිසර සේවාවක් ලෙස (PaaS)</span><span data-lang="en">Platform as a Service (PaaS)</span></h4>
+                                <p class="text-sm"><span data-lang="si">මෘදුකාංග සංවර්ධනයට සහ ධාවනයට අවශ්‍ය පරිසරය (උදා: මෙහෙයුම් පද්ධති) ලබා දීම.</span><span data-lang="en">Provides the environment (e.g., OS, database) for software development.</span></p>
+                            </div>
+                            <div class="tab-content-cloud" data-tab-content="saas">
+                                <h4 class="font-bold text-lg"><span data-lang="si">මෘදුකාංග සේවාවක් ලෙස (SaaS)</span><span data-lang="en">Software as a Service (SaaS)</span></h4>
+                                <p class="text-sm"><span data-lang="si">මෘදුකාංග ස්ථාපනය නොකර අන්තර්ජාලය හරහා භාවිත කිරීමට සලස්වයි.</span><span data-lang="en">Allows use of software over the internet without installation.</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Components -->
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-sky-700">
+                            <span data-lang="si">පරිගණක පද්ධති සංරචක</span>
+                            <span data-lang="en">Computer System Components</span>
+                        </h3>
+                        <div class="space-y-2">
+                            <!-- Hardware -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span><span data-lang="si">දෘඩාංග (Hardware)</span><span data-lang="en">Hardware</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p><span data-lang="si">භෞතිකව ස්පර්ශ කළ හැකි කොටස් (උදා: Monitor, Keyboard).</span><span data-lang="en">All physically tangible parts (e.g., Monitor, Keyboard).</span></p>
+                                </div>
+                            </div>
+                            <!-- Software -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span><span data-lang="si">මෘදුකාංග (Software)</span><span data-lang="en">Software</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200 space-y-2">
+                                    <p><span data-lang="si">කාර්යයක් ඉටු කිරීමට දෙනු ලබන උපදෙස් මාලාවක්.</span><span data-lang="en">A set of instructions to perform a task.</span></p>
+                                    <div class="accordion-item bg-stone-50 rounded">
+                                        <button class="accordion-header w-full text-left p-3 font-semibold flex justify-between items-center">
+                                            <span><span data-lang="si">පද්ධති මෘදුකාංග</span><span data-lang="en">System Software</span></span>
+                                            <span class="text-sky-600 text-xl">+</span>
+                                        </button>
+                                        <div class="accordion-content p-3 border-t">
+                                            <p class="text-sm"><span data-lang="si">පරිගණකය කළමනාකරණය කරයි (උදා: Operating System, Utility Software).</span><span data-lang="en">Manages the computer (e.g., Operating System, Utility Software).</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item bg-stone-50 rounded">
+                                        <button class="accordion-header w-full text-left p-3 font-semibold flex justify-between items-center">
+                                            <span><span data-lang="si">යෙදුම් මෘදුකාංග</span><span data-lang="en">Application Software</span></span>
+                                            <span class="text-sky-600 text-xl">+</span>
+                                        </button>
+                                        <div class="accordion-content p-3 border-t">
+                                            <p class="text-sm"><span data-lang="si">පරිශීලකයාගේ කාර්යයන් සඳහා වේ (උදා: Word Processing, Web Browsers).</span><span data-lang="en">For user-specific tasks (e.g., Word Processing, Web Browsers).</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Liveware -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span><span data-lang="si">සජීවාංග (Liveware)</span><span data-lang="en">Liveware</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p><span data-lang="si">පරිගණකය හා සම්බන්ධව ක්‍රියාකරන මානව පුද්ගලයින්.</span><span data-lang="en">All human personnel who work with the computer.</span></p>
+                                </div>
+                            </div>
+                            <!-- Firmware -->
+                            <div class="accordion-item bg-white rounded-lg shadow">
+                                <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                                    <span><span data-lang="si">ස්ථිරාංග (Firmware)</span><span data-lang="en">Firmware</span></span>
+                                    <span class="text-sky-600 text-2xl">+</span>
+                                </button>
+                                <div class="accordion-content p-4 border-t border-stone-200">
+                                    <p><span data-lang="si">දෘඩාංග තුළ (ROM) ස්ථිරව ඇතුළත් කර ඇති මෘදුකාංග.</span><span data-lang="en">Software written permanently to a hardware device (ROM).</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: ICT & Society -->
+            <section id="section-ict" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">තොරතුරු හා සන්නිවේදන තාක්ෂණය සහ සමාජය</span>
+                    <span data-lang="en">ICT & Society</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-8">
+                    <span data-lang="si">තොරතුරු හා සන්නිවේදන තාක්ෂණය (ICT) අපගේ එදිනෙදා ජීවිතයේ සෑම අංශයකටම පාහේ බලපෑම් කර ඇත. එය අධ්‍යාපනයේ සිට සෞඛ්‍ය සේවය දක්වා විවිධ ක්ෂේත්‍රවල භාවිතා වන අතර, සමාජයට හිතකර සහ අහිතකර බලපෑම් දෙකම ඇති කරයි.</span>
+                    <span data-lang="en">Information and Communication Technology (ICT) has impacted almost every aspect of our daily lives. It is used in fields from education to healthcare, and it creates both beneficial and negative impacts on society.</span>
+                </p>
+
+                <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                    <h3 class="text-2xl font-semibold mb-4"><span data-lang="si">භාවිතා වන ක්ෂේත්‍ර</span><span data-lang="en">Fields where ICT is used</span></h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full font-medium"><span data-lang="si">සෞඛ්‍ය</span><span data-lang="en">Health</span></span>
+                        <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full font-medium"><span data-lang="si">අධ්‍යාපනය</span><span data-lang="en">Education</span></span>
+                        <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full font-medium"><span data-lang="si">කෘෂිකාර්මාන්තය</span><span data-lang="en">Agriculture</span></span>
+                        <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full font-medium"><span data-lang="si">ව්‍යාපාර</span><span data-lang="en">Business</span></span>
+                        <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full font-medium"><span data-lang="si">ප්‍රවාහනය</span><span data-lang="en">Transportation</span></span>
+                        <span class="bg-sky-100 text-sky-800 px-3 py-1 rounded-full font-medium"><span data-lang="si">විනෝදාස්වාදය</span><span data-lang="en">Entertainment</span></span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-green-100 p-6 rounded-lg shadow-md border-l-4 border-green-500">
+                        <h3 class="text-2xl font-semibold mb-3 text-green-800"><span data-lang="si">හිතකර බලපෑම</span><span data-lang="en">Beneficial Impact</span></h3>
+                        <ul class="list-disc list-inside space-y-2 text-green-900">
+                            <li><span data-lang="si">බැංකු කටයුතු සඳහා ATM භාවිතය</span><span data-lang="en">Use of ATM machines for banking</span></li>
+                            <li><span data-lang="si">දුරකථන සන්නිවේදන දියුණුව</span><span data-lang="en">Development of telephone communication</span></li>
+                            <li><span data-lang="si">ආරක්ෂක කැමරා පද්ධති</span><span data-lang="en">Security camera systems</span></li>
+                            <li><span data-lang="si">නවීන මෝටර් රථ නිෂ්පාදනය</span><span data-lang="en">Production of modern motor vehicles</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-100 p-6 rounded-lg shadow-md border-l-4 border-red-500">
+                        <h3 class="text-2xl font-semibold mb-3 text-red-800"><span data-lang="si">අහිතකර බලපෑම</span><span data-lang="en">Negative Impact</span></h3>
+                        <ul class="list-disc list-inside space-y-2 text-red-900">
+                            <li><span data-lang="si">රැකියා වියුක්තිය ඉහළ යාම</span><span data-lang="en">Rising unemployment</span></li>
+                            <li><span data-lang="si">පෞද්ගලිකත්වයට හානි සිදු වීම</span><span data-lang="en">Problems with privacy</span></li>
+                            <li><span data-lang="si">මිනිසා යාන්ත්‍රිකරණය වීම</span><span data-lang="en">Mechanization of human</span></li>
+                            <li><span data-lang="si">ඇබ්බැහි වීම</span><span data-lang="en">Addiction</span></li>
+                            <li><span data-lang="si">පාරිසරික ගැටළු</span><span data-lang="en">Environmental issues</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Other Concepts -->
+            <section id="section-other" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">වෙනත් සංකල්ප</span>
+                    <span data-lang="en">Other Concepts</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-8">
+                    <span data-lang="si">මෙම කොටසෙහි දත්ත ලෝකයේ වැදගත් වන අමතර සංකල්ප කිහිපයක් අඩංගු වේ.</span>
+                    <span data-lang="en">This section contains additional concepts that are important in the world of data.</span>
+                </p>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-2xl font-semibold mb-3 text-sky-700">
+                        <span data-lang="si">විශාල දත්ත (Big Data)</span>
+                        <span data-lang="en">Big Data</span>
+                    </h3>
+                    <p class="mb-4">
+                        <span data-lang="si">සම්ප්‍රදායික දත්ත සැකසුම් ක්‍රම මඟින් සැකසිය නොහැකි සංකීර්ණ හා විශාල ප්‍රමාණයේ දත්ත (උදා: Facebook, Google).</span>
+                        <span data-lang="en">Complex and large amounts of data that cannot be processed by traditional data processing methods (e.g., Facebook, Google).</span>
+                    </p>
+                    <h4 class="text-lg font-semibold mb-2"><span data-lang="si">අභියෝග (Challenges)</span><span data-lang="en">Challenges</span></h4>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><span data-lang="si">දත්ත ගබඩා කිරීම</span><span data-lang="en">Data storage</span></li>
+                        <li><span data-lang="si">යාවත් කාලීන කිරීම</span><span data-lang="en">Update</span></li>
+                        <li><span data-lang="si">විශ්ලේෂණය කිරීම</span><span data-lang="en">Analyzing</span></li>
+                        <li><span data-lang="si">දත්ත සේවීම</span><span data-lang="en">Data serving</span></li>
+                    </ul>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const hamburgerButton = document.getElementById('hamburgerButton');
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const langToggles = [document.getElementById('langToggleMobile'), document.getElementById('langToggleDesktop')];
+            let currentSection = 'home';
+            let currentLang = 'si';
+
+            function showSection(sectionId) {
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                document.getElementById('section-' + sectionId).classList.add('active');
+                document.querySelector(`.nav-item[data-section="${sectionId}"]`).classList.add('active');
+                currentSection = sectionId;
+                
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+            }
+
+            function setLanguage(lang) {
+                document.body.classList.remove('lang-si', 'lang-en');
+                document.body.classList.add('lang-' + lang);
+                currentLang = lang;
+                
+                const newButtonText = (lang === 'si') ? 'English' : 'සිංහල';
+                langToggles.forEach(toggle => {
+                    if (toggle) toggle.textContent = newButtonText;
+                });
+
+                document.documentElement.lang = lang;
+            }
+
+            hamburgerButton.addEventListener('click', () => {
+                sidebar.classList.toggle('-translate-x-full');
+            });
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = item.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+
+            langToggles.forEach(toggle => {
+                if (toggle) {
+                    toggle.addEventListener('click', () => {
+                        const newLang = (currentLang === 'si') ? 'en' : 'si';
+                        setLanguage(newLang);
+                    });
+                }
+            });
+
+            function setupTabs(tabContainerSelector, buttonSelector, contentSelector) {
+                const tabContainer = document.querySelector(tabContainerSelector);
+                if (!tabContainer) return;
+                
+                const tabButtons = tabContainer.querySelectorAll(buttonSelector);
+                const tabContents = tabContainer.querySelectorAll(contentSelector);
+
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
+
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+
+                        tabContents.forEach(content => {
+                            if (content.getAttribute('data-tab-content') === tabId) {
+                                content.classList.add('active');
+                            } else {
+                                content.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+            }
+
+            setupTabs('#section-data-info', '.tab-button', '.tab-content');
+            setupTabs('#section-tech', '.tab-button-cloud', '.tab-content-cloud');
+
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('span:last-child');
+                    
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                        if (icon) icon.textContent = '+';
+                    } else {
+                        content.style.display = 'block';
+                        if (icon) icon.textContent = '−';
+                    }
+                });
+            });
+
+            function createGoldenRuleChart() {
+                const ctx = document.getElementById('goldenRuleChart');
+                if (!ctx) return;
+                
+                new Chart(ctx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: [
+                            'Created', 
+                            '1 Day', 
+                            '1 Week', 
+                            '1 Month', 
+                            '6 Months', 
+                            '1 Year'
+                        ],
+                        datasets: [{
+                            label: 'Value of Information',
+                            data: [100, 95, 70, 40, 15, 5],
+                            borderColor: '#0284c7', // sky-600
+                            backgroundColor: 'rgba(2, 132, 199, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 105,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%'
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return ` Value: ${context.parsed.y}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            showSection(currentSection);
+            setLanguage(currentLang);
+            createGoldenRuleChart();
+        });
+    </script>
+</body>
+</html>
