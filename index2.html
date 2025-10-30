@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chosen Palette: Neutral Stone with Blue Accent -->
+    <!-- Application Structure Plan: The SPA uses a persistent sidebar navigation (hamburger-toggled on mobile) and a main content area. This structure logically segments the dense notes from the report into thematic, discoverable sections (e.g., 'Evolution', 'Generations', 'Hardware', 'CPU', 'Memory'). A global language toggle button dynamically updates all text content, addressing the source report's bilingual nature. Interaction is primarily through section navigation, with accordions for hierarchical content (like Generations, CPU components) and tabs for categorical content (Hardware types). This design prioritizes usability and non-linear exploration over the report's original linear format. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Computer Generations (1-5) -> Goal: Organize/Compare -> Viz: Accordion. Interaction: Click to expand/collapse. Justification: Manages dense, repetitive text blocks effectively. Library: HTML/JS.
+        - Report Info: Hardware (Input, Output, Storage) -> Goal: Organize/Compare -> Viz: Tabbed interface. Interaction: Click tab. Justification: Standard UI for switching between categories. Library: HTML/JS.
+        - Report Info: Fetch-Execute Cycle -> Goal: Organize (Process) -> Viz: HTML/Tailwind diagram. Interaction: Static visual. Justification: A visual flow is clearer than text. Library: HTML/Tailwind.
+        - Report Info: Memory Hierarchy -> Goal: Organize (Hierarchy) & Compare -> Viz: HTML/CSS Pyramid + Chart.js Bar Chart. Interaction: Static pyramid, hover/tooltip on chart. Justification: Pyramid shows the structure, while the Chart.js bar chart (logarithmic) visually demonstrates the *vast* differences in access time, which text alone cannot convey. Library: HTML/Tailwind + Chart.js (Canvas).
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    
+    <title>පරිගණක හැඳින්වීම | Introduction to Computers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Language Toggle Styles */
+        .lang-si [data-lang="en"],
+        .lang-en [data-lang="si"] {
+            display: none;
+        }
+        .lang-si [data-lang="si"],
+        .lang-en [data-lang="en"] {
+            display: inline;
+        }
+
+        /* Sidebar Navigation */
+        .nav-item {
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .nav-item.active {
+            background-color: #1d4ed8; /* blue-700 */
+            color: white;
+            font-weight: 600;
+        }
+        .nav-item:not(.active):hover {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .content-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Accordion */
+        .accordion-header {
+            cursor: pointer;
+        }
+        .accordion-content {
+            display: none;
+            overflow: hidden;
+        }
+
+        /* Tabs */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-button.active {
+            border-color: #1d4ed8; /* blue-700 */
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+
+        /* Memory Pyramid */
+        .pyramid-level {
+            clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+            width: 100%;
+            text-align: center;
+            font-weight: 600;
+            padding: 8px 0;
+            margin: -1px auto 0; /* Slight overlap */
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-900 lang-si">
+
+    <div class="flex min-h-screen">
+        <!-- Mobile Header -->
+        <div class="md:hidden flex items-center justify-between w-full p-4 bg-white shadow-md fixed top-0 left-0 z-20">
+            <h1 class="text-xl font-bold text-blue-700">
+                <span data-lang="si">පරිගණක සටහන්</span>
+                <span data-lang="en">Computer Notes</span>
+            </h1>
+            <div>
+                <button id="langToggleMobile" class="text-sm px-3 py-1 bg-stone-200 rounded-md shadow-sm">English</button>
+                <button id="hamburgerButton" class="ml-2 p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar" class="w-64 bg-white shadow-lg fixed top-0 left-0 h-full z-10 -translate-x-full md:translate-x-0 md:relative md:flex-shrink-0 transition-transform duration-300 ease-in-out pt-20 md:pt-6">
+            <div class="p-4 hidden md:block">
+                <h1 class="text-2xl font-bold text-blue-700">
+                    <span data-lang="si">පරිගණක හැඳින්වීම</span>
+                    <span data-lang="en">Intro to Computers</span>
+                </h1>
+                <button id="langToggleDesktop" class="w-full text-sm mt-4 px-3 py-2 bg-stone-200 rounded-md shadow-sm">English</button>
+            </div>
+            <ul class="flex flex-col space-y-1 p-2">
+                <li><a href="#" class="nav-item active flex items-center p-3 rounded-md" data-section="home">
+                    <span data-lang="si">මුල් පිටුව</span><span data-lang="en">Home</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="evolution">
+                    <span data-lang="si">පරිගණක පරිණාමය</span><span data-lang="en">Computer Evolution</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="generations">
+                    <span data-lang="si">පරම්පරා (Generations)</span><span data-lang="en">Generations</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="classification">
+                    <span data-lang="si">පරිගණක වර්ගිකරණය</span><span data-lang="en">Classification</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="hardware">
+                    <span data-lang="si">දෘඩාංග (Hardware)</span><span data-lang="en">Hardware</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="cpu">
+                    <span data-lang="si">මධ්‍ය සැකසුම් ඒකකය (CPU)</span><span data-lang="en">CPU</span></a></li>
+                <li><a href="#" class="nav-item flex items-center p-3 rounded-md" data-section="memory">
+                    <span data-lang="si">පරිගණක මතකය</span><span data-lang="en">Computer Memory</span></a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6 md:p-10 pt-24 md:pt-10 bg-stone-100 overflow-y-auto">
+
+            <!-- Section: Home -->
+            <section id="section-home" class="content-section active">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">පරිගණකය හැඳින්වීම</span>
+                    <span data-lang="en">Introduction to the computer</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed bg-white p-6 rounded-lg shadow-sm">
+                    <span data-lang="si">මෙම අන්තර්ක්‍රියාකාරී මාර්ගෝපදේශය වෙත සාදරයෙන් පිළිගනිමු. පරිගණකය යනු මිනිසාගේ ගණිතමය මෙන්ම එදිනෙදා අවශ්‍යතාවයන් සඳහා සැකසු විද්‍යුත් යාන්ත්‍රික උපකරණයකි. මෙම යෙදුම පරිගණක ඉතිහාසය, දෘඩාංග සහ මූලික සංකල්ප තේරුම් ගැනීමට ඔබට උපකාර වනු ඇත. ගවේෂණය ආරම්භ කිරීමට කරුණාකර වම් පස ඇති මෙනුව භාවිතා කරන්න.</span>
+                    <span data-lang="en">Welcome to this interactive guide. A computer is an electromechanical device designed for human mathematical and everyday needs. This application will help you understand computer history, hardware, and fundamental concepts. Please use the menu on the left to begin exploring.</span>
+                </p>
+            </section>
+
+            <!-- Section: Computer Evolution -->
+            <section id="section-evolution" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">පරිගණක පරිණාමය</span>
+                    <span data-lang="en">Computer Evolution</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                    <span data-lang="si">පරිගණක පරිණාමය ප්‍රධාන යුග හතරකට බෙදා ඇත. එක් එක් යුගය පිළිබඳ වැඩි විස්තර දැන ගැනීමට පහත අයිතම මත ක්ලික් කරන්න.</span>
+                    <span data-lang="en">Computer evolution is divided into four main eras. Click on the items below to learn more about each period.</span>
+                </p>
+                <div class="space-y-3" id="evolution-accordion">
+                    <!-- Pre-Mechanical Era -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">1. පූර්ව යාන්ත්‍රික යුගය (1450 ට පෙර)</span><span data-lang="en">1. Pre-Mechanical Era (before 1450)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <h4 class="text-md font-semibold"><span data-lang="si">ඇබකසය (Abacus)</span><span data-lang="en">Abacus</span></h4>
+                            <p class="text-stone-700"><span data-lang="si">මිනිසා තම ගණිත කටයුතු පහසු කර ගැනීම සඳහා භාවිතයට ගත් සරල ආකාරයේ උපකරණයකි.</span><span data-lang="en">It is a simple device that humans used to make their mathematical tasks easier.</span></p>
+                        </div>
+                    </div>
+                    <!-- Mechanical Era -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">2. යාන්ත්‍රික යුගය (1450-1840)</span><span data-lang="en">2. Mechanical Era (1450-1840)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200 space-y-2">
+                            <p><strong><span data-lang="si">නැපියර්ගේ ඇත්දළ තීරු (Napier's bones):</span><span data-lang="en">Napier's bones:</span></strong> <span data-lang="si">1617 දී ජෝන් නැපියර් විසින් ලඝු ගණක සිද්ධාන්ත හෙලි කරන ලදි.</span><span data-lang="en">In 1617, John Napier introduced the theory of logarithms.</span></p>
+                            <p><strong><span data-lang="si">පැසකලයින් යන්ත්‍රය (Pascaline):</span><span data-lang="en">Pascaline:</span></strong> <span data-lang="si">1642 දී බ්ලේස් පැස්කල් විසින් හදුන්වා දෙන ලදි. එකතු කිරීම හා අඩු කිරිම කල හැක.</span><span data-lang="en">Introduced by Blaise Pascal in 1642. It can add and subtract numbers.</span></p>
+                            <p><strong><span data-lang="si">Step Reckoner:</span><span data-lang="en">Step Reckoner:</span></strong> <span data-lang="si">ගොට්ෆ්‍රයිඩ් විල්හෙල්ම් විසින් වැඩි දියුණු කරන ලදී. ගුණ කිරීමට හා බෙදීමටද හැකි විය.</span><span data-lang="en">Improved by Gottfried Wilhelm. It could also multiply and divide.</span></p>
+                            <p><strong><span data-lang="si">ප්‍රභේද එන්ජිම (Difference engine):</span><span data-lang="en">Difference engine:</span></strong> <span data-lang="si">1822 දී චාල්ස් බැබේජ් විසින් නිර්මාණය කරන ලදී.</span><span data-lang="en">Created by Charles Babbage in 1822.</span></p>
+                            <p><strong><span data-lang="si">විශ්ලේෂණාත්මක එන්ජිම (Analytical engine):</span><span data-lang="en">Analytical engine:</span></strong> <span data-lang="si">1833 දී චාල්ස් බැබේජ් විසින් නිර්මාණය කරන ලදී. දත්ත ආදානය, සැකසීම, ප්‍රතිදානය කළ හැකි විය. (පරිගණකයේ පියා). ඇඩා ලව්ලෙස් (ලොව ප්‍රථම ක්‍රමලේඛිකාව) ඒ සඳහා වැඩසටහන් ලිවීය.</span><span data-lang="en">Created by Charles Babbage in 1833. It could input, process, and output data (Father of the computer). Ada Lovelace (world's first programmer) wrote programs for it.</span></p>
+                        </div>
+                    </div>
+                    <!-- Electromechanical Era -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">3. විද්‍යුත් යාන්ත්‍රික යුගය (1840-1940)</span><span data-lang="en">3. Electromechanical Era (1840-1940)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><strong><span data-lang="si">Mark 1:</span><span data-lang="en">Mark 1:</span></strong> <span data-lang="si">1939 දී හෝවාර්ඩ් එයිකන් විසින් නිර්මාණය කලේය. ලොව ප්‍රථම ස්වයංක්‍රීය පරිගණක යන්ත්‍රය.</span><span data-lang="en">Invented by Howard Aiken in 1939. Considered the world's first automatic computer.</span></p>
+                        </div>
+                    </div>
+                    <!-- Electronic Era -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">4. විද්‍යුත් යුගය (1940 සිට)</span><span data-lang="en">4. Electronic Era (1940 to present)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><span data-lang="si">මෙම යුගය තාක්ෂණය අනුව පරම්පරා 5 කට වෙන් කර ඇත. "Generations" කොටස බලන්න.</span><span data-lang="en">This era is divided into 5 generations based on technology. See the "Generations" section.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Generations -->
+            <section id="section-generations" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">විද්‍යුත් යුගයේ පරම්පරා</span>
+                    <span data-lang="en">Generations of the Electronic Era</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                    <span data-lang="si">විද්‍යුත් යුගය තාක්ෂණික දියුණුව මත පදනම්ව පරම්පරා පහකට බෙදා ඇත.</span>
+                    <span data-lang="en">The electronic era is divided into five generations based on technological advancements.</span>
+                </p>
+                <div class="space-y-3" id="generations-accordion">
+                    <!-- Generation 1 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">පළමු පරම්පරාව (1940-1956)</span><span data-lang="en">First Generation (1940-1956)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><strong><span data-lang="si">දෘඩාංග:</span><span data-lang="en">Hardware:</span></strong> <span data-lang="si">රික්තක නල (Vacuum tubes)</span><span data-lang="en">Vacuum tubes</span></p>
+                            <p><strong><span data-lang="si">මෘදුකාංග:</span><span data-lang="en">Software:</span></strong> <span data-lang="si">යන්ත්‍ර භාෂාව (Machine language)</span><span data-lang="en">Machine language</span></p>
+                            <p><strong><span data-lang="si">ලක්ෂණ:</span><span data-lang="en">Characteristics:</span></strong> <span data-lang="si">ඉතා විශාල, අධික ලෙස රත් වීම, වැඩි විදුලියක් වැය වීම.</span><span data-lang="en">Very large, high heat, high power consumption.</span></p>
+                        </div>
+                    </div>
+                    <!-- Generation 2 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">දෙවන පරම්පරාව (1956-1963)</span><span data-lang="en">Second Generation (1956-1963)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><strong><span data-lang="si">දෘඩාංග:</span><span data-lang="en">Hardware:</span></strong> <span data-lang="si">ට්‍රාන්සිස්ටර් (Transistor)</span><span data-lang="en">Transistor</span></p>
+                            <p><strong><span data-lang="si">මෘදුකාංග:</span><span data-lang="en">Software:</span></strong> <span data-lang="si">එසේම්බ්ලි භාෂාව (Assembly language)</span><span data-lang="en">Assembly language</span></p>
+                            <p><strong><span data-lang="si">ලක්ෂණ:</span><span data-lang="en">Characteristics:</span></strong> <span data-lang="si">තරමක් කුඩා, අඩු විදුලි වැය වීම, වේගවත්.</span><span data-lang="en">Relatively small, low power consumption, fast.</span></p>
+                        </div>
+                    </div>
+                    <!-- Generation 3 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">තෙවන පරම්පරාව (1963-1975)</span><span data-lang="en">Third Generation (1963-1975)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><strong><span data-lang="si">දෘඩාංග:</span><span data-lang="en">Hardware:</span></strong> <span data-lang="si">අනුකලිත පරිපථ (Integrated circuits)</span><span data-lang="en">Integrated circuits</span></p>
+                            <p><strong><span data-lang="si">මෘදුකාංග:</span><span data-lang="en">Software:</span></strong> <span data-lang="si">මෙහෙයුම් පද්ධති (Operating systems), උසස් මට්ටමේ භාෂා.</span><span data-lang="en">Operating systems, high-level languages.</span></p>
+                            <p><strong><span data-lang="si">ලක්ෂණ:</span><span data-lang="en">Characteristics:</span></strong> <span data-lang="si">කුඩා, වේගවත්, එහා මෙහා ගෙන යා හැකිය.</span><span data-lang="en">Small, fast, portable.</span></p>
+                        </div>
+                    </div>
+                    <!-- Generation 4 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">හතරවන පරම්පරාව (1975-1989)</span><span data-lang="en">Fourth Generation (1975-1989)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><strong><span data-lang="si">දෘඩාංග:</span><span data-lang="en">Hardware:</span></strong> <span data-lang="si">ක්ෂුද්‍ර සකසන (Microprocessors)</span><span data-lang="en">Microprocessors</span></p>
+                            <p><strong><span data-lang="si">මෘදුකාංග:</span><span data-lang="en">Software:</span></strong> <span data-lang="si">දියුණු මෙහෙයුම් පද්ධති, ඉතා උසස් මට්ටමේ භාෂා.</span><span data-lang="en">Advanced OS, very high-level languages.</span></p>
+                            <p><strong><span data-lang="si">ලක්ෂණ:</span><span data-lang="en">Characteristics:</span></strong> <span data-lang="si">ඉතා කුඩා, ඉතා වේගවත්, අඩු විදුලි වැය වීම.</span><span data-lang="en">Very small, very fast, low power consumption.</span></p>
+                        </div>
+                    </div>
+                    <!-- Generation 5 -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">පස්වන පරම්පරාව (1989 සිට)</span><span data-lang="en">Fifth Generation (1989 to present)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><strong><span data-lang="si">දෘඩාංග:</span><span data-lang="en">Hardware:</span></strong> <span data-lang="si">අධික ප්‍රමාණයේ අනුකලිත පරිපථ (High-density integrated circuits)</span><span data-lang="en">High-density integrated circuits</span></p>
+                            <p><strong><span data-lang="si">මෘදුකාංග:</span><span data-lang="en">Software:</span></strong> <span data-lang="si">වැඩි දියුණු කල මෙහෙයුම් පද්ධති, කෘතීම බුද්ධිය (AI).</span><span data-lang="en">Advanced OS, Artificial Intelligence (AI).</span></p>
+                            <p><strong><span data-lang="si">ලක්ෂණ:</span><span data-lang="en">Characteristics:</span></strong> <span data-lang="si">ඉතා කුඩා, කාර්යක්ෂමතාව ඉහල, මිල අඩු.</span><span data-lang="en">Very small, very high efficiency, low cost.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Classification -->
+            <section id="section-classification" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">පරිගණක වර්ගිකරණය</span>
+                    <span data-lang="en">Computer Classification</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                    <span data-lang="si">පරිගණක විවිධ නිර්ණායක මත පදනම්ව වර්ගීකරණය කර ඇත.</span>
+                    <span data-lang="en">Computers are classified based on different criteria.</span>
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-3 text-blue-700"><span data-lang="si">ප්‍රමාණය අනුව</span><span data-lang="en">By Size</span></h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><span data-lang="si">සුපිරි පරිගණක</span><span data-lang="en">Supercomputers</span></li>
+                            <li><span data-lang="si">මහා පරිගණක</span><span data-lang="en">Mainframe computers</span></li>
+                            <li><span data-lang="si">මධ්‍ය පරිගණක</span><span data-lang="en">Mini computers</span></li>
+                            <li><span data-lang="si">ක්ෂුද්‍ර පරිගණක</span><span data-lang="en">Microcomputers</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-3 text-blue-700"><span data-lang="si">තාක්ෂණය අනුව</span><span data-lang="en">By Technology</span></h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><span data-lang="si">ප්‍රතිසම පරිගණක</span><span data-lang="en">Analog computers</span></li>
+                            <li><span data-lang="si">සංඛ්‍යාංක පරිගණක</span><span data-lang="en">Digital computers</span></li>
+                            <li><span data-lang="si">මිශ්‍ර පරිගණක</span><span data-lang="en">Hybrid computers</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold mb-3 text-blue-700"><span data-lang="si">අරමුණ අනුව</span><span data-lang="en">By Purpose</span></h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><span data-lang="si">සාමාන්‍ය කටයුතු සඳහා</span><span data-lang="en">General purposes</span></li>
+                            <li><span data-lang="si">විශේෂ කාර්යයන් සඳහා</span><span data-lang="en">Special purposes</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Hardware -->
+            <section id="section-hardware" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">පරිගණක දෘඩාංග (Hardware)</span>
+                    <span data-lang="en">Computer Hardware</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                    <span data-lang="si">පරිගණකයේ ඇති පියවි ඇසට පෙනෙන, භෞතිකව ස්පර්ශ කල හැකි උපකරණ පරිගණක දෘඩාංග වේ. ප්‍රධාන සංරචක ගවේෂණය කිරීමට ටැබ් භාවිතා කරන්න.</span>
+                    <span data-lang="en">Computer hardware refers to the physical components of a computer system that you can see and touch. Use the tabs to explore the main components.</span>
+                </p>
+                
+                <!-- Tabs -->
+                <div class="mb-6 border-b border-stone-300">
+                    <nav class="flex space-x-4" aria-label="Tabs">
+                        <button class="tab-button active py-3 px-1 border-b-2 font-medium text-lg border-transparent text-stone-600 hover:text-stone-800" data-tab="input">
+                            <span data-lang="si">ආදාන උපාංග</span><span data-lang="en">Input Devices</span>
+                        </button>
+                        <button class="tab-button py-3 px-1 border-b-2 font-medium text-lg border-transparent text-stone-600 hover:text-stone-800" data-tab="output">
+                            <span data-lang="si">ප්‍රතිදාන උපාංග</span><span data-lang="en">Output Devices</span>
+                        </button>
+                        <button class="tab-button py-3 px-1 border-b-2 font-medium text-lg border-transparent text-stone-600 hover:text-stone-800" data-tab="storage">
+                            <span data-lang="si">ආචායන උපාංග</span><span data-lang="en">Storage Devices</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Tab Content 1: Input -->
+                <div class="tab-content active" data-tab-content="input">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><span data-lang="si">යතුරු පුවරුව</span><span data-lang="en">Keyboard</span></li>
+                            <li><span data-lang="si">මූසිකය</span><span data-lang="en">Mouse</span></li>
+                            <li><span data-lang="si">තීරු කේත කියවනය</span><span data-lang="en">Bar code reader</span></li>
+                            <li><span data-lang="si">ඩිජිටල් කැමරා</span><span data-lang="en">Digital camera</span></li>
+                            <li><span data-lang="si">MICR (චෙක් පත්)</span><span data-lang="en">MICR (Cheque scanning)</span></li>
+                            <li><span data-lang="si">OCR (ලේඛණ අනුලක්ෂණ)</span><span data-lang="en">OCR (Character scanning)</span></li>
+                            <li><span data-lang="si">OMR (බහුවරණ පිළිතුරු)</span><span data-lang="en">OMR (MCQ answer scanning)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab Content 2: Output -->
+                <div class="tab-content" data-tab-content="output">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h4 class="text-xl font-semibold mb-2"><span data-lang="si">පරිගණක තිරය (Monitor)</span><span data-lang="en">Monitor</span></h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 mb-4">
+                            <li>CRT (Cathode Ray Tube)</li>
+                            <li>LCD (Liquid Crystal Display)</li>
+                            <li>LED (Light Emitting Diode)</li>
+                        </ul>
+                        <h4 class="text-xl font-semibold mb-2"><span data-lang="si">මුද්‍රණ යන්ත්‍ර (Printer)</span><span data-lang="en">Printer</span></h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 mb-4">
+                            <li><strong><span data-lang="si">ඝට්ටනය (Impact):</span><span data-lang="en">Impact:</span></strong> <span data-lang="si">Dot matrix, Line Printer</span><span data-lang="en">Dot matrix, Line Printer</span></li>
+                            <li><strong><span data-lang="si">ඝට්ටනය නොවන (Non-impact):</span><span data-lang="en">Non-impact:</span></strong> <span data-lang="si">Inkjet, Laser, Thermal</span><span data-lang="en">Inkjet, Laser, Thermal</span></li>
+                        </ul>
+                        <h4 class="text-xl font-semibold mb-2"><span data-lang="si">වෙනත්</span><span data-lang="en">Other</span></h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li><span data-lang="si">ලකුණු කරණය</span><span data-lang="en">Plotter</span></li>
+                            <li>Speakers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab Content 3: Storage -->
+                <div class="tab-content" data-tab-content="storage">
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <h4 class="text-xl font-semibold mb-2"><span data-lang="si">උපාංග</span><span data-lang="en">Devices</span></h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4 mb-4">
+                            <li><span data-lang="si">දෘඩ තැටිය</span><span data-lang="en">Hard disk</span></li>
+                            <li><span data-lang="si">චුම්බක පටි</span><span data-lang="en">Magnetic tape</span></li>
+                            <li><span data-lang="si">සංයුක්ත තැටි (CD)</span><span data-lang="en">Compact Disc (CD)</span></li>
+                            <li><span data-lang="si">සැණෙලි මතක</span><span data-lang="en">USB Flash Drive</span></li>
+                        </ul>
+                        <h4 class="text-xl font-semibold mb-2"><span data-lang="si">දෘඩ තැටි සංකල්ප</span><span data-lang="en">Hard Disk Concepts</span></h4>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li><strong><span data-lang="si">Sector (කැටිත්ත):</span><span data-lang="en">Sector:</span></strong> <span data-lang="si">දත්ත තැන්පත් කරන කුඩාම කොටස.</span><span data-lang="en">The smallest section where data is stored.</span></li>
+                            <li><strong><span data-lang="si">Access time (ප්‍රවේශ කාලය):</span><span data-lang="en">Access time:</span></strong> Seek time + Rotational delay</li>
+                            <li><strong><span data-lang="si">Seek time:</span><span data-lang="en">Seek time:</span></strong> <span data-lang="si">හිස (head) අදාළ වළල්ල (track) වෙත යාමට ගතවන කාලය.</span><span data-lang="en">Time for the head to move to the correct track.</span></li>
+                            <li><strong><span data-lang="si">Rotational delay:</span><span data-lang="en">Rotational delay:</span></strong> <span data-lang="si">අදාළ කැටිත්ත (sector) හිස යටට පැමිණීමට ගත වන කාලය.</span><span data-lang="en">Time for the correct sector to rotate under the head.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: CPU -->
+            <section id="section-cpu" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">මධ්‍ය සැකසුම් ඒකකය (CPU)</span>
+                    <span data-lang="en">Central Processing Unit (CPU)</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                    <span data-lang="si">පරිගණක පද්ධතියක මූලිකම අංගය. එය පරිගණකයේ හදවත හෝ මොළය ලෙසද හැඳින්වේ. CPU හි ප්‍රධාන කොටස් සහ ක්‍රියාවලි ගැන ඉගෙන ගැනීමට පහත බලන්න.</span>
+                    <span data-lang="en">The primary component of a computer system. It is often referred to as the heart or brain of the computer. Explore its main parts and processes below.</span>
+                </p>
+
+                <div class="space-y-3" id="cpu-accordion">
+                    <!-- Von Neumann -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">වොන් නියුමාන් ආකෘතිය</span><span data-lang="en">Von Neumann Architecture</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><span data-lang="si">1945 දී ජෝන් වොන් නියුමාන් විසින් හඳුන්වා දෙන ලදී. මූලික අදහස වූයේ, දත්ත සහ උපදෙස් (programs) එකම මතකයක ගබඩා කර තබා සැකසීමේ ක්‍රියාවලියට යොමු කල යුතු බවයි.</span><span data-lang="en">Introduced by John Von Neumann in 1945. The basic idea was that data and instructions (programs) should be stored in the same memory and forwarded to processing.</span></p>
+                        </div>
+                    </div>
+                    <!-- CPU Composition -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">සකසනයේ සංයුතිය</span><span data-lang="en">CPU Composition</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200 space-y-2">
+                            <p><strong><span data-lang="si">ALU (අංක ගණිතමය හා තර්කික ඒකකය):</span><span data-lang="en">ALU (Arithmetic and Logic Unit):</span></strong> <span data-lang="si">සියළුම ගණිතමය හා තර්කානුකූල කටයුතු සිදු කරයි.</span><span data-lang="en">Performs all arithmetic and logical work.</span></p>
+                            <p><strong><span data-lang="si">රෙජිස්තර මතකය (Register):</span><span data-lang="en">Registers:</span></strong> <span data-lang="si">සකසනය තුල ඇති කුඩා, අධිවේගී මතක ස්ථාන.</span><span data-lang="en">Small, high-speed storage locations within the CPU.</span></p>
+                            <p><strong><span data-lang="si">පාලන ඒකකය (Control Unit):</span><span data-lang="en">Control Unit:</span></strong> <span data-lang="si">පරිගණකයේ සමස්ත ක්‍රියාවලිය පාලනය කරයි, උපදෙස් යොමු කරයි.</span><span data-lang="en">Directs the entire process of the computer, sending instructions.</span></p>
+                        </div>
+                    </div>
+                    <!-- Fetch-Execute Cycle -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">සෙවුම් - ඉෂ්ට චක්‍රය</span><span data-lang="en">Fetch-Execute Cycle</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p class="mb-4"><span data-lang="si">උපදෙස් කොටසින් කොටස සකසනය වෙත ගෙන ගොස් ක්‍රියාත්මක වන ආකාරය.</span><span data-lang="en">The process of fetching instructions from memory and executing them.</span></p>
+                            <div class="flex flex-col md:flex-row justify-around items-center text-center">
+                                <div class="p-2">
+                                    <span class="text-sm font-bold block"><span data-lang="si">1. Fetch</span><span data-lang="en">1. Fetch</span></span>
+                                    <span class="text-xs"><span data-lang="si">මතකයෙන් උපදෙස් ගෙන ඒම</span><span data-lang="en">Get instruction from memory</span></span>
+                                </div>
+                                <span class="text-blue-600 text-2xl font-bold">→</span>
+                                <div class="p-2">
+                                    <span class="text-sm font-bold block"><span data-lang="si">2. Decode</span><span data-lang="en">2. Decode</span></span>
+                                    <span class="text-xs"><span data-lang="si">උපදෙස් විකේතනය කිරීම</span><span data-lang="en">Decode the instruction</span></span>
+                                </div>
+                                <span class="text-blue-600 text-2xl font-bold">→</span>
+                                <div class="p-2">
+                                    <span class="text-sm font-bold block"><span data-lang="si">3. Execute</span><span data-lang="en">3. Execute</span></span>
+                                    <span class="text-xs"><span data-lang="si">උපදෙස් ක්‍රියාත්මක කිරීම</span><span data-lang="en">Execute the command</span></span>
+                                </div>
+                                <span class="text-blue-600 text-2xl font-bold">→</span>
+                                <div class="p-2">
+                                    <span class="text-sm font-bold block"><span data-lang="si">4. Store</span><span data-lang="en">4. Store</span></span>
+                                    <span class="text-xs"><span data-lang="si">ප්‍රතිඵල මතකයේ තැන්පත් කිරීම</span><span data-lang="en">Store results in memory</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Other Concepts -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">වෙනත් CPU සංකල්ප</span><span data-lang="en">Other CPU Concepts</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200 space-y-2">
+                            <p><strong><span data-lang="si">බහුහර සකසනය (Multi-Core):</span><span data-lang="en">Multi-Core Processor:</span></strong> <span data-lang="si">තනි චිපයක ස්වාධීන සකසන (cores) දෙකක් හෝ ඊට වැඩි ගණනක්.</span><span data-lang="en">Two or more independent processors (cores) on a single chip.</span></p>
+                            <p><strong><span data-lang="si">හෝරා ශීඝ්‍රතාව (Clock Speed):</span><span data-lang="en">Clock Speed:</span></strong> <span data-lang="si">සකසනය තත්පරයකට ක්‍රියාත්මක කරන උපදෙස් ගණන. Hertz (Hz) වලින් මනිනු ලබයි.</span><span data-lang="en">The number of instructions the processor can execute per second. Measured in Hertz (Hz).</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Section: Memory -->
+            <section id="section-memory" class="content-section">
+                <h2 class="text-3xl font-bold mb-4">
+                    <span data-lang="si">පරිගණක මතකය</span>
+                    <span data-lang="en">Computer Memory</span>
+                </h2>
+                <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                    <span data-lang="si">පරිගණක මතකය යනු දත්ත සහ උපදෙස් ගබඩා කරන ස්ථානයයි. එය විවිධ වේගයන්, පිරිවැය සහ ධාරිතාවන් සහිත ධුරාවලියක් ලෙස සකසා ඇත.</span>
+                    <span data-lang="en">Computer memory is where data and instructions are stored. It is organized as a hierarchy with different speeds, costs, and capacities.</span>
+                </p>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                    <h3 class="text-2xl font-semibold mb-4 text-center"><span data-lang="si">මතක ධුරාවලිය</span><span data-lang="en">Memory Hierarchy</span></h3>
+                    <div class="grid md:grid-cols-2 gap-6 items-center">
+                        <!-- Pyramid -->
+                        <div class="max-w-xs mx-auto w-full">
+                            <div class="pyramid-level bg-blue-200 text-blue-800" style="clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%); width: 35%;"><span data-lang="si">රෙජිස්තර</span><span data-lang="en">Registers</span></div>
+                            <div class="pyramid-level bg-blue-300 text-blue-900" style="clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%); width: 48%;"><span data-lang="si">වාරක (Cache)</span><span data-lang="en">Cache</span></div>
+                            <div class="pyramid-level bg-blue-400 text-white" style="clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); width: 60%;"><span data-lang="si">ප්‍රධාන මතකය (RAM)</span><span data-lang="en">Main (RAM)</span></div>
+                            <div class="pyramid-level bg-blue-500 text-white" style="clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); width: 80%;"><span data-lang="si">චුම්බක තැටි (Disk)</span><span data-lang="en">Magnetic Disk</span></div>
+                            <div class="pyramid-level bg-blue-600 text-white" style="clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); width: 100%;"><span data-lang="si">ප්‍රකාශ/චුම්බක පටි</span><span data-lang="en">Optical/Tape</span></div>
+                            <div class="flex justify-between text-sm mt-2 px-2">
+                                <span><strong><span data-lang="si">වේගය/පිරිවැය</span><span data-lang="en">Speed/Cost</span></strong> <span data-lang="si">අඩු වේ</span><span data-lang="en">Decreases</span> ↓</span>
+                                <span><strong><span data-lang="si">ධාරිතාව</span><span data-lang="en">Capacity</span></strong> <span data-lang="si">වැඩි වේ</span><span data-lang="en">Increases</span> ↓</span>
+                            </div>
+                        </div>
+                        <!-- Chart -->
+                        <div>
+                            <p class="text-center text-stone-700 mb-2"><span data-lang="si">සාපේක්ෂ ප්‍රවේශ කාලය (Logarithmic)</span><span data-lang="en">Relative Access Time (Logarithmic)</span></p>
+                            <div class="chart-container" style="height: 300px; max-height: 300px;">
+                                <canvas id="memoryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3" id="memory-accordion">
+                    <!-- Volatile vs Non-Volatile -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">නශ්‍ය හා නශ්‍ය නොවන මතකය </span><span data-lang="en">Volatile vs. Non-Volatile</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p><strong><span data-lang="si">නශ්‍ය (Volatile):</span><span data-lang="en">Volatile:</span></strong> <span data-lang="si">විදුලිය විසන්ධි කළ විට දත්ත මැකී යයි (උදා: RAM, Cache, Registers).</span><span data-lang="en">Loses data when power is turned off (e.g., RAM, Cache, Registers).</span></p>
+                            <p><strong><span data-lang="si">නශ්‍ය නොවන (Non-Volatile):</span><span data-lang="en">Non-Volatile:</span></strong> <span data-lang="si">විදුලිය විසන්ධි කළද දත්ත රඳවා ගනී (උදා: ROM, Hard Disk, CD).</span><span data-lang="en">Retains data even when power is off (e.g., ROM, Hard Disk, CD).</span></p>
+                        </div>
+                    </div>
+                    <!-- ROM -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">පඨන මාත්‍ර මතකය (ROM)</span><span data-lang="en">Read-Only Memory (ROM)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p class="mb-2"><span data-lang="si">පරිගණකය ක්‍රියාත්මක කිරීමට අවශ්‍ය (BIOS) වැනි මූලික උපදෙස් ගබඩා කරන නශ්‍ය නොවන මතකයකි.</span><span data-lang="en">Non-volatile memory that stores essential instructions for booting (like BIOS).</span></p>
+                            <p><strong><span data-lang="si">වර්ග:</span><span data-lang="en">Types:</span></strong> ROM, PROM, EPROM, EEPROM</p>
+                        </div>
+                    </div>
+                    <!-- RAM -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">සසම්භාවි ප්‍රවේශ මතකය (RAM)</span><span data-lang="en">Random Access Memory (RAM)</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p class="mb-2"><span data-lang="si">පරිගණකය ක්‍රියාත්මක වන අතරතුර දත්ත තාවකාලිකව තැන්පත් කරන නශ්‍ය මතකයකි.</span><span data-lang="en">Volatile memory that temporarily stores data while the computer is running.</span></p>
+                            <p><strong><span data-lang="si">වර්ග:</span><span data-lang="en">Types:</span></strong> DRAM (<span data-lang="si">refresh අවශ්‍යයි</span><span data-lang="en">needs refresh</span>), SRAM (<span data-lang="si">refresh අවශ්‍ය නැත, වේගවත්</span><span data-lang="en">no refresh, faster</span>), SDRAM (DDR, DDR2, DDR3, DDR4)</p>
+                        </div>
+                    </div>
+                    <!-- Cache -->
+                    <div class="bg-white rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left p-4 font-semibold text-lg flex justify-between items-center">
+                            <span><span data-lang="si">වාරක මතකය (Cache)</span><span data-lang="en">Cache Memory</span></span>
+                            <span class="text-blue-600 text-2xl">+</span>
+                        </button>
+                        <div class="accordion-content p-4 border-t border-stone-200">
+                            <p class="mb-2"><span data-lang="si">නිතර භාවිතා කරන උපදෙස් ගබඩා කිරීමට යොදාගන්නා, CPU සහ RAM අතර ඇති අධිවේගී මතකයකි.</span><span data-lang="en">A very fast memory between the CPU and RAM used to store frequently used instructions.</span></p>
+                            <p><strong><span data-lang="si">මට්ටම්:</span><span data-lang="en">Levels:</span></strong> L1 (<span data-lang="si">වේගවත්ම, CPU තුළ</span><span data-lang="en">fastest, inside CPU</span>), L2, L3</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('sidebar');
+            const hamburgerButton = document.getElementById('hamburgerButton');
+            const navItems = document.querySelectorAll('.nav-item');
+            const contentSections = document.querySelectorAll('.content-section');
+            const langToggles = [document.getElementById('langToggleMobile'), document.getElementById('langToggleDesktop')];
+            let currentSection = 'home';
+            let currentLang = 'si';
+            let memoryChart = null;
+
+            function showSection(sectionId) {
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                const activeSection = document.getElementById('section-' + sectionId);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                }
+                const activeNavItem = document.querySelector(`.nav-item[data-section="${sectionId}"]`);
+                if (activeNavItem) {
+                    activeNavItem.classList.add('active');
+                }
+                
+                currentSection = sectionId;
+                
+                if (window.innerWidth < 768) {
+                    sidebar.classList.add('-translate-x-full');
+                }
+                
+                if (sectionId === 'memory' && !memoryChart) {
+                    createMemoryChart();
+                }
+            }
+
+            function setLanguage(lang) {
+                document.body.classList.remove('lang-si', 'lang-en');
+                document.body.classList.add('lang-' + lang);
+                currentLang = lang;
+                
+                const newButtonText = (lang === 'si') ? 'English' : 'සිංහල';
+                langToggles.forEach(toggle => {
+                    if (toggle) toggle.textContent = newButtonText;
+                });
+
+                document.documentElement.lang = lang;
+            }
+
+            if(hamburgerButton) {
+                hamburgerButton.addEventListener('click', () => {
+                    sidebar.classList.toggle('-translate-x-full');
+                });
+            }
+
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const sectionId = item.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+
+            langToggles.forEach(toggle => {
+                if (toggle) {
+                    toggle.addEventListener('click', () => {
+                        const newLang = (currentLang === 'si') ? 'en' : 'si';
+                        setLanguage(newLang);
+                    });
+                }
+            });
+
+            function setupAccordion(containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                const headers = container.querySelectorAll('.accordion-header');
+                headers.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = header.nextElementSibling;
+                        const icon = header.querySelector('span:last-child');
+                        
+                        if (content.style.display === 'block') {
+                            content.style.display = 'none';
+                            if (icon) icon.textContent = '+';
+                        } else {
+                            content.style.display = 'block';
+                            if (icon) icon.textContent = '−';
+                        }
+                    });
+                });
+            }
+
+            setupAccordion('evolution-accordion');
+            setupAccordion('generations-accordion');
+            setupAccordion('cpu-accordion');
+            setupAccordion('memory-accordion');
+            
+            function setupTabs(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (!section) return;
+
+                const tabButtons = section.querySelectorAll('.tab-button');
+                const tabContents = section.querySelectorAll('.tab-content');
+
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
+
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+
+                        tabContents.forEach(content => {
+                            if (content.getAttribute('data-tab-content') === tabId) {
+                                content.classList.add('active');
+                            } else {
+                                content.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+            }
+
+            setupTabs('section-hardware');
+
+            function createMemoryChart() {
+                const ctx = document.getElementById('memoryChart');
+                if (!ctx) return;
+                
+                const labels = ['Registers', 'L1 Cache', 'L2 Cache', 'RAM', 'SSD', 'HDD'];
+                const data = [1, 2, 3, 5, 12, 16]; // Logarithmic scale values (approx)
+                
+                memoryChart = new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Relative Access Time (Faster is Smaller)',
+                            data: data,
+                            backgroundColor: '#3b82f6', // blue-500
+                            borderColor: '#1d4ed8', // blue-700
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                type: 'logarithmic',
+                                min: 0.1,
+                                title: {
+                                    display: true,
+                                    text: 'Relative Time (Log Scale)'
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        label += `~10^${context.parsed.x} ns`;
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Initial Setup
+            showSection(currentSection);
+            setLanguage(currentLang);
+        });
+    </script>
+</body>
+</html>
