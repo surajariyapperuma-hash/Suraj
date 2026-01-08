@@ -159,7 +159,7 @@
     // --- SETTINGS (මෙහිදී අගයන් වෙනස් කළ හැක) ---
     const ENABLE_TIMER = true;        // කාලගණකය අවශ්‍ය නම් true කරන්න
     const TIME_LIMIT = 30;            // තත්පර ගණන
-    const ENABLE_SHUFFLE = false;       // ප්‍රශ්න සහ පිළිතුරු Shuffle වීමට true කරන්න
+    const ENABLE_SHUFFLE = true;       // ප්‍රශ්න සහ පිළිතුරු Shuffle වීමට true කරන්න
     const ENABLE_TAB_SECURITY = true;  // වෙනත් Tab එකකට යන විට Reset වීමට true කරන්න (එපා නම් false)
 
     let currentQuestionIndex = 0;
@@ -616,7 +616,7 @@
         document.getElementById('result-date').textContent = `දිනය: ${now.toLocaleDateString('si-LK')} | වේලාව: ${now.toLocaleTimeString('si-LK')}`;
     }
 
-   /** function captureResultsAsImage() {
+   function captureResultsAsImage() {
         const card = document.getElementById('result-card-to-capture');
         html2canvas(card, { scale: 2 }).then(canvas => {
             const link = document.createElement('a');
@@ -624,17 +624,7 @@
             link.href = canvas.toDataURL('image/jpeg', 0.9);
             link.click();
         });
-    }**/
-	function captureResultsAsImage() {
-    const card = document.getElementById('result-card-to-capture');
-    html2canvas(card, { scale: 2 }).then(canvas => {
-        // Image එක Base64 format එකට ගන්නවා
-        const imageData = canvas.toDataURL('image/jpeg', 0.9);
-        
-        // මෙන්න මේ පේළිය අනිවාර්යයෙන්ම ඇතුළත් කරන්න
-        window.AppInventor.setWebViewString(imageData);
-    });
-}
+    }
 
     function resetQuizState() {
         currentQuestionIndex = 0;
@@ -666,4 +656,5 @@
 
 <script src="Questions.js"></script>
 </body>
+
 </html>
