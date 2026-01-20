@@ -156,11 +156,18 @@
 </div>
 
 <script>
-    // --- SETTINGS (මෙහිදී අගයන් වෙනස් කළ හැක) ---
-    const ENABLE_TIMER = true;        // කාලගණකය අවශ්‍ය නම් true කරන්න
-    const TIME_LIMIT = 30;            // තත්පර ගණන
+    /*// --- SETTINGS (මෙහිදී අගයන් වෙනස් කළ හැක) ---
+   const ENABLE_TIMER = true;        // කාලගණකය අවශ්‍ය නම් true කරන්න
+    const TIME_LIMIT = 90;            // තත්පර ගණන
     const ENABLE_SHUFFLE = true;       // ප්‍රශ්න සහ පිළිතුරු Shuffle වීමට true කරන්න
-    const ENABLE_TAB_SECURITY = true;  // වෙනත් Tab එකකට යන විට Reset වීමට true කරන්න (එපා නම් false)
+    const ENABLE_TAB_SECURITY = true;  // වෙනත් Tab එකකට යන විට Reset වීමට true කරන්න (එපා නම් false)*/
+	
+	// --- SETTINGS (මුළු පේපර් එකටම එකක් වන සේ වෙනස් කර ඇත) ---
+const ENABLE_TIMER = true;
+const TOTAL_MINUTES = 25; // ඔබට අවශ්‍ය මුළු මිනිත්තු ගණන (මෙහි 25 ලෙස යොදා ඇත)
+const TIME_LIMIT = TOTAL_MINUTES * 60; // මිනිත්තු තත්පර වලට හැරවීම (මුළු තත්පර 1500)
+const ENABLE_SHUFFLE = true;
+const ENABLE_TAB_SECURITY = true;
 
     let currentQuestionIndex = 0;
     let score = 0;
@@ -179,262 +186,135 @@
 
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
-     { 
-        question: "විවිධ ගණනය කිරීම් ඉතා පහසුවෙන්, නිවැරදිව සහ කාර්යක්ෂමව සිදු කිරීමට භාවිතා කරන මෘදුකාංග වර්ගය කුමක්ද?", 
-        correct: "විද්‍යුත් පැතුරුම්පත් (Electronic Spreadsheets).", 
-        distractors: ["වදන් සැකසුම් මෘදුකාංග (Word Processors).", "සමර්පණ මෘදුකාංග (Presentation Software).", "දත්ත සමුදාය කළමනාකරණ පද්ධති (DBMS)."] 
-    },
-    { 
-        question: "Microsoft Corporation මගින් හඳුන්වා දුන් පැතුරුම්පත් මෘදුකාංගය කුමක්ද?", 
-        correct: "Microsoft Excel.", 
-        distractors: ["Microsoft Word.", "Microsoft Access.", "Microsoft PowerPoint."] 
-    },
-    { 
-        question: "The Document Foundation මගින් නිපදවන ලද නිදහස් හා විවෘත මෘදුකාංගය කුමක්ද?", 
-        correct: "LibreOffice Calc.", 
-        distractors: ["Open Office Draw.", "Google Sheets.", "Lotus 1-2-3."] 
-    },
-    { 
-        question: "ඇපල් සමාගම මගින් නිෂ්පාදනය කර ඇති පැතුරුම්පත් මෘදුකාංගය කුමක්ද?", 
-        correct: "Apple Numbers.", 
-        distractors: ["Apple Pages.", "Apple Keynote.", "Apple Sheets."] 
-    },
-    { 
-        question: "පැතුරුම්පතක ඉහළම කොටසෙහි ගොනුවේ නම දර්ශනය වන තීරුව කුමක්ද?", 
-        correct: "මාතෘකා තීරුව (Title Bar).", 
-        distractors: ["තත්ව තීරුව (Status Bar).", "මෙනු තීරුව (Menu Bar).", "සූත්‍ර තීරුව (Formula Bar)."] 
-    },
-    { 
-        question: "සක්‍රීය කොටුව (Active Cell) වටා ඇති කළු පැහැති මායිම හඳුන්වන්නේ කෙසේද?", 
-        correct: "කෝෂ දර්ශකය (Cell Pointer).", 
-        distractors: ["තීරු ශීර්ෂය (Column Header).", "සූත්‍ර තීරුව (Formula Bar).", "නම පෙට්ටිය (Name Box)."] 
-    },
-    { 
-        question: "සක්‍රීය කොටුවේ ඇති දත්ත හෝ සූත්‍ර දර්ශනය වන තීරුව කුමක්ද?", 
-        correct: "සූත්‍ර තීරුව (Formula Bar).", 
-        distractors: ["නම පෙට්ටිය (Name Box).", "මාතෘකා තීරුව (Title Bar).", "තීරු ශීර්ෂය (Column Header)."] 
-    },
-    { 
-        question: "සක්‍රීය කෝෂයේ ලිපිනය (Cell Address) දර්ශනය වන්නේ කොහේද?", 
-        correct: "නම පෙට්ටිය (Name Box).", 
-        distractors: ["සූත්‍ර තීරුව (Formula Bar).", "තත්ව තීරුව (Status Bar).", "මාතෘකා තීරුව (Title Bar)."] 
-    },
-    { 
-        question: "Excel හි සිරස් අතට ඇති කොටස් හඳුන්වන්නේ කුමන නමකින්ද?", 
-        correct: "තීරු (Columns).", 
-        distractors: ["පේළි (Rows).", "කෝෂ (Cells).", "වැඩපොත් (Workbooks)."] 
-    },
-    { 
-        question: "Excel හි තිරස් අතට ඇති කොටස් හඳුන්වන්නේ කුමන නමකින්ද?", 
-        correct: "පේළි (Rows).", 
-        distractors: ["තීරු (Columns).", "සූත්‍ර (Formulas).", "ප්‍රස්ථාර (Charts)."] 
-    },
-    { 
-        question: "පේළියක් සහ තීරුවක් ඡේදනය වන ස්ථානය හඳුන්වන්නේ කෙසේද?", 
-        correct: "කෝෂය (Cell).", 
-        distractors: ["පරාසය (Range).", "නිරපේක්ෂ යොමුව (Absolute Reference).", "වැඩ පත්‍රිකාව (Worksheet)."] 
-    },
-    { 
-        question: "පැතුරුම්පතක වැඩ කරන අවස්ථාවේ දී තෝරාගෙන ඇති කෝෂය හඳුන්වන්නේ කෙසේද?", 
-        correct: "සක්‍රීය කෝෂය (Active Cell).", 
-        distractors: ["ප්‍රධාන කෝෂය (Main Cell).", "පිටපත් කළ කෝෂය (Copied Cell).", "හිස් කෝෂය (Blank Cell)."] 
-    },
-    { 
-        question: "පැතුරුම්පතක පහළින්ම ඇති, දැනට වැඩ කරන පත්‍රිකාව පිළිබඳ තොරතුරු දක්වන තීරුව කුමක්ද?", 
-        correct: "තත්ව තීරුව (Status Bar).", 
-        distractors: ["මාතෘකා තීරුව (Title Bar).", "සූත්‍ර තීරුව (Formula Bar).", "මෙවලම් තීරුව (Tool Bar)."] 
-    },
-    { 
-        question: "Excel සූත්‍රයක් ආරම්භ කළ යුතු අනිවාර්ය සංකේතය කුමක්ද?", 
-        correct: "සමාන ලකුණ (=).", 
-        distractors: ["ධන ලකුණ (+).", "ඩොලර් සංකේතය ($).", "ඇස්ටරිස්ක් ලකුණ (*)."] 
-    },
-    { 
-        question: "සූත්‍රයක් පිටපත් කිරීමේදී (Copy), එහි අඩංගු කෝෂ ලිපින සාපේක්ෂව වෙනස් වීම හඳුන්වන්නේ කුමක්ද?", 
-        correct: "සාපේක්ෂ කෝෂ යොමුව (Relative Cell Reference).", 
-        distractors: ["නිරපේක්ෂ කෝෂ යොමුව (Absolute Cell Reference).", "ස්ථාවර කෝෂ යොමුව (Fixed Cell Reference).", "මිශ්‍ර කෝෂ යොමුව (Mixed Cell Reference)."] 
-    },
-    { 
-        question: "සූත්‍රයක් පිටපත් කිරීමේදී එහි ඇති කෝෂ ලිපින වෙනස් නොවී පවත්වා ගැනීම හඳුන්වන්නේ කෙසේද?", 
-        correct: "නිරපේක්ෂ කෝෂ යොමුව (Absolute Cell Reference).", 
-        distractors: ["සාපේක්ෂ කෝෂ යොමුව (Relative Cell Reference).", "බාහිර කෝෂ යොමුව (External Cell Reference).", "ස්වයංක්‍රීය යොමුව (Auto Reference)."] 
-    },
-    { 
-        question: "නිරපේක්ෂ කෝෂ යොමුවක් සැකසීමට භාවිතා කරන සංකේතය කුමක්ද?", 
-        correct: "$ (Dollar Sign).", 
-        distractors: ["# (Hash Tag).", "& (Ampersand).", "@ (At Symbol)."] 
-    },
-    { 
-        question: "එක ලඟ පිහිටි කෝෂ කිහිපයක එකතුවක් හඳුන්වන්නේ කෙසේද?", 
-        correct: "කෝෂ පරාසය (Cell Range).", 
-        distractors: ["කෝෂ කාණ්ඩය (Cell Group).", "කෝෂ මාලාව (Cell Series).", "කෝෂ එකතුව (Cell Set)."] 
-    },
-    { 
-        question: "Excel හි එකතු කිරීම සඳහා භාවිතා කරන ශ්‍රිතය (Function) කුමක්ද?", 
-        correct: "SUM", 
-        distractors: ["ADD", "TOTAL", "COUNT"] 
-    },
-    { 
-        question: "කෝෂ පරාසයක ඇති උපරිම අගය සෙවීමට භාවිතා කරන ශ්‍රිතය කුමක්ද?", 
-        correct: "MAX", 
-        distractors: ["HIGHEST", "TOP", "LARGE"] 
-    },
-    { 
-        question: "කෝෂ පරාසයක ඇති අවම අගය සෙවීමට භාවිතා කරන ශ්‍රිතය කුමක්ද?", 
-        correct: "MIN", 
-        distractors: ["LOWEST", "BOTTOM", "SMALL"] 
-    },
-    { 
-        question: "අගයන් පරාසයක සාමාන්‍ය අගය (Average) සෙවීමට භාවිතා කරන ශ්‍රිතය කුමක්ද?", 
-        correct: "AVERAGE", 
-        distractors: ["MEAN", "AVG", "TOTALAVG"] 
-    },
-    { 
-        question: "යම් පරාසයක ඇති දත්ත අඩංගු කෝෂ ගණන සෙවීමට භාවිතා කරන්නේ කුමන ශ්‍රිතයද?", 
-        correct: "COUNT", 
-        distractors: ["NUMBER", "CELLS", "TOTALCOUNT"] 
-    },
-    { 
-        question: "යම් කොන්දේසියක් මත පදනම්ව ගණනය කිරීම් සිදු කිරීමට භාවිතා කරන ශ්‍රිතය කුමක්ද?", 
-        correct: "IF", 
-        distractors: ["WHEN", "WHETHER", "CHECK"] 
-    },
-    { 
-        question: "දත්ත ආරෝහණ හෝ අවරෝහණ පිළිවෙලට සැකසීම හඳුන්වන්නේ කෙසේද?", 
-        correct: "දත්ත පෙළ ගැස්වීම (Sorting).", 
-        distractors: ["දත්ත පෙරීම (Filtering).", "දත්ත සෙවීම (Searching).", "දත්ත කාණ්ඩ කිරීම (Grouping)."] 
-    },
-    { 
-        question: "අවශ්‍ය දත්ත පමණක් තෝරාගෙන ප්‍රදර්ශනය කිරීම හඳුන්වන්නේ කෙසේද?", 
-        correct: "දත්ත පෙරීම (Filtering).", 
-        distractors: ["දත්ත පෙළ ගැස්වීම (Sorting).", "දත්ත මකාදැමීම (Deleting).", "දත්ත වෙනස් කිරීම (Editing)."] 
-    },
-    { 
-        question: "Excel වැඩ පත්‍රිකාවක මුළු පේළි ගණන (Rows) කොපමණද?", 
-        correct: "1,048,576", 
-        distractors: ["65,536", "1,000,000", "524,288"] 
-    },
-    { 
-        question: "Excel වැඩ පත්‍රිකාවක මුළු තීරු ගණන (Columns) කොපමණද?", 
-        correct: "16,384", 
-        distractors: ["256", "10,000", "32,768"] 
-    },
-    { 
-        question: "Excel හි අවසාන තීරුවේ නම කුමක්ද?", 
-        correct: "XFD", 
-        distractors: ["ZZZ", "IV", "XFC"] 
-    },
-    { 
-        question: "පැතුරුම්පතක ඇති දත්ත රූපමය ආකාරයෙන් දැක්වීම හඳුන්වන්නේ කුමන නමකින්ද?", 
-        correct: "ප්‍රස්ථාර (Charts).", 
-        distractors: ["රූප (Images).", "සිතියම් (Maps).", "වගු (Tables)."] 
-    },
-    { 
-        question: "Excel ගොනුවක් සුරැකීමේදී ලැබෙන දිගුව (Extension) කුමක්ද?", 
-        correct: ".xlsx", 
-        distractors: [".docx", ".pptx", ".txt"] 
-    },
-    { 
-        question: "දත්ත සමූහයක මැද අගය (Middle Value) සෙවීමට භාවිතා කරන ශ්‍රිතය කුමක්ද?", 
-        correct: "MEDIAN", 
-        distractors: ["AVERAGE", "MODE", "MID"] 
-    },
-    { 
-        question: "වැඩිම වාර ගණනක් වාර්තා වී ඇති අගය සෙවීමට භාවිතා කරන ශ්‍රිතය කුමක්ද?", 
-        correct: "MODE", 
-        distractors: ["MOST", "COUNT", "MAX"] 
-    },
-    { 
-        question: "සූත්‍රයක 'භාජනය' (Division) සඳහා භාවිතා කරන ලකුණ කුමක්ද?", 
-        correct: "/ (Forward Slash)", 
-        distractors: ["\\ (Backslash)", "÷", "%"] 
-    },
-    { 
-        question: "සූත්‍රයක 'ගුණ කිරීම' (Multiplication) සඳහා භාවිතා කරන ලකුණ කුමක්ද?", 
-        correct: "* (Asterisk)", 
-        distractors: ["x", ".", "^"] 
-    },
-    { 
-        question: "සූත්‍රයක 'බලය' (Power) සෙවීම සඳහා භාවිතා කරන ලකුණ කුමක්ද?", 
-        correct: "^ (Caret)", 
-        distractors: ["*", "#", "&"] 
-    },
-    { 
-        question: "Excel හි සම්මත වශයෙන් වැඩ පත්‍රිකා කීයක් ආරම්භයේදී තිබේද? (පැරණි සංස්කරණ වල)", 
-        correct: "3", 
-        distractors: ["1", "5", "10"] 
-    },
-    { 
-        question: "Excel හි තිරස් අනුචලන තීරුව (Horizontal Scroll Bar) පිහිටා ඇත්තේ කොහේද?", 
-        correct: "පහළ දකුණු පස.", 
-        distractors: ["ඉහළ වම් පස.", "මැද.", "ඉහළ දකුණු පස."] 
-    },
-    { 
-        question: "පේළියක උස (Row Height) වෙනස් කළ හැක්කේ කොතැනින්ද?", 
-        correct: "පේළි ශීර්ෂ අතර රේඛාවෙන් (Row Headers).", 
-        distractors: ["තීරු ශීර්ෂයෙන්.", "සූත්‍ර තීරුවෙන්.", "නම පෙට්ටියෙන්."] 
-    },
-    { 
-        question: "දත්ත පරාසයක් වටා මායිම් දැමීමට භාවිතා කරන විධානය කුමක්ද?", 
-        correct: "Borders", 
-        distractors: ["Outline", "Frames", "Gridlines"] 
-    },
-    { 
-        question: "කෝෂ කිහිපයක් එකතු කර තනි කෝෂයක් බවට පත් කිරීම හඳුන්වන්නේ කුමක්ද?", 
-        correct: "Merge & Center", 
-        distractors: ["Combine", "Join Cells", "Group Cells"] 
-    },
-    { 
-        question: "Excel හි තීරු නම් කර ඇත්තේ කුමන ආකාරයටද?", 
-        correct: "A, B, C... ලෙස අක්ෂර වලින්.", 
-        distractors: ["1, 2, 3... ලෙස අංක වලින්.", "I, II, III... ලෙස රෝම ඉලක්කම් වලින්.", "වර්ණ වලින්."] 
-    },
-    { 
-        question: "Excel හි පේළි නම් කර ඇත්තේ කුමන ආකාරයටද?", 
-        correct: "1, 2, 3... ලෙස අංක වලින්.", 
-        distractors: ["A, B, C... ලෙස අක්ෂර වලින්.", "Row 1, Row 2... ලෙස.", "සංකේත වලින්."] 
-    },
-    { 
-        question: "සක්‍රීය කෝෂයේ සිට ඊළඟ කෝෂයට (දකුණට) යාමට භාවිතා කරන යතුර කුමක්ද?", 
-        correct: "Tab Key", 
-        distractors: ["Enter Key", "Shift Key", "Space Key"] 
-    },
-    { 
-        question: "සක්‍රීය කෝෂයේ සිට පහළ කෝෂයට යාමට භාවිතා කරන යතුර කුමක්ද?", 
-        correct: "Enter Key", 
-        distractors: ["Tab Key", "Esc Key", "Ctrl Key"] 
-    },
-    { 
-        question: "මුදල් අගයන් දැක්වීම සඳහා භාවිතා කරන Format එක කුමක්ද?", 
-        correct: "Currency / Accounting", 
-        distractors: ["Number", "Text", "Percentage"] 
-    },
-    { 
-        question: "දින වකවානු ඇතුළත් කිරීමට භාවිතා කරන Format එක කුමක්ද?", 
-        correct: "Date", 
-        distractors: ["Time", "General", "Scientific"] 
-    },
-    { 
-        question: "ප්‍රතිශත දැක්වීම සඳහා භාවිතා කරන ලකුණ කුමක්ද?", 
-        correct: "%", 
-        distractors: ["$", "#", "@"] 
-    },
-    { 
-        question: "දත්ත ඇතුළත් කිරීමේදී වැරදි සිදුවීම වැළැක්වීමට භාවිතා කරන ක්‍රමය කුමක්ද?", 
-        correct: "Data Validation", 
-        distractors: ["Data Sorting", "Data Filtering", "Data Grouping"] 
-    },
-    { 
-        question: "සූත්‍රයක ඇති වැරදි පෙන්වන '#VALUE!' යන්නෙන් අදහස් වන්නේ කුමක්ද?", 
-        correct: "වැරදි දත්ත වර්ගයක් භාවිතා කර ඇති බව.", 
-        distractors: ["කෝෂය කුඩා වැඩි බව.", "බෙදීම බින්දුවෙන් කර ඇති බව.", "නම වැරදි බව."] 
-    },
- 
 
+    {
+        "question": "A + AB යන බූලියන් ප්‍රකාශනය සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A",
+        "distractors": ["B", "AB", "A + B", "0"]
+    },
+    {
+        "question": "A(A + B) යන ප්‍රකාශනය සරල කළ විට ලැබෙන අවසාන ප්‍රතිඵලය කුමක්ද?",
+        "correct": "A",
+        "distractors": ["B", "A + B", "AB", "1"]
+    },
+    {
+        "question": "AB + AB' සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A",
+        "distractors": [ "AB", "0", "A + B", "B'"]
+    },
+    {
+        "question": "(A + B)(A + B') සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A",
+        "distractors": ["B", "A + B", "1", "AB"]
+    },
+    {
+        "question": "A'B + AB + AB' යන ප්‍රකාශනය සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A + B",
+        "distractors": ["A", "B", "AB", "A' + B'"]
+    },
+    {
+        "question": "ABC + ABC' + AB'C සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A(B + C)",
+        "distractors": ["ABC", "A + B + C", "AB", "AC"]
+    },
+    {
+        "question": "A + A'B යන ප්‍රකාශනය Redundancy Law අනුව සරල කළ විට ලැබෙන්නේ කුමක්ද?",
+        "correct": "A + B",
+        "distractors": ["A", "B", "A' + B", "AB"]
+    },
+    {
+        "question": "A(A' + B) යන ප්‍රකාශනය සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "AB",
+        "distractors": ["A", "B", "A + B", "0"]
+    },
+    {
+        "question": "AB + A(B + C) + B(B + C) සරල කළ විට ලැබෙන අවසාන අගය කුමක්ද?",
+        "correct": "B + AC",
+        "distractors": ["B", "A + B + C", "AB + AC", "AC"]
+    },
+    {
+        "question": "(A + B)(A + C) සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A + BC",
+        "distractors": ["A + B + C", "AB + AC", "A", "BC"]
+    },
+    {
+        "question": "AB + A'C + BC යන ප්‍රකාශනය Consensus Theorem අනුව සරල කළ විට ලැබෙන්නේ කුමක්ද?",
+        "correct": "AB + A'C",
+        "distractors": ["BC", "A + B + C", "AB + BC", "0"]
+    },
+    {
+        "question": "A'B'C + A'BC + AB'C සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A'C + B'C",
+        "distractors": ["A'B'C", "C", "A' + B'", "ABC"]
+    },
+    {
+        "question": "AB + AB'C + ABC' සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A(B + C)",
+        "distractors": ["AB", "A", "B + C", "ABC"]
+    },
+    {
+        "question": "(A + B)' + A'B යන ප්‍රකාශනය සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A'",
+        "distractors": ["B'", "A' + B'", "0", "1"]
+    },
+    {
+        "question": "A'BC + AC සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "C(A + B)",
+        "distractors": ["AC", "BC", "A + C", "ABC"]
+    },
+    {
+        "question": "B + BC + BA යන ප්‍රකාශනය සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "B",
+        "distractors": ["A + B + C", "BC", "BA", "1"]
+    },
+    {
+        "question": "A'B'C' + A'B'C + A'BC සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A'(B' + C)",
+        "distractors": ["A'B'C'", "A'", "B' + C", "0"]
+    },
+    {
+        "question": "AB + A(B + C) සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A(B + C)",
+        "distractors": ["AB", "AC", "A", "B + C"]
+    },
+    {
+        "question": "(A + B)(A' + B) සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "B",
+        "distractors": ["A", "A + B", "A' + B", "0"]
+    },
+    {
+        "question": "A[B + C(AB + AC)'] සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "AB",
+        "distractors": ["AC", "A", "B", "A + B"]
+    },
+    {
+        "question": "ABC + AB'C + ABC' සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A(B + C)",
+        "distractors": ["ABC", "A", "C", "B + C"]
+    },
+    {
+        "question": "XY + X(Y + Z) + Y(Y + Z) සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "Y + XZ",
+        "distractors": ["X + Y + Z", "XY + XZ", "Y", "X"]
+    },
+    {
+        "question": "(A + B)'(A' + B') සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "(A + B)'",
+        "distractors": ["1", "0", "A' + B'", "AB"]
+    },
+    {
+        "question": "AB + A'B + AB' සරල කළ විට ලැබෙන අගය කුමක්ද?",
+        "correct": "A + B",
+        "distractors": ["AB", "A", "B", "1"]
+    },
+    {
+        "question": "A + B[A + (B + C)'] සරල කළ විට ලැබෙන අවසාන අගය කුමක්ද?",
+        "correct": "A",
+        "distractors": ["B", "C", "A + B", "A + C"]
+    }
 
-
-]
     
+]
 
     let quizData = [...originalQuizData];
 
@@ -507,7 +387,7 @@
     function startTimer() {
         if (!ENABLE_TIMER) return;
         if (timerInterval) clearInterval(timerInterval);
-        timeRemaining = TIME_LIMIT;
+        //timeRemaining = TIME_LIMIT;
         updateTimerUI();
         timerInterval = setInterval(() => {
             timeRemaining--;
@@ -521,10 +401,13 @@
 
     function updateTimerUI() {
         if (!ENABLE_TIMER) return;
-        document.getElementById('time-left').textContent = timeRemaining;
+		const minutes = Math.floor(timeRemaining / 60);
+		const seconds = timeRemaining % 60;
+        document.getElementById('time-left').textContent =`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; //timeRemaining;
         const progress = (timeRemaining / TIME_LIMIT) * 100;
         document.getElementById('timer-progress').style.width = `${progress}%`;
     }
+	
 
     function handleTimeout() {
         isQuestionLocked = true;
@@ -616,7 +499,7 @@
         document.getElementById('result-date').textContent = `දිනය: ${now.toLocaleDateString('si-LK')} | වේලාව: ${now.toLocaleTimeString('si-LK')}`;
     }
 
-   function captureResultsAsImage() {
+    function captureResultsAsImage() {
         const card = document.getElementById('result-card-to-capture');
         html2canvas(card, { scale: 2 }).then(canvas => {
             const link = document.createElement('a');
@@ -656,5 +539,4 @@
 
 <script src="Questions.js"></script>
 </body>
-
 </html>
