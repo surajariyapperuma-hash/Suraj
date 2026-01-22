@@ -238,7 +238,7 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["A + B + C", "AB + AC", "A", "BC"]
     },
     {
-        "question": "AB + A'C + BC යන ප්‍රකාශනය Consensus Theorem අනුව සරල කළ විට ලැබෙන්නේ කුමක්ද?",
+        "question": "AB + A'C + BC යන ප්‍රකාශනය සරල කළ විට ලැබෙන්නේ කුමක්ද?",
         "correct": "AB + A'C",
         "distractors": ["BC", "A + B + C", "AB + BC", "0"]
     },
@@ -483,7 +483,11 @@ const ENABLE_TAB_SECURITY = true;
     }
 
     function showResults() {
-        isQuizStarted = false; 
+	clearInterval(timerInterval);
+    
+    // විභාගය අවසන් කළ බව සටහන් කිරීම
+    localStorage.setItem('exam_done_it', 'true');
+        //isQuizStarted = false; 
         quizContainer.classList.add('hidden');
         timerDisplay.classList.add('hidden');
         resultsContainer.classList.remove('hidden');
@@ -523,6 +527,11 @@ const ENABLE_TAB_SECURITY = true;
     }
 
     function startQuiz() {
+	// මීට පෙර විභාගය කර ඇත්දැයි පරීක්ෂා කිරීම
+    if (localStorage.getItem('exam_done_it') === 'true') {
+        alert("ඔබ මෙම විභාගය දැනටමත් එක් වරක් අවසන් කර ඇත!");
+        return; 
+    }
         isQuizStarted = true;
         quizData = [...originalQuizData];
         if (ENABLE_SHUFFLE) {
