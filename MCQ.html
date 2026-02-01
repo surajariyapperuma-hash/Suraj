@@ -164,7 +164,7 @@
 	
 	// --- SETTINGS (මුළු පේපර් එකටම එකක් වන සේ වෙනස් කර ඇත) ---
 const ENABLE_TIMER = true;
-const TOTAL_MINUTES = 25; // ඔබට අවශ්‍ය මුළු මිනිත්තු ගණන (මෙහි 25 ලෙස යොදා ඇත)
+const TOTAL_MINUTES = 60; // ඔබට අවශ්‍ය මුළු මිනිත්තු ගණන (මෙහි 25 ලෙස යොදා ඇත)
 const TIME_LIMIT = TOTAL_MINUTES * 60; // මිනිත්තු තත්පර වලට හැරවීම (මුළු තත්පර 1500)
 const ENABLE_SHUFFLE = true;
 const ENABLE_TAB_SECURITY = true;
@@ -187,7 +187,7 @@ const ENABLE_TAB_SECURITY = true;
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
 
-    {
+ {
         "question": "ජාලයක තිබිය යුතු අවම පරිගණක සංඛ්‍යාව කොපමණද?",
         "correct": "2.",
         "distractors": ["1.", "3.", "5.", "සීමාවක් නැත."]
@@ -280,13 +280,13 @@ const ENABLE_TAB_SECURITY = true;
     {
         "question": "HTTP යන්නෙහි සම්පූර්ණ අර්ථය කුමක්ද?",
         "correct": "Hypertext Transfer Protocol",
-        "distractors": ["High Transfer Text Process", "Hyperlink Text Test Protocol", "Home Tool Transfer Process", "Hypertext Transfer Program"
+        "distractors": ["High Transfer Text Process", "Hyperlink Text Test Protocol", "Home Tool Transfer Process", "Hypertext Transfer Program"]
     },
     {
-        "question": "ඩොමේන් නාම (Domain Names) අනුරූප IP ලිපින බවට පත් කරන්නේ කුමන පද්ධතිය මගින්ද?",
+        "question": "වසම් නාම (Domain Names) අනුරූප IP ලිපින බවට පත් කරන්නේ කුමන පද්ධතිය මගින්ද?",
         "correct": "DNS",
         "distractors": ["URL", "HTTP", "ISP", "MAC"]
-    },[
+    },
     {
         "question": "OSI මාදිලියේ (OSI Model) දත්ත පැකට්ටු (Packets) රවුටින් කිරීම සිදුවන ස්තරය (Layer) කුමක්ද?",
         "correct": "Network Layer",
@@ -323,9 +323,10 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["එක් දිශාවකට පමණක් දත්ත ගමන් කිරීම.", "එකවර දෙපසටම දත්ත ගමන් කිරීම.", "දත්ත ගමන් කළ නොහැකි වීම.", "රැහැන් රහිතව පමණක් දත්ත හුවමාරු වීම."]
     },
     {
-        "question": "BGP (Border Gateway Protocol) ප්‍රධාන වශයෙන් භාවිතා වන්නේ කුමන කාර්යය සඳහාද?",
-        "correct": "ස්වතන්ත්‍ර පද්ධති (Autonomous Systems) අතර රවුටින් කිරීම සඳහා.",
-        "distractors": ["LAN එකක් තුළ ලිපින බෙදා දීමට.", "IP ලිපින MAC ලිපින බවට පත් කිරීමට.", "වෙබ් අඩවි ආරක්ෂා කිරීමට.", "ගොනු හුවමාරුව සඳහා." },
+        "question": "පහත දැක්වෙන ලිපින අතරින් 'Loopback Address' එක ලෙස හඳුන්වන්නේ කුමක්ද?",
+        "correct": "127.0.0.1",
+        "distractors": ["192.168.1.1", "10.0.0.1", "255.255.255.255", "0.0.0.0"]
+    },
     {
         "question": "Fiber Optic කේබල් තුළ දත්ත ගමන් කරන භෞතික මූලධර්මය කුමක්ද?",
         "correct": "පූර්ණ අභ්‍යන්තර පරාවර්තනය (Total Internal Reflection)",
@@ -347,9 +348,9 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["ARP Table", "MAC Table", "DHCP Table", "NAT Table"]
     },
     {
-        "question": "HTTPS හි 443 පෝට් එක (Port) භාවිතා කරන අතර, සම්මත HTTP සඳහා භාවිතා වන පෝට් එක කුමක්ද?",
-        "correct": "80",
-        "distractors": ["21", "25", "110", "445"]
+        "question": "නූතන පරිගණක ජාල වල බහුලවම භාවිතා වන 'Twisted Pair' කේබල් වර්ගය කුමක්ද?",
+        "correct": "Cat 6",
+        "distractors": ["Cat 1", "Cat 2", "Cat 3", "Coaxial"]
     },
     {
         "question": "NAT (Network Address Translation) තාක්ෂණයේ ප්‍රධාන අරමුණ කුමක්ද?",
@@ -386,7 +387,7 @@ const ENABLE_TAB_SECURITY = true;
         "correct": "BGP",
         "distractors": ["OSPF", "RIP", "EIGRP", "IS-IS"]
     },
-[
+
     {
         "question": "පහත දැක්වෙන IP ලිපින අතරින් පොදු අන්තර්ජාලය (Public Internet) හරහා රවුටින් කළ නොහැකි ලිපිනය කුමක්ද?",
         "correct": "172.16.25.10",
@@ -413,9 +414,9 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["එක් අවස්ථාවකදී සංඥා කිහිපයක් විවිධ සංඛ්‍යාත ඔස්සේ ගමන් කිරීම.", "ඩිජිටල් සංඥා ඇනලොග් බවට පත් කිරීම.", "ෆයිබර් ඔප්ටික් හරහා පමණක් දත්ත යැවීම.", "සංඥාවක විස්තාරය (Amplitude) වැඩි කිරීම."]
     },
     {
-        "question": "නිරාකරණය (Resolution) සඳහා පැමිණෙන ඉල්ලීමක් DNS ධුරාවලියේ ඉහළ මට්ටමේ සර්වර් වෙත යොමු නොකර, තමා සතු දත්ත වලින්ම පිළිතුරු දීමට DNS සර්වර් භාවිතා කරන ක්‍රමය කුමක්ද?",
-        "correct": "Recursive Query",
-        "distractors": ["Iterative Query", "Reverse Lookup", "Caching", "Zone Transfer"]
+        "question": "Pure ALOHA තාක්ෂණයට වඩා Slotted ALOHA තාක්ෂණය කාර්යක්ෂම වන්නේ ඇයි?",
+        "correct": "දත්ත යැවිය හැක්කේ නිශ්චිත කාල පරාසයන් (Time Slots) තුළ පමණක් බැවින් දත්ත ගැටීම් (Collisions) අඩුවන නිසා.",
+        "distractors": ["එය රැහැන් භාවිතා කරන බැවින්.", "එය ස්විචයක් භාවිතා කරන බැවින්.", "එහි වේගය වැඩිකළ හැකි බැවින්.", "එය ඕනෑම දුරකට දත්ත යැවිය හැකි බැවින්."]
     },
     {
         "question": "TCP/IP ආකෘතියේ Application Layer එකට අදාළ වන OSI ආකෘතියේ ස්තර මොනවාද?",
@@ -438,7 +439,7 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["192.168.1.50 සහ 192.168.1.70", "192.168.1.100 සහ 192.168.1.130", "192.168.1.190 සහ 192.168.1.200", "192.168.1.60 සහ 192.168.1.120"]
     },
     {
-        "question": "Guided Media (මඟ පෙන්වන මාධ්‍ය) යටතට අයත් නොවන සන්නිවේදන මාධ්‍යය කුමක්ද?",
+        "question": "Guided Media (නියමු නොවන මාධය) යටතට අයත් නොවන සන්නිවේදන මාධ්‍යය කුමක්ද?",
         "correct": "පාරජම්බුල කිරණ (Infrared)",
         "distractors": ["Twisted Pair Cable", "Coaxial Cable", "Optical Fiber", "Shielded Twisted Pair"]
     },
@@ -453,17 +454,17 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["ස්විචයක් භෞතික ස්තරයේ ක්‍රියා කරන අතර රීපීටරයක් ජාල ස්තරයේ ක්‍රියා කරයි.", "රීපීටරයක් ස්විචයකට වඩා වේගවත්ය.", "ස්විචයක් ඇනලොග් සංඥා සඳහා පමණක් භාවිතා වේ.", "රීපීටරයක් මගින් Collision Domains වෙන් කළ හැකිය."]
     },
     {
-        "question": "BGP (Border Gateway Protocol) යනු කුමන ආකාරයේ රවුටින් ප්‍රොටෝකෝලයක්ද?",
-        "correct": "Exterior Gateway Protocol (EGP)",
-        "distractors": ["Interior Gateway Protocol (IGP)", "Distance Vector Protocol", "Link State Protocol", "Static Routing Protocol"]
+        "question": "වෙබ් අඩවියක නම IP ලිපිනයක් බවට පත් කරන පද්ධතිය (DNS) ක්‍රියාත්මක වන ස්තරය කුමක්ද?",
+        "correct": "Application Layer",
+        "distractors": ["Presentation Layer", "Session Layer", "Transport Layer", "Network Layer"]
     },
     {
         "question": "U/UTP කේබල් වල අඩංගු යුගල (Pairs) ගණන සහ එක් යුගලයක් එකිනෙකට පටලවා (Twist) තිබීමේ අරමුණ කුමක්ද?",
-        "correct": "4 යුගල; විද්‍යුත් චුම්භක ඇඟිලි ගැසීම් (Crosstalk) අවම කිරීම.",
+        "correct": "4 යුගල;(Crosstalk) අවම කිරීම.",
         "distractors": ["2 යුගල; වේගය වැඩි කිරීම.", "4 යුගල; කේබලයේ ශක්තිමත්භාවය වැඩි කිරීම.", "8 යුගල; වැඩි දුරක් සංඥා යැවීම.", "2 යුගල; පිරිවැය අඩු කිරීම."]
     },
     {
-        "question": "වරාය අංක (Port Numbers) භාවිතා කරමින් බහු වැඩසටහන් අතර සන්නිවේදනය පාලනය කිරීම (Multiplexing) සිදු කරන්නේ කුමන ස්තරයේදීද?",
+        "question": "කෙවෙනි අංක (Port Numbers) භාවිතා කරමින් බහු වැඩසටහන් අතර සන්නිවේදනය පාලනය කිරීම (Multiplexing) සිදු කරන්නේ කුමන ස්තරයේදීද?",
         "correct": "Transport Layer",
         "distractors": ["Application Layer", "Network Layer", "Data Link Layer", "Physical Layer"]
     },
@@ -485,7 +486,7 @@ const ENABLE_TAB_SECURITY = true;
     {
         "question": "Parity Bit එකක් භාවිතා කිරීමේ ප්‍රධාන අරමුණ කුමක්ද?",
         "correct": "දත්ත සම්ප්‍රේෂණයේදී සිදු වූ වැරදි (Errors) හඳුනා ගැනීම.",
-        "distractors": ["දත්ත වල වේගය වැඩි කිරීම.", "දත්ත වල ප්‍රමාණය අඩු කිරීම.", "දත්ත වල රහස්‍යභාවය රැකීම.", "IP ලිපින කළමනාකරණය."
+        "distractors": ["දත්ත වල වේගය වැඩි කිරීම.", "දත්ත වල ප්‍රමාණය අඩු කිරීම.", "දත්ත වල රහස්‍යභාවය රැකීම.", "IP ලිපින කළමනාකරණය."]
     },
 
     {
@@ -544,9 +545,9 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["255.255.255.128", "255.255.255.240", "255.255.255.248", "255.255.255.252"]
     },
     {
-        "question": "Iterative DNS Query එකකදී DNS Resolver එක මුලින්ම සම්බන්ධ වන සර්වර් වර්ගය කුමක්ද?",
-        "correct": "Root Name Server",
-        "distractors": ["Authoritative Name Server", "TLD Server", "Local DNS Server", "Mail Server"]
+        "question": "පහත සඳහන් දෑ අතරින් 'Connection-oriented' සේවාවක් සපයන ප්‍රොටෝකෝලය කුමක්ද?",
+        "correct": "TCP",
+        "distractors": ["UDP", "IP", "ICMP", "ARP"]
     },
     {
         "question": "192.168.1.160/27 යන IP ලිපිනය අයත් වන ජාල ලිපිනය (Network Address) කුමක්ද?",
@@ -589,6 +590,8 @@ const ENABLE_TAB_SECURITY = true;
         "distractors": ["IPv6 භාවිතය නතර කිරීම.", "සියලුම IP ලිපින Public ලිපින බවට පත් කිරීම.", "ජාලයේ ආරක්ෂාව වැඩි කිරීම.", "රවුටර් වල මිල අඩු කිරීම."]
     }
 ]
+
+
 
     let quizData = [...originalQuizData];
 
@@ -823,6 +826,7 @@ const ENABLE_TAB_SECURITY = true;
 <script src="Questions.js"></script>
 </body>
 </html>
+
 
 
 
