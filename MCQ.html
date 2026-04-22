@@ -187,505 +187,443 @@ const ENABLE_TAB_SECURITY = true;
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
   {
-    "question": "දත්ත (Data) යනු කුමක්ද?",
-    "correct": "තනි තනිව ගත් කල අර්ථයක් ලබා දිය නොහැකි අමුද්‍රව්‍ය හෝ සංකේත වේ.",
-    "distractors": ["සකස් කරන ලද තොරතුරු වේ.", "පරිගණකයක ප්‍රතිදානය වේ.", "ප්‍රයෝජනවත් ප්‍රතිඵල වේ."]
+    question: "මෙහෙයුම් පද්ධතියක GUI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Graphical User Interface.",
+    distractors: ["General User Interface.", "Global User Interface.", "Graphical Unit Interface.", "Group User Interface."]
   },
   {
-    "question": "තොරතුරු (Information) ලබා ගන්නා ආකාරය සරලව දක්වන්නේ කෙසේද?",
-    "correct": "දත්ත එක් රැස් කර සැකසීම (Processing) මගින්.",
-    "distractors": ["දත්ත මකා දැමීම මගින්.", "දත්ත ගබඩා කිරීමෙන් පමණක්.", "දත්ත ආදානය කිරීමෙන් පමණක්."]
+    question: "පරිගණකයේ පියා ලෙස හඳුන්වන්නේ කාටද?",
+    correct: "Charles Babbage.",
+    distractors: ["Blaise Pascal.", "Howard Aiken.", "Ada Lovelace.", "John Von Neumann."]
   },
   {
-    "question": "පද්ධතියක (System) ප්‍රධාන ක්‍රියාවලිය නිවැරදිව පෙළගස්වන්න.",
-    "correct": "ආදානය -> සැකසීම -> ප්‍රතිදානය",
-    "distractors": ["ප්‍රතිදානය -> සැකසීම -> ආදානය", "සැකසීම -> ආදානය -> ප්‍රතිදානය", "ආදානය -> ප්‍රතිදානය -> සැකසීම"]
+    question: "Pascaline යන්ත්‍රය නිර්මාණය කළේ කවුද?",
+    correct: "Blaise Pascal.",
+    distractors: ["Charles Babbage.", "Leibnitz.", "Howard Aiken.", "Alan Turing."]
   },
   {
-    "question": "පළමු පරම්පරාවේ පරිගණක සඳහා භාවිතා කළ තාක්ෂණය කුමක්ද?",
-    "correct": "රික්තක නල (Vacuum Tubes)",
-    "distractors": ["ට්‍රාන්සිස්ටර්", "සංගෘහිත පරිපථ", "ක්ෂුද්‍ර සකසනය"]
+    question: "Difference Engine නිර්මාණය කළේ කවුද?",
+    correct: "Charles Babbage.",
+    distractors: ["Pascal.", "Leibnitz.", "Howard Aiken.", "Bill Gates."]
   },
   {
-    "question": "ක්ෂුද්‍ර සකසනය (Microprocessor) හඳුන්වා දුන්නේ කීවැනි පරම්පරාවේදීද?",
-    "correct": "හතරවන පරම්පරාව",
-    "distractors": ["දෙවන පරම්පරාව", "තෙවන පරම්පරාව", "පස්වන පරම්පරාව"]
+    question: "පළමු Computer Programmer ලෙස සැලකෙන්නේ කවුද?",
+    correct: "Ada Lovelace.",
+    distractors: ["Grace Hopper.", "Pascal.", "Charles Babbage.", "Steve Jobs."]
   },
   {
-    "question": "ද්විමය සංඛ්‍යා පද්ධතියේ (Binary System) පදනම (Base) වන්නේ,",
-    "correct": "2",
-    "distractors": ["8", "10", "16"]
+    question: "Mark I පරිගණකය නිපදවූයේ කවුද?",
+    correct: "Howard Aiken.",
+    distractors: ["John Von Neumann.", "Charles Babbage.", "Pascal.", "IBM."]
   },
   {
-    "question": "දශම සංඛ්‍යා පද්ධතියේ 10 යන අගය ද්විමය අගයකින් දැක්වූ විට ලැබෙන්නේ,",
-    "correct": "1010",
-    "distractors": ["1100", "1011", "1111"]
+    question: "CPU යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Central Processing Unit.",
+    distractors: ["Computer Processing Unit.", "Central Power Unit.", "Core Processing Unit.", "Central Program Unit."]
   },
   {
-    "question": "පරිගණක මතකයේ 1 KB (Kilobyte) යනු බයිට් (Bytes) කීයකට සමානද?",
-    "correct": "1024 Bytes",
-    "distractors": ["1000 Bytes", "512 Bytes", "2048 Bytes"]
+    question: "ALU හි ප්‍රධාන කාර්යය කුමක්ද?",
+    correct: "Arithmetic හා Logic ක්‍රියා සිදු කිරීම.",
+    distractors: ["දත්ත මුද්‍රණය.", "විදුලිය සැපයීම.", "ජාල සම්බන්ධතා ලබාදීම.", "මතකය ගබඩා කිරීම."]
   },
   {
-    "question": "ප්‍රධාන මතකය (Main Memory) ලෙස හඳුන්වන්නේ කුමක්ද?",
-    "correct": "RAM",
-    "distractors": ["Hard Disk", "CD", "Pen Drive"]
+    question: "RAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Random Access Memory.",
+    distractors: ["Read Access Memory.", "Rapid Access Memory.", "Random Active Memory.", "Run Access Memory."]
   },
   {
-    "question": "පහත දැක්වෙන ද්වාර අතුරින් ප්‍රතිලෝම ද්වාරය (Inverter) ලෙස හඳුන්වන්නේ කුමක්ද?",
-    "correct": "NOT Gate",
-    "distractors": ["AND Gate", "OR Gate", "NAND Gate"]
+    question: "ROM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Read Only Memory.",
+    distractors: ["Random Only Memory.", "Read Open Memory.", "Rapid Output Memory.", "Run Only Memory."]
   },
   {
-    "question": "මෙහෙයුම් පද්ධතියකට (Operating System) උදාහරණයක් නොවන්නේ කුමක්ද?",
-    "correct": "MS Office",
-    "distractors": ["Windows", "Linux", "Android"]
+    question: "Cache Memory භාවිතයේ අරමුණ කුමක්ද?",
+    correct: "CPU වේගය වැඩි කිරීම.",
+    distractors: ["Printer quality වැඩි කිරීම.", "Monitor size වැඩි කිරීම.", "Internet speed වැඩි කිරීම.", "Keyboard speed වැඩි කිරීම."]
   },
   {
-    "question": "GUI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    "correct": "Graphical User Interface",
-    "distractors": ["General User Interface", "Global User Index", "Graphic Unit Interface"]
+    question: "Input Device එකක් වන්නේ කුමක්ද?",
+    correct: "Keyboard.",
+    distractors: ["Monitor.", "Printer.", "Speaker.", "Projector."]
   },
   {
-    "question": "ප්‍රාදේශීය පරිගණක ජාලයක් හඳුන්වන කෙටි නම කුමක්ද?",
-    "correct": "LAN",
-    "distractors": ["WAN", "MAN", "PAN"]
+    question: "Output Device එකක් වන්නේ කුමක්ද?",
+    correct: "Monitor.",
+    distractors: ["Mouse.", "Keyboard.", "Scanner.", "Barcode Reader."]
   },
   {
-    "question": "අන්තර්ජාලය හරහා ලිපිගොනු හුවමාරු කර ගැනීමට භාවිතා කරන සම්මුතිය (Protocol) කුමක්ද?",
-    "correct": "FTP",
-    "distractors": ["HTTP", "SMTP", "IP"]
+    question: "Scanner භාවිත වන්නේ කුමක් සඳහාද?",
+    correct: "රූප හා ලේඛන ආදානය සඳහා.",
+    distractors: ["මුද්‍රණය සඳහා.", "ශබ්ද ප්‍රතිදානය සඳහා.", "දත්ත මකා දැමීම සඳහා.", "විදුලිය සැපයීම සඳහා."]
   },
   {
-    "question": "HTML ලේඛනයක ප්‍රධාන කොටස් දෙක කුමක්ද?",
-    "correct": "Head සහ Body",
-    "distractors": ["Title සහ Body", "Head සහ Foot", "Start සහ End"]
+    question: "Mouse එකක් කුමන වර්ගයේ උපාංගයක්ද?",
+    correct: "Pointing Device.",
+    distractors: ["Storage Device.", "Output Device.", "Processing Device.", "Power Device."]
   },
   {
-    "question": "HTML වලදී අකුරු තද කිරීමට (Bold) භාවිතා කරන ටැගය (Tag) කුමක්ද?",
-    "correct": "b",
-    "distractors": ["i", "u", "p"]
+    question: "Hard Disk එකක් වන්නේ කුමක්ද?",
+    correct: "Secondary Storage Device.",
+    distractors: ["Input Device.", "Primary Memory.", "Output Device.", "CPU Unit."]
   },
   {
-    "question": "පරිගණක වැඩසටහනක දෝෂ (Errors) හැඳින්වෙන්නේ කුමන නමකින්ද?",
-    "correct": "Bugs",
-    "distractors": ["Virus", "Malware", "Faults"]
+    question: "Von Neumann Architecture ඉදිරිපත් කළේ කවුද?",
+    correct: "John Von Neumann.",
+    distractors: ["Charles Babbage.", "Pascal.", "Howard Aiken.", "Bill Gates."]
   },
   {
-    "question": "Pascal වලදී විචල්‍යයන් ප්‍රකාශ කිරීමට භාවිතා කරන පදය කුමක්ද?",
-    "correct": "Var",
-    "distractors": ["Const", "Begin", "Integer"]
+    question: "Fetch-Execute Cycle හි පළමු පියවර කුමක්ද?",
+    correct: "Fetch.",
+    distractors: ["Decode.", "Execute.", "Store.", "Delete."]
   },
   {
-    "question": "Pascal ක්‍රමලේඛයක ආරම්භය සනිටුහන් කරන්නේ කුමන පදයෙන්ද?",
-    "correct": "Begin",
-    "distractors": ["Start", "Go", "Var"]
+    question: "Decode යන්නෙන් අදහස් වන්නේ කුමක්ද?",
+    correct: "විධානය අර්ථකථනය කිරීම.",
+    distractors: ["විධානය මකා දැමීම.", "විධානය මුද්‍රණය කිරීම.", "විධානය සුරැකීම.", "විධානය copy කිරීම."]
   },
   {
-    "question": "දත්ත සමුදායක (Database) තොරතුරු ගබඩා වන මූලික ව්‍යුහය කුමක්ද?",
-    "correct": "වගුව (Table)",
-    "distractors": ["වාර්තාව (Report)", "පෝරමය (Form)", "විමසුම (Query)"]
+    question: "Execute යන්නෙන් අදහස් වන්නේ කුමක්ද?",
+    correct: "විධානය ක්‍රියාත්මක කිරීම.",
+    distractors: ["විධානය save කිරීම.", "විධානය delete කිරීම.", "විධානය decode කිරීම.", "විධානය print කිරීම."]
   },
+
   {
-    "question": "වගුවක ඇති තීරු (Columns) තාක්ෂණිකව හඳුන්වන්නේ කෙසේද?",
-    "correct": "ක්ෂේත්‍ර (Fields)",
-    "distractors": ["වාර්තා (Records)", "පේළි (Rows)", "දත්ත (Data)"]
+    question: "Store යන්නෙන් අදහස් වන්නේ කුමක්ද?",
+    correct: "ප්‍රතිඵලය මතකයේ තැන්පත් කිරීම.",
+    distractors: ["විධානය මකා දැමීම.", "CPU නවතා දැමීම.", "Monitor off කිරීම.", "Mouse reset කිරීම."]
   },
   {
-    "question": "වගුවක දත්ත පේළියක් අනන්‍යව හඳුනා ගැනීමට යොදාගන්නා යතුර කුමක්ද?",
-    "correct": "ප්‍රාථමික යතුර (Primary Key)",
-    "distractors": ["විදේශ යතුර", "සංයුක්ත යතුර", "ප්‍රධාන යතුර"]
+    question: "Clock Speed මනින ඒකකය කුමක්ද?",
+    correct: "Hertz.",
+    distractors: ["Byte.", "Meter.", "Liter.", "Pixel."]
   },
   {
-    "question": "Spreadsheet මෘදුකාංගයක (MS Excel) සූත්‍රයක් (Formula) ආරම්භ වන ලකුණ කුමක්ද?",
-    "correct": "=",
-    "distractors": ["+", "@", "$"]
+    question: "1 KB සමාන වන්නේ?",
+    correct: "1024 Bytes.",
+    distractors: ["100 Bytes.", "512 Bytes.", "1000 Bytes.", "2048 Bytes."]
   },
   {
-    "question": "පරිගණකයට දත්ත ඇතුළත් කිරීමට භාවිතා කරන ආදාන උපාංගයක් නම් කරන්න.",
-    "correct": "යතුරුපුවරුව (Keyboard)",
-    "distractors": ["මුද්‍රණ යන්ත්‍රය", "මොනිටරය", "ස්පීකර්"]
+    question: "1 MB සමාන වන්නේ?",
+    correct: "1024 KB.",
+    distractors: ["1000 KB.", "512 KB.", "2048 KB.", "100 KB."]
   },
   {
-    "question": "තොරතුරු වල ගුණාත්මක භාවයට බලපාන ලක්ෂණයක් වන්නේ,",
-    "correct": "කාලීන බව (Timeliness)",
-    "distractors": ["මිල අධික බව", "ප්‍රමාණය විශාල බව", "වර්ණවත් බව"]
+    question: "1 GB සමාන වන්නේ?",
+    correct: "1024 MB.",
+    distractors: ["1000 MB.", "512 MB.", "2048 MB.", "100 MB."]
   },
+
   {
-    "question": "පරිගණකයක ප්‍රධාන සැකසුම් ඒකකය (CPU) තුළ අඩංගු ප්‍රධාන කොටස් දෙක මොනවාද?",
-    "correct": "පාලන ඒකකය (CU) සහ ගණිතමය හා තර්කන ඒකකය (ALU)",
-    "distractors": ["RAM සහ ROM", "දෘඩ තැටිය සහ මෘදු තැටිය", "ආදාන සහ ප්‍රතිදාන ඒකක"]
+    question: "USB යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Universal Serial Bus.",
+    distractors: ["United Serial Bus.", "Universal System Bus.", "User Serial Base.", "Ultra Storage Bus."]
   },
   {
-    "question": "විදුලිය විසන්ධි වූ විට එහි ඇති දත්ත මැකී යන මතක වර්ගය කුමක්ද?",
-    "correct": "නැසෙන සුළු මතකය (Volatile Memory - RAM)",
-    "distractors": ["නොනැසෙන සුළු මතකය (ROM)", "දෘඩ තැටිය", "සීඩී තැටිය"]
+    question: "Printer එකක් කුමන වර්ගයේ උපාංගයක්ද?",
+    correct: "Output Device.",
+    distractors: ["Input Device.", "Storage Device.", "Processing Device.", "Communication Device."]
   },
   {
-    "question": "පරිගණකය පණගන්වන අවස්ථාවේදී (Booting) ක්‍රියාත්මක වන මූලික උපදෙස් ගබඩා කර ඇත්තේ කොහේද?",
-    "correct": "ROM (Read Only Memory)",
-    "distractors": ["RAM", "Cache Memory", "Virtual Memory"]
+    question: "Keyboard භාවිත වන්නේ?",
+    correct: "දත්ත ඇතුළත් කිරීමට.",
+    distractors: ["දත්ත මුද්‍රණයට.", "දත්ත මකා දැමීමට.", "විදුලිය සැපයීමට.", "Network සම්බන්ධ කිරීමට."]
   },
   {
-    "question": "සංඛ්‍යා පද්ධති වලදී 'Octal' පද්ධතියේ පදනම (Base) වන්නේ කුමක්ද?",
-    "correct": "8",
-    "distractors": ["2", "10", "16"]
+    question: "Speaker එකක් වන්නේ?",
+    correct: "Output Device.",
+    distractors: ["Input Device.", "Memory Device.", "Storage Device.", "CPU Part."]
   },
   {
-    "question": "අෂ්ටක (Octal) සංඛ්‍යා පද්ධතියේ භාවිතා වන ඉලක්කම් මොනවාද?",
-    "correct": "0 සිට 7 දක්වා",
-    "distractors": ["0 සිට 8 දක්වා", "1 සිට 8 දක්වා", "0 සහ 1 පමණි"]
+    question: "Joystick භාවිත වන්නේ?",
+    correct: "Game control සඳහා.",
+    distractors: ["Printing සඳහා.", "Scanning සඳහා.", "Storage සඳහා.", "Typing සඳහා."]
   },
+
   {
-    "question": "ෂඩ් දශම (Hexadecimal) සංඛ්‍යා පද්ධතියේ 10 යන අගය නිරූපණය කරන්නේ කුමන අකුරෙන්ද?",
-    "correct": "A",
-    "distractors": ["B", "F", "X"]
+    question: "Touch Screen එකක් වන්නේ?",
+    correct: "Input හා Output දෙකම.",
+    distractors: ["Input only.", "Output only.", "Storage only.", "Memory only."]
   },
   {
-    "question": "ASCII යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    "correct": "American Standard Code for Information Interchange",
-    "distractors": ["Advanced Standard Code for Info Info", "American Scientific Code for Info Info", "All Standard Code for Internet Info"]
+    question: "OCR යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Optical Character Recognition.",
+    distractors: ["Optical Code Reader.", "Online Character Reader.", "Output Character Register.", "Open Character Recognition."]
   },
   {
-    "question": "ලෝකයේ ඇති සියලුම භාෂා වල අක්ෂර නිරූපණය කළ හැකි නවීන කේත ක්‍රමය කුමක්ද?",
-    "correct": "Unicode",
-    "distractors": ["ASCII", "EBCDIC", "BCD"]
+    question: "OMR භාවිත වන්නේ?",
+    correct: "Marked answers හඳුනාගැනීමට.",
+    distractors: ["Sound record කිරීමට.", "Typing සඳහා.", "Printing සඳහා.", "Internet සඳහා."]
   },
   {
-    "question": "තර්ක ද්වාරයක ප්‍රතිදානය 1 වීමට නම් අවම වශයෙන් එක් ආදානයක් 1 විය යුතු ද්වාරය කුමක්ද?",
-    "correct": "OR Gate",
-    "distractors": ["AND Gate", "NOT Gate", "None of these"]
+    question: "MICR භාවිත වන්නේ?",
+    correct: "Bank cheque කියවීමට.",
+    distractors: ["Photo scan කිරීමට.", "Mouse control සඳහා.", "Sound edit කිරීමට.", "RAM test කිරීමට."]
   },
   {
-    "question": "පහත දැක්වෙන ඒවායින් මෘදුකාංගයක් (Software) ලෙස සැලකිය හැක්කේ කුමක්ද?",
-    "correct": "Compiler (සම්පාදකය)",
-    "distractors": ["Keyboard", "Mouse", "Monitor"]
+    question: "BIOS සාමාන්‍යයෙන් ගබඩා වන්නේ?",
+    correct: "ROM තුළ.",
+    distractors: ["RAM තුළ.", "Cache තුළ.", "Hard Disk තුළ.", "Register තුළ."]
   },
+
   {
-    "question": "පරිගණක පද්ධතියක දෘඩාංග සහ පරිශීලකයා අතර සම්බන්ධීකාරක ලෙස ක්‍රියා කරන්නේ කුමක්ද?",
-    "correct": "මෙහෙයුම් පද්ධතිය (Operating System)",
-    "distractors": ["යෙදුම් මෘදුකාංග", "අන්තර්ජාලය", "මවු පුවරුව"]
+    question: "Booting යනු කුමක්ද?",
+    correct: "පරිගණකය ආරම්භ කිරීම.",
+    distractors: ["පරිගණකය format කිරීම.", "Mouse reset කිරීම.", "Printer clean කිරීම.", "RAM replace කිරීම."]
   },
   {
-    "question": "විවෘත මූලාශ්‍ර මෙහෙයුම් පද්ධතියක් (Open Source OS) වන්නේ,",
-    "correct": "Linux",
-    "distractors": ["Windows 11", "macOS", "iOS"]
+    question: "Cold Boot යනු?",
+    correct: "Power off සිට on කිරීම.",
+    distractors: ["Restart කිරීම.", "Shutdown කිරීම.", "Sleep mode.", "Printer on කිරීම."]
   },
   {
-    "question": "ගොනු පද්ධතියක (File System) දත්ත සංවිධානය කර ඇති ආකාරය හඳුන්වන්නේ,",
-    "correct": "ධුරාවලිය (Hierarchy)",
-    "distractors": ["වගුවක් ලෙස", "පේළියක් ලෙස", "සසම්භාවී ලෙස"]
+    question: "Warm Boot යනු?",
+    correct: "Restart කිරීම.",
+    distractors: ["Power cable remove කිරීම.", "Monitor off කිරීම.", "Mouse connect කිරීම.", "Printer install කිරීම."]
   },
   {
-    "question": "පරිගණක ජාලයක දත්ත ගමන් කිරීමට මාධ්‍යයක් ලෙස භාවිතා නොවන තරංග වර්ගය කුමක්ද?",
-    "correct": "ශබ්ද තරංග (Sound Waves)",
-    "distractors": ["රේඩියෝ තරංග", "ක්ෂුද්‍ර තරංග", "අධෝරක්ත තරංග"]
+    question: "Operating System එකක් වන්නේ?",
+    correct: "Windows.",
+    distractors: ["MS Word.", "Photoshop.", "Chrome.", "PowerPoint."]
   },
   {
-    "question": "ලෝක ව්‍යාප්ත ජාලය (WWW) සොයාගනු ලැබුවේ කවුද?",
-    "correct": "Tim Berners-Lee",
-    "distractors": ["Bill Gates", "Charles Babbage", "Steve Jobs"]
+    question: "Application Software එකක් වන්නේ?",
+    correct: "MS Excel.",
+    distractors: ["Linux.", "Windows.", "BIOS.", "ROM."]
   },
+
   {
-    "question": "URL යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    "correct": "Uniform Resource Locator",
-    "distractors": ["United Resource Link", "Universal Radio Locator", "Uniform Radio Link"]
+    question: "System Software එකක් වන්නේ?",
+    correct: "Operating System.",
+    distractors: ["Paint.", "Word.", "Excel.", "Photoshop."]
   },
   {
-    "question": "HTML ලේඛනයක් අවසන් කරන ටැගය (Tag) කුමක්ද?",
-    "correct": "/html",
-    "distractors": ["end html", "stop", "/body"]
+    question: "Linux යනු?",
+    correct: "Open Source Operating System.",
+    distractors: ["Spreadsheet software.", "Game software.", "Printer brand.", "Programming language."]
   },
   {
-    "question": "HTML වලදී ලැයිස්තුවක් සෑදීමට භාවිතා කරන ටැගය කුමක්ද?",
-    "correct": "li",
-    "distractors": ["list", "ol", "ul"]
+    question: "Compiler එකක් වන්නේ?",
+    correct: "Language Translator.",
+    distractors: ["Input Device.", "Storage Device.", "Output Device.", "CPU Part."]
   },
   {
-    "question": "පරිගණක ඇල්ගොරිතමයක් (Algorithm) රූපමය වශයෙන් දැක්වීම හඳුන්වන්නේ,",
-    "correct": "ගැලීම් සටහන (Flowchart)",
-    "distractors": ["ව්‍යාජ කේතය (Pseudo-code)", "ක්‍රමලේඛය", "දත්ත වගුව"]
+    question: "Utility Software උදාහරණයක් වන්නේ?",
+    correct: "Antivirus.",
+    distractors: ["Keyboard.", "Monitor.", "Mouse.", "CPU."]
   },
   {
-    "question": "ගැලීම් සටහනක තීරණ ගැනීම (Decision) පෙන්වීමට භාවිතා කරන සංකේතය කුමක්ද?",
-    "correct": "රොම්බසය (Diamond)",
-    "distractors": ["සෘජුකෝණාස්‍රය", "ඕවලය", "සමාන්තරාසවය"]
+    question: "Antivirus Software භාවිත වන්නේ?",
+    correct: "Virus වලින් ආරක්ෂා කිරීමට.",
+    distractors: ["Typing speed වැඩි කිරීමට.", "Screen size වැඩි කිරීමට.", "RAM increase කිරීමට.", "Printer clean කිරීමට."]
   },
+
   {
-    "question": "පරිගණක අපරාධ වැළැක්වීම සඳහා පනවා ඇති නීති පද්ධතිය හඳුන්වන්නේ,",
-    "correct": "තොරතුරු තාක්ෂණ නීතිය (IT Law)",
-    "distractors": ["සිවිල් නීතිය", "අපරාධ නීතිය", "මාර්ග නීතිය"]
+    question: "Multitasking යනු?",
+    correct: "වැඩ කිහිපයක් එකවර කිරීම.",
+    distractors: ["එක වැඩක් පමණක් කිරීම.", "Power off කිරීම.", "Data delete කිරීම.", "Monitor clean කිරීම."]
   },
   {
-    "question": "පද්ධති සංවර්ධන ජීවන චක්‍රයේ (SDLC) පළමු පියවර කුමක්ද?",
-    "correct": "පද්ධති හඳුනා ගැනීම සහ විශ්ලේෂණය",
-    "distractors": ["පද්ධති සැලසුම් කිරීම", "කේත ලිවීම", "පද්ධති පරීක්ෂා කිරීම"]
+    question: "Device Driver භාවිත වන්නේ?",
+    correct: "Hardware control සඳහා.",
+    distractors: ["Typing සඳහා.", "Music play සඳහා.", "Video edit සඳහා.", "Storage format සඳහා."]
   },
   {
-    "question": "Spreadsheet මෘදුකාංගයක පේළියක් සහ තීරුවක් කැපී යන ස්ථානය හඳුන්වන්නේ,",
-    "correct": "කෝෂය (Cell)",
-    "distractors": ["පෙට්ටිය", "වගුව", "ලක්ෂ්‍යය"]
+    question: "GUI හි වාසියක් වන්නේ?",
+    correct: "Icons සහ windows භාවිතයෙන් පහසු වීම.",
+    distractors: ["Text only interface.", "No mouse support.", "No graphics.", "Only experts සඳහා."]
   },
   {
-    "question": "MS Excel වලදී අගයන් සමූහයක එකතුව ලබා ගැනීමට භාවිතා කරන ශ්‍රිතය (Function) කුමක්ද?",
-    "correct": "SUM",
-    "distractors": ["ADD", "TOTAL", "COUNT"]
+    question: "CLI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Command Line Interface.",
+    distractors: ["Computer Line Interface.", "Common Link Interface.", "Control Line Input.", "Code Level Interface."]
   },
   {
-    "question": "ඊ-වාණිජ්‍යය (E-commerce) යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
-    "correct": "අන්තර්ජාලය හරහා භාණ්ඩ හා සේවා මිලදී ගැනීම සහ විකිණීම",
-    "distractors": ["ඊමේල් යැවීම", "වෙබ් අඩවි නිර්මාණය", "පරිගණක ක්‍රීඩා කිරීම"]
+    question: "CLI භාවිතයේ ප්‍රධාන ලක්ෂණය කුමක්ද?",
+    correct: "Commands type කිරීම.",
+    distractors: ["Icons click කිරීම.", "Touch only use කිරීම.", "Voice only control.", "Mouse only use කිරීම."]
   },
+
   {
-    "question": "වෙබ් පිටුවක් තුළ තවත් වෙබ් පිටුවකට සම්බන්ධ වීමට භාවිතා කරන ලක්ෂ්‍යය (Point) හඳුන්වන්නේ කුමක්ද?",
-    "correct": "අධිසම්බන්ධක (Hyperlink)",
-    "distractors": ["URL", "Domain", "Web Server"]
+    question: "Super Computer භාවිත වන්නේ?",
+    correct: "Weather Forecasting වැනි සංකීර්ණ ගණනයන් සඳහා.",
+    distractors: ["Typing only.", "Music play කිරීම.", "Printing only.", "Scanning only."]
   },
   {
-    "question": "HTML වලදී ලැයිස්තුවක අයිතම (List Items) දැක්වීමට භාවිතා කරන ටැගය කුමක්ද?",
-    "correct": "li",
-    "distractors": ["ul", "ol", "list"]
+    question: "Mainframe Computer සුදුසු වන්නේ?",
+    correct: "විශාල ආයතන සඳහා.",
+    distractors: ["Home gaming සඳහා.", "Mobile use සඳහා.", "Camera use සඳහා.", "Printer use සඳහා."]
   },
   {
-    "question": "HTML ලේඛනයක වෙබ් බ්‍රවුසරයේ ඉහළ තීරුවේ (Title Bar) දිස්වන නම ඇතුළත් කරන්නේ කුමන ටැගය තුළද?",
-    "correct": "title",
-    "distractors": ["head", "body", "h1"]
+    question: "Micro Computer උදාහරණයක් වන්නේ?",
+    correct: "Laptop.",
+    distractors: ["Mainframe.", "Super Computer.", "Server Farm.", "Quantum Machine."]
   },
   {
-    "question": "අංකනය කළ ලැයිස්තුවක් (Ordered List) සෑදීමට භාවිතා කරන ටැගය කුමක්ද?",
-    "correct": "ol",
-    "distractors": ["ul", "li", "dl"]
+    question: "Analog Computer භාවිත කරන්නේ?",
+    correct: "Continuous data.",
+    distractors: ["Binary only.", "Text only.", "Image only.", "Audio only."]
   },
   {
-    "question": "වෙබ් පිටුවක පසුබිම් වර්ණය (Background Color) රතු කිරීමට නිවැරදි HTML කේතය කුමක්ද?",
-    "correct": "body bgcolor=red",
-    "distractors": ["body color=red", "bg color=red", "background=red"]
+    question: "Digital Computer භාවිත කරන්නේ?",
+    correct: "Binary data.",
+    distractors: ["Water flow.", "Pressure only.", "Temperature only.", "Voltage only."]
   },
+
   {
-    "question": "පද්ධති සංවර්ධන ජීවන චක්‍රයේ (SDLC) පද්ධතියේ ගලායාම සහ දත්ත හැසිරවීම සැලසුම් කරන පියවර කුමක්ද?",
-    "correct": "පද්ධති සැලසුම් කිරීම (System Design)",
-    "distractors": ["පද්ධති විශ්ලේෂණය", "කේත ලිවීම", "පද්ධති නඩත්තු කිරීම"]
+    question: "1st Generation Computers භාවිත කළේ?",
+    correct: "Vacuum Tubes.",
+    distractors: ["Transistors.", "IC.", "Microprocessors.", "AI Chips."]
   },
   {
-    "question": "පැරණි පද්ධතිය සම්පූර්ණයෙන්ම නවත්වා නව පද්ධතිය එක්වරම ක්‍රියාත්මක කිරීමේ ක්‍රමය කුමක්ද?",
-    "correct": "සෘජු ක්‍රියාත්මක කිරීම (Direct Implementation)",
-    "distractors": ["සමාන්තර ක්‍රියාත්මක කිරීම", "පියවරෙන් පියවර ක්‍රියාත්මක කිරීම", "නියමු ක්‍රියාත්මක කිරීම"]
+    question: "2nd Generation Computers භාවිත කළේ?",
+    correct: "Transistors.",
+    distractors: ["Vacuum Tubes.", "IC.", "Microprocessors.", "Quantum Chips."]
   },
   {
-    "question": "වැඩසටහන්කරණයේදී 'නියත' (Constant) යනු කුමක්ද?",
-    "correct": "වැඩසටහන ක්‍රියාත්මක වන කාලය පුරාම අගය වෙනස් නොවන දත්ත වේ.",
-    "distractors": ["අගය වෙනස් කළ හැකි දත්ත වේ.", "පරිශීලකයා ලබා දෙන ආදාන වේ.", "මතකයේ ඇති ලිපිනයකි."]
+    question: "3rd Generation Computers භාවිත කළේ?",
+    correct: "Integrated Circuits.",
+    distractors: ["Vacuum Tubes.", "Transistors.", "Microprocessors.", "AI."]
   },
   {
-    "question": "Pascal වලදී 'Integer' දත්ත වර්ගයට අයත් වන්නේ පහත කුමන අගයද?",
-    "correct": "25",
-    "distractors": ["10.5", "A", "Hello"]
+    question: "4th Generation Computers භාවිත කළේ?",
+    correct: "Microprocessors.",
+    distractors: ["IC.", "Transistors.", "Vacuum Tubes.", "Relay."]
   },
   {
-    "question": "Pascal වලදී 'Real' දත්ත වර්ගයට අයත් වන්නේ පහත කුමන අගයද?",
-    "correct": "3.14",
-    "distractors": ["50", "True", "B"]
+    question: "5th Generation Computers සම්බන්ධ වන්නේ?",
+    correct: "Artificial Intelligence.",
+    distractors: ["Vacuum Tubes.", "Punch Cards.", "Floppy Disks.", "Relay."]
   },
+
   {
-    "question": "ගැලීම් සටහනක දත්ත ආදානය හෝ ප්‍රතිදානය (Input/Output) පෙන්වීමට භාවිතා කරන සංකේතය කුමක්ද?",
-    "correct": "සමාන්තරාසවය (Parallelogram)",
-    "distractors": ["සෘජුකෝණාස්‍රය", "රොම්බසය", "වෘත්තය"]
+    question: "AI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Artificial Intelligence.",
+    distractors: ["Automatic Interface.", "Applied Internet.", "Analog Intelligence.", "Advanced Integration."]
   },
   {
-    "question": "ඇල්ගොරිතමයක ඇති දෝෂ පරීක්ෂා කිරීම සඳහා අතින් (Manual) සිදුකරන පරීක්ෂාව හඳුන්වන්නේ,",
-    "correct": "වියළි ධාවනය (Dry Run)",
-    "distractors": ["Compiling", "Debugging", "Linking"]
+    question: "Data Bus භාවිත වන්නේ?",
+    correct: "දත්ත හුවමාරු කිරීමට.",
+    distractors: ["Address transfer සඳහා.", "Power supply සඳහා.", "Cooling සඳහා.", "Printing සඳහා."]
   },
   {
-    "question": "පහත ඒවායින් තාර්කික මෙහෙයුම් ලකුණක් (Logical Operator) වන්නේ කුමක්ද?",
-    "correct": "AND",
-    "distractors": ["+", "=", "*"]
+    question: "Address Bus භාවිත වන්නේ?",
+    correct: "Memory addresses යැවීමට.",
+    distractors: ["Sound transfer සඳහා.", "Image print සඳහා.", "Mouse move සඳහා.", "Virus scan සඳහා."]
   },
   {
-    "question": "සංසන්දනාත්මක මෙහෙයුම් ලකුණක් (Relational Operator) නොවන්නේ කුමක්ද?",
-    "correct": "*",
-    "distractors": [">", "<", "<>"]
+    question: "Control Bus භාවිත වන්නේ?",
+    correct: "Control signals යැවීමට.",
+    distractors: ["Data store සඳහා.", "Photo edit සඳහා.", "RAM clean සඳහා.", "USB charge සඳහා."]
   },
   {
-    "question": "දත්ත සමුදායක එකම වර්ගයේ දත්ත අඩංගු තීරුවක් හඳුන්වන්නේ,",
-    "correct": "ක්ෂේත්‍රය (Field)",
-    "distractors": ["වාර්තාව (Record)", "වගුව", "පේළිය"]
+    question: "Word Size වැඩි වීමෙන්?",
+    correct: "CPU performance වැඩිවේ.",
+    distractors: ["Printer speed වැඩිවේ.", "Screen size වැඩිවේ.", "Mouse speed වැඩිවේ.", "Speaker volume වැඩිවේ."]
   },
+
   {
-    "question": "විදේශ යතුරක් (Foreign Key) භාවිතා කරන්නේ ඇයි?",
-    "correct": "වගු දෙකක් අතර සම්බන්ධතාවයක් ගොඩනැගීමට",
-    "distractors": ["දත්ත ඇතුළත් කිරීමට", "ප්‍රාථමික යතුර වෙනස් කිරීමට", "වගුවක් මකා දැමීමට"]
+    question: "Register memory පිහිටා ඇත්තේ?",
+    correct: "CPU තුළ.",
+    distractors: ["Hard Disk තුළ.", "Keyboard තුළ.", "Monitor තුළ.", "Printer තුළ."]
   },
   {
-    "question": "SQL යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    "correct": "Structured Query Language",
-    "distractors": ["Simple Queue Language", "System Query Link", "Standard Query Level"]
+    question: "Registers වල ලක්ෂණය කුමක්ද?",
+    correct: "ඉතා වේගවත් මතකයක් වීම.",
+    distractors: ["ඉතා මන්දගාමී වීම.", "Permanent storage වීම.", "Optical memory වීම.", "Magnetic memory වීම."]
   },
   {
-    "question": "තොරතුරු පද්ධතියක දත්ත අනවසර පුද්ගලයන්ගෙන් ආරක්ෂා කිරීමට යොදන ප්‍රධාන පියවර කුමක්ද?",
-    "correct": "මුරපද (Passwords) භාවිතය",
-    "distractors": ["මොනිටරය ක්‍රියා විරහිත කිරීම", "දත්ත මකා දැමීම", "පරිගණකය අලංකාර කිරීම"]
+    question: "Volatile Memory එකක් වන්නේ?",
+    correct: "RAM.",
+    distractors: ["ROM.", "DVD.", "Hard Disk.", "SSD."]
   },
   {
-    "question": "පරිගණකයකට හානිකර ලෙස ලියන ලද මෘදුකාංග පොදුවේ හඳුන්වන්නේ,",
-    "correct": "Malware",
-    "distractors": ["Firmware", "Shareware", "Freeware"]
+    question: "Non-Volatile Memory එකක් වන්නේ?",
+    correct: "ROM.",
+    distractors: ["RAM.", "Cache.", "Register.", "SRAM."]
   },
   {
-    "question": "මුහුණු පොත (Facebook) යනු කුමන වර්ගයේ වෙබ් අඩවියක්ද?",
-    "correct": "සමාජ ජාල වෙබ් අඩවියක් (Social Network)",
-    "distractors": ["සෙවුම් යන්ත්‍රයක්", "වෙබ් පිරික්සනයක්", "විද්‍යුත් තැපෑලක්"]
+    question: "SRAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Static RAM.",
+    distractors: ["Stored RAM.", "Speed RAM.", "Serial RAM.", "Simple RAM."]
   },
+
   {
-    "question": "සෙවුම් යන්ත්‍රයකට (Search Engine) උදාහරණයක් වන්නේ,",
-    "correct": "Google",
-    "distractors": ["Firefox", "Excel", "Pascal"]
+    question: "DRAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Dynamic RAM.",
+    distractors: ["Direct RAM.", "Dual RAM.", "Digital RAM.", "Data RAM."]
   },
   {
-    "question": "වෙබ් අඩවියක පළමු පිටුව හඳුන්වන නම කුමක්ද?",
-    "correct": "මුල් පිටුව (Home Page)",
-    "distractors": ["Main Page", "Web Page", "Index Sheet"]
+    question: "SRAM සාමාන්‍යයෙන් භාවිත වන්නේ?",
+    correct: "Cache Memory සඳහා.",
+    distractors: ["Printer memory.", "Hard Disk.", "ROM chip.", "Monitor memory."]
   },
   {
-    "question": "ගැලීම් සටහනක ඊතල (Flow Lines) මගින් පෙන්නුම් කරන්නේ කුමක්ද?",
-    "correct": "වැඩසටහන ක්‍රියාත්මක වන දිශාව",
-    "distractors": ["දත්ත ප්‍රමාණය", "වේගය", "පරිගණක වර්ගය"]
+    question: "DRAM සාමාන්‍යයෙන් භාවිත වන්නේ?",
+    correct: "Main Memory ලෙස.",
+    distractors: ["CPU Register ලෙස.", "BIOS ලෙස.", "Printer memory ලෙස.", "USB memory ලෙස."]
   },
   {
-    "question": "Pascal වලදී දත්ත වර්ගයක් ලෙස 'Char' භාවිතා කරන්නේ කුමක් ගබඩා කිරීමටද?",
-    "correct": "තනි අක්ෂරයක්",
-    "distractors": ["නමක්", "සංඛ්‍යාවක්", "දිනයක්"]
+    question: "SSD යනු?",
+    correct: "Solid State Drive.",
+    distractors: ["System Storage Disk.", "Serial State Drive.", "Secure Storage Device.", "Solid System Disk."]
   },
   {
-    "question": "අරාවක (Array) විශාලත්වය 10 ක් නම් එහි පළමු දර්ශකය (Index) වන්නේ,",
-    "correct": "0",
-    "distractors": ["1", "10", "9"]
+    question: "CD-ROM හි ROM යන්නෙන් අදහස් වන්නේ?",
+    correct: "Read Only Memory.",
+    distractors: ["Run Output Memory.", "Rapid Only Mode.", "Read Open Module.", "Record Output Media."]
   },
+
   {
-    "question": "වැඩසටහන්කරණයේ 'විචල්‍ය' (Variable) යනු කුමක්ද?",
-    "correct": "වැඩසටහන ක්‍රියාත්මක වන විට අගය වෙනස් විය හැකි දත්ත තැන්පත් කරන ස්ථාන වේ.",
-    "distractors": ["වැඩසටහන පුරාම අගය වෙනස් නොවන ස්ථාන වේ.", "ප්‍රතිදානය පෙන්වන තිරය වේ.", "ක්‍රමලේඛයේ නම වේ."]
+    question: "Plotter භාවිත වන්නේ?",
+    correct: "Large drawings print කිරීමට.",
+    distractors: ["Sound output සඳහා.", "Typing සඳහා.", "Scanning සඳහා.", "Gaming සඳහා."]
   },
   {
-    "question": "Pascal ක්‍රමලේඛයක දත්ත වර්ගයක් ලෙස 'Boolean' යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
-    "correct": "True (සත්‍ය) හෝ False (අසත්‍ය) යන අගයන් දෙකෙන් එකක් පමණක් ගැනීමයි.",
-    "distractors": ["සංඛ්‍යා පද්ධතියකි.", "තනි අක්ෂරයකි.", "දශම සංඛ්‍යාවකි."]
+    question: "Barcode Reader භාවිත වන්නේ?",
+    correct: "Barcode scan කිරීමට.",
+    distractors: ["Photo edit කිරීමට.", "Typing සඳහා.", "Printing සඳහා.", "Virus scan සඳහා."]
   },
   {
-    "question": "අරාවක (Array) විශාලත්වය 10 ක් නම්, එහි අවසාන දර්ශකය (Last Index) වන්නේ කුමක්ද?",
-    "correct": "9",
-    "distractors": ["10", "11", "0"]
+    question: "Smart Card Reader භාවිත වන්නේ?",
+    correct: "Card data read කිරීමට.",
+    distractors: ["Sound play කිරීමට.", "Photo print කිරීමට.", "RAM upgrade කිරීමට.", "Mouse control සඳහා."]
   },
   {
-    "question": "තොරතුරු පද්ධතියක ඇති දත්ත 'අඛණ්ඩතාවය' (Integrity) යනු කුමක්ද?",
-    "correct": "දත්ත වල නිරවද්‍යතාවය සහ විශ්වාසනීයත්වය පවත්වා ගැනීමයි.",
-    "distractors": ["දත්ත රහසිගතව තැබීමයි.", "දත්ත මකා දැමීමයි.", "දත්ත වල පිටපත් ලබා ගැනීමයි."]
+    question: "HDMI භාවිත වන්නේ?",
+    correct: "Audio හා Video transfer සඳහා.",
+    distractors: ["RAM install සඳහා.", "Keyboard clean සඳහා.", "Printer ink fill සඳහා.", "CPU cool සඳහා."]
   },
   {
-    "question": "පරිගණක වෛරසයකින් (Virus) ආරක්ෂා වීමට ගත හැකි හොඳම පියවර කුමක්ද?",
-    "correct": "යාවත්කාලීන කරන ලද වෛරස් නාශක මෘදුකාංග (Antivirus) භාවිතා කිරීම.",
-    "distractors": ["පරිගණකය පිරිසිදු කිරීම.", "අන්තර්ජාලය භාවිතා නොකිරීම.", "මුරපද නිතරම වෙනස් කිරීම."]
+    question: "Cloud Computing යනු?",
+    correct: "Internet හරහා සේවා භාවිතය.",
+    distractors: ["Local disk use only.", "Weather system.", "CPU cache type.", "Printer sharing only."]
   },
+
   {
-    "question": "අන් අයගේ නිර්මාණ හෝ මෘදුකාංග අවසරයකින් තොරව පිටපත් කර බෙදා හැරීම හඳුන්වන්නේ,",
-    "correct": "මෘදුකාංග මංකොල්ලය (Software Piracy)",
-    "distractors": ["Phishing", "Hacking", "Spamming"]
+    question: "SaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Software as a Service.",
+    distractors: ["Storage as a Service.", "System as a Service.", "Server as a Software.", "Software and Service."]
   },
   {
-    "question": "අන්තර්ජාලය හරහා වංචනික ලෙස බැංකු තොරතුරු ලබා ගැනීමට උත්සාහ කිරීම හඳුන්වන්නේ,",
-    "correct": "Phishing",
-    "distractors": ["Formatting", "Indexing", "Linking"]
+    question: "PaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Platform as a Service.",
+    distractors: ["Program as a Service.", "Process as a Service.", "Platform and Software.", "Primary as a Service."]
   },
   {
-    "question": "පරිගණකයක CPU එකේ උෂ්ණත්වය පාලනය කිරීමට භාවිතා කරන උපාංගය කුමක්ද?",
-    "correct": "Heat Sink සහ Fan",
-    "distractors": ["Hard Disk", "Power Supply", "Sound Card"]
+    question: "IaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
+    correct: "Infrastructure as a Service.",
+    distractors: ["Internet as a Service.", "Input as a Service.", "Internal as a Service.", "Integrated as a Service."]
   },
   {
-    "question": "අන්තර්ජාලය හරහා අධ්‍යාපනය ලබා ගැනීම හඳුන්වන්නේ,",
-    "correct": "E-learning",
-    "distractors": ["E-banking", "E-commerce", "E-business"]
+    question: "Cloud Computing වාසියක් වන්නේ?",
+    correct: "Anywhere access.",
+    distractors: ["No internet needed.", "No updates.", "No storage.", "No login."]
   },
   {
-    "question": "වීඩියෝ සම්මන්ත්‍රණ (Video Conferencing) සඳහා භාවිතා වන මෘදුකාංගයකට උදාහරණයක් වන්නේ,",
-    "correct": "Zoom",
-    "distractors": ["MS Word", "Pascal", "Chrome"]
-  },
-  {
-    "question": "පරිගණක උපාංගයක් සසම්භාවී ලෙස දත්ත කියවීමට හෝ ලිවීමට ඉඩ ලබා දෙන්නේ කුමන කොටස මගින්ද?",
-    "correct": "RAM",
-    "distractors": ["ROM", "CPU", "Printer"]
-  },
-  {
-    "question": "විශාල ප්‍රදේශයක් ආවරණය වන පරිදි පරිගණක සම්බන්ධ කරන ජාලය කුමක්ද?",
-    "correct": "WAN (Wide Area Network)",
-    "distractors": ["LAN", "PAN", "Home Network"]
-  },
-  {
-    "question": "HTML හි <table> ටැගය තුළ පේළියක් (Row) සෑදීමට භාවිතා කරන ටැගය කුමක්ද?",
-    "correct": "tr",
-    "distractors": ["td", "th", "row"]
-  },
-  {
-    "question": "HTML හි වගුවක දත්ත (Data Cell) ඇතුළත් කිරීමට භාවිතා කරන ටැගය කුමක්ද?",
-    "correct": "td",
-    "distractors": ["tr", "th", "cell"]
-  },
-  {
-    "question": "ICT භාවිතයෙන් පරිසරයට සිදුවන හානිය අවම කිරීමට කරන 'හරිත පරිගණක' (Green Computing) පිළිවෙතක් වන්නේ,",
-    "correct": "පාවිච්චි කළ නොහැකි උපාංග විධිමත් ලෙස ප්‍රතිචක්‍රීකරණය කිරීම.",
-    "distractors": ["පරිගණකය නිතරම ක්‍රියාත්මක කර තැබීම.", "පරිගණක ගොඩක් මිලදී ගැනීම.", "පරිගණකයේ දීප්තිය වැඩි කිරීම."]
-  },
-  {
-    "question": "Spreadsheet මෘදුකාංගයක අගයන් පරාසයක් අතරින් උපරිම අගය සෙවීමට භාවිතා කරන ශ්‍රිතය කුමක්ද?",
-    "correct": "MAX",
-    "distractors": ["MIN", "AVERAGE", "COUNT"]
-  },
-  {
-    "question": "පද්ධතියක් නිර්මාණය කිරීමේදී ඇති වන වියදම් සහ ලැබෙන ලාභය පිළිබඳව සොයා බැලීම හඳුන්වන්නේ,",
-    "correct": "ශක්‍යතා අධ්‍යයනය (Feasibility Study)",
-    "distractors": ["දත්ත එක් රැස් කිරීම", "කේත ලිවීම", "නඩත්තු කිරීම"]
-  },
-  {
-    "question": "මෘදුකාංගයක් වෙළඳපොළට නිකුත් කිරීමට පෙර සිදු කරන පරීක්ෂාව (Testing) වැදගත් වන්නේ ඇයි?",
-    "correct": "වැඩසටහනේ ඇති දෝෂ හඳුනාගෙන ඒවා නිවැරදි කිරීමට.",
-    "distractors": ["මෘදුකාංගයේ මිල වැඩි කිරීමට.", "මෘදුකාංගයේ ප්‍රමාණය විශාල කිරීමට.", "භාෂාව වෙනස් කිරීමට."]
-  },
-  {
-    "question": "Pascal වලදී 'Write' සහ 'Writeln' අතර ඇති වෙනස කුමක්ද?",
-    "correct": "Writeln මගින් ප්‍රතිදානයෙන් පසු කර්සරය ඊළඟ පේළියට ගෙන යයි.",
-    "distractors": ["Write මගින් දත්ත මකා දමයි.", "Writeln මගින් දත්ත සුරකියි.", "දෙකම එක සමාන වේ."]
-  },
-  {
-    "question": "ඩිජිටල් බෙදීම (Digital Divide) යනු කුමක්ද?",
-    "correct": "තොරතුරු තාක්ෂණ පහසුකම් ඇති සහ නැති පුද්ගලයන් අතර ඇති පරතරයයි.",
-    "distractors": ["පරිගණක දෙකක් අතර ඇති දුරයි.", "අන්තර්ජාලයේ වේගයයි.", "මෘදුකාංග වර්ගයකි."]
-  },
-  {
-    "question": "අන්තර්ජාලය හරහා ලබා ගන්නා ලිපිගොනු තම පරිගණකයට සුරැකීම හඳුන්වන්නේ,",
-    "correct": "Download (බාගත කිරීම)",
-    "distractors": ["Upload", "Spam", "Phish"]
-  },
-  {
-    "question": "O/L ICT විෂය නිර්දේශයේ අවසාන ඉලක්කය කුමක්ද?",
-    "correct": "තොරතුරු තාක්ෂණය පිළිබඳ දැනුම එදිනෙදා ජීවිතයට ප්‍රායෝගිකව යොදා ගැනීම.",
-    "distractors": ["පරිගණක ක්‍රීඩා කිරීම.", "සමාජ ජාල භාවිතා කිරීම පමණක්.", "පරිගණක විකිණීම."]
-  },
-  {
-    "question": "සංකේත නිරූපණ ක්‍රම වලදී 'EBCDIC' කේතයක් නිරූපණය කිරීමට භාවිතා කරන බිටු (Bits) ගණන කීයද?",
-    "correct": "8",
-    "distractors": ["7", "16", "32"]
-  },
-  {
-    "question": "අන්තර්ජාලය හරහා සිදුවන මෘදුකාංග සොරකම් කිරීම් (Software Piracy) වැළැක්වීමට භාවිතා කරන තාක්ෂණික ක්‍රමයක් වන්නේ,",
-    "correct": "ඩිජිටල් අත්සන් (Digital Signatures)",
-    "distractors": ["දත්ත මකා දැමීම", "මෘදුකාංග නොමිලේ ලබා දීම", "පරිගණකය අක්‍රිය කිරීම"]
-  },
-  {
-    "question": "පරිගණකයක ප්‍රධාන මතකය (RAM) සහ ක්ෂුද්‍ර සකසනය (CPU) අතර දත්ත හුවමාරු වේගය වැඩි කිරීමට යොදාගන්නා වේගවත් මතකය කුමක්ද?",
-    "correct": "කෑෂ් මතකය (Cache Memory)",
-    "distractors": ["ROM", "Virtual Memory", "Flash Memory"]
-  },
+    question: "Cloud Computing අවාසියක් වන්නේ?",
+    correct: "Internet connection අවශ්‍ය වීම.",
+    distractors: ["Automatic backup.", "Easy sharing.", "Low hardware cost.", "Anywhere access."]
+  }
 ]
     let quizData = [...originalQuizData];
 
