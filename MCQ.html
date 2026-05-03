@@ -187,442 +187,404 @@ const ENABLE_TAB_SECURITY = true;
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
   {
-    question: "මෙහෙයුම් පද්ධතියක GUI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Graphical User Interface.",
-    distractors: ["General User Interface.", "Global User Interface.", "Graphical Unit Interface.", "Group User Interface."]
+    "question": "1011 (base 2) + 1101 (base 2) හි අගය කුමක්ද?",
+    "correct": "11000",
+    "distractors": ["10110", "11111", "10101", "11010"]
   },
   {
-    question: "පරිගණකයේ පියා ලෙස හඳුන්වන්නේ කාටද?",
-    correct: "Charles Babbage.",
-    distractors: ["Blaise Pascal.", "Howard Aiken.", "Ada Lovelace.", "John Von Neumann."]
+    "question": "1111 (base 2) - 1001 (base 2) හි අගය කුමක්ද?",
+    "correct": "0110",
+    "distractors": ["1000", "0101", "0111", "1010"]
   },
   {
-    question: "Pascaline යන්ත්‍රය නිර්මාණය කළේ කවුද?",
-    correct: "Blaise Pascal.",
-    distractors: ["Charles Babbage.", "Leibnitz.", "Howard Aiken.", "Alan Turing."]
+    "question": "101 (base 2) x 11 (base 2) හි පිළිතුර සොයන්න.",
+    "correct": "1111",
+    "distractors": ["1011", "1101", "1110", "1001"]
   },
   {
-    question: "Difference Engine නිර්මාණය කළේ කවුද?",
-    correct: "Charles Babbage.",
-    distractors: ["Pascal.", "Leibnitz.", "Howard Aiken.", "Bill Gates."]
+    "question": "74 (base 8) + 12 (base 8) හි අෂ්ටක පිළිතුර කුමක්ද?",
+    "correct": "106",
+    "distractors": ["86", "110", "104", "116"]
   },
   {
-    question: "පළමු Computer Programmer ලෙස සැලකෙන්නේ කවුද?",
-    correct: "Ada Lovelace.",
-    distractors: ["Grace Hopper.", "Pascal.", "Charles Babbage.", "Steve Jobs."]
+    "question": "A5 (base 16) + 1F (base 16) හි ෂඩ් දශම පිළිතුර කුමක්ද?",
+    "correct": "C4",
+    "distractors": ["B4", "C5", "BA", "D4"]
   },
   {
-    question: "Mark I පරිගණකය නිපදවූයේ කවුද?",
-    correct: "Howard Aiken.",
-    distractors: ["John Von Neumann.", "Charles Babbage.", "Pascal.", "IBM."]
+    "question": "1100 (base 2) බෙදීම 10 (base 2) හි අගය කුමක්ද?",
+    "correct": "110",
+    "distractors": ["101", "111", "100", "011"]
   },
   {
-    question: "CPU යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Central Processing Unit.",
-    distractors: ["Computer Processing Unit.", "Central Power Unit.", "Core Processing Unit.", "Central Program Unit."]
+    "question": "ද්විමය සංඛ්‍යා පද්ධතියේ 1 + 1 + 1 හි අගය කුමක්ද?",
+    "correct": "11",
+    "distractors": ["10", "3", "111", "100"]
   },
   {
-    question: "ALU හි ප්‍රධාන කාර්යය කුමක්ද?",
-    correct: "Arithmetic හා Logic ක්‍රියා සිදු කිරීම.",
-    distractors: ["දත්ත මුද්‍රණය.", "විදුලිය සැපයීම.", "ජාල සම්බන්ධතා ලබාදීම.", "මතකය ගබඩා කිරීම."]
+    "question": "35 (base 8) - 17 (base 8) හි අෂ්ටක පිළිතුර කුමක්ද?",
+    "correct": "16",
+    "distractors": ["18", "26", "20", "14"]
   },
   {
-    question: "RAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Random Access Memory.",
-    distractors: ["Read Access Memory.", "Rapid Access Memory.", "Random Active Memory.", "Run Access Memory."]
+    "question": "F (base 16) + 1 (base 16) හි අගය ෂඩ් දශමයෙන් කීයද?",
+    "correct": "10",
+    "distractors": ["G", "16", "E", "11"]
   },
   {
-    question: "ROM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Read Only Memory.",
-    distractors: ["Random Only Memory.", "Read Open Memory.", "Rapid Output Memory.", "Run Only Memory."]
+    "question": "1000 (base 2) - 1 (base 2) හි අගය කුමක්ද?",
+    "correct": "0111",
+    "distractors": ["1111", "0110", "1001", "0001"]
   },
   {
-    question: "Cache Memory භාවිතයේ අරමුණ කුමක්ද?",
-    correct: "CPU වේගය වැඩි කිරීම.",
-    distractors: ["Printer quality වැඩි කිරීම.", "Monitor size වැඩි කිරීම.", "Internet speed වැඩි කිරීම.", "Keyboard speed වැඩි කිරීම."]
+    "question": "BCD කේත ක්‍රමයේදී 9 (base 10) නිරූපණය කරන්නේ කෙසේද?",
+    "correct": "1001",
+    "distractors": ["1010", "1111", "1000", "0111"]
   },
   {
-    question: "Input Device එකක් වන්නේ කුමක්ද?",
-    correct: "Keyboard.",
-    distractors: ["Monitor.", "Printer.", "Speaker.", "Projector."]
+    "question": "8-bit රෙජිස්ටරයක 'Sign and Magnitude' ක්‍රමයට -5 නිරූපණය කරන්නේ කෙසේද?",
+    "correct": "10000101",
+    "distractors": ["00000101", "11111011", "10000111", "11111010"]
   },
   {
-    question: "Output Device එකක් වන්නේ කුමක්ද?",
-    correct: "Monitor.",
-    distractors: ["Mouse.", "Keyboard.", "Scanner.", "Barcode Reader."]
+    "question": "දශම 25 හි 1's complement අගය (8-bit) කුමක්ද?",
+    "correct": "11100110",
+    "distractors": ["11100111", "00011001", "11100101", "11111111"]
   },
   {
-    question: "Scanner භාවිත වන්නේ කුමක් සඳහාද?",
-    correct: "රූප හා ලේඛන ආදානය සඳහා.",
-    distractors: ["මුද්‍රණය සඳහා.", "ශබ්ද ප්‍රතිදානය සඳහා.", "දත්ත මකා දැමීම සඳහා.", "විදුලිය සැපයීම සඳහා."]
+    "question": "දශම 10 හි 2's complement අගය (8-bit) කුමක්ද?",
+    "correct": "11110110",
+    "distractors": ["11110101", "00001010", "11111010", "11110111"]
   },
   {
-    question: "Mouse එකක් කුමන වර්ගයේ උපාංගයක්ද?",
-    correct: "Pointing Device.",
-    distractors: ["Storage Device.", "Output Device.", "Processing Device.", "Power Device."]
+    "question": "ASCII කේත ක්‍රමයට අනුව 'A' හි අගය 65 නම් 'C' හි අගය කීයද?",
+    "correct": "67",
+    "distractors": ["66", "68", "69", "70"]
   },
   {
-    question: "Hard Disk එකක් වන්නේ කුමක්ද?",
-    correct: "Secondary Storage Device.",
-    distractors: ["Input Device.", "Primary Memory.", "Output Device.", "CPU Unit."]
+    "question": "ද්විමය සංඛ්‍යාවක අගය දෙගුණ කිරීමට භාවිතා කරන සරලම ක්‍රමය කුමක්ද?",
+    "correct": "සංඛ්‍යාව අගට 0 ක් එක් කිරීම.",
+    "distractors": ["සංඛ්‍යාව අගට 1 ක් එක් කිරීම.", "1 ක් අඩු කිරීම.", "සංඛ්‍යාව ආපසු හැරවීම.", "සියල්ල 1 කිරීම."]
   },
   {
-    question: "Von Neumann Architecture ඉදිරිපත් කළේ කවුද?",
-    correct: "John Von Neumann.",
-    distractors: ["Charles Babbage.", "Pascal.", "Howard Aiken.", "Bill Gates."]
+    "question": "ෂඩ් දශම පද්ධතියේ 'E' අකුරෙන් නිරූපණය වන දශම අගය කුමක්ද?",
+    "correct": "14",
+    "distractors": ["13", "15", "12", "11"]
   },
   {
-    question: "Fetch-Execute Cycle හි පළමු පියවර කුමක්ද?",
-    correct: "Fetch.",
-    distractors: ["Decode.", "Execute.", "Store.", "Delete."]
+    "question": "අෂ්ටක සංඛ්‍යාවක MSD (Most Significant Digit) යනු කුමක්ද?",
+    "correct": "වැඩිම වටිනාකමක් ඇති වම්පසම ඉලක්කමයි.",
+    "distractors": ["වැඩිම වටිනාකමක් ඇති දකුණේම ඉලක්කමයි.", "අඩුම වටිනාකමක් ඇති ඉලක්කමයි.", "මැද ඉලක්කමයි.", "බිංදුවයි."]
   },
   {
-    question: "Decode යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    correct: "විධානය අර්ථකථනය කිරීම.",
-    distractors: ["විධානය මකා දැමීම.", "විධානය මුද්‍රණය කිරීම.", "විධානය සුරැකීම.", "විධානය copy කිරීම."]
+    "question": "10111 (base 2) සංඛ්‍යාවක LSB (Least Significant Bit) අගය කුමක්ද?",
+    "correct": "1",
+    "distractors": ["0", "2", "5", "10111"]
   },
   {
-    question: "Execute යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    correct: "විධානය ක්‍රියාත්මක කිරීම.",
-    distractors: ["විධානය save කිරීම.", "විධානය delete කිරීම.", "විධානය decode කිරීම.", "විධානය print කිරීම."]
+    "question": "Unicode කේත ක්‍රමය භාවිතා කිරීමේ ප්‍රධාන වාසිය කුමක්ද?",
+    "correct": "ලෝකයේ බොහෝ භාෂාවල අක්ෂර නිරූපණය කළ හැකි වීම.",
+    "distractors": ["වේගය වැඩි වීම.", "ගබඩා ඉඩ අඩු වීම.", "ඉලක්කම් පමණක් තිබීම.", "සරල වීම."]
   },
-
   {
-    question: "Store යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    correct: "ප්‍රතිඵලය මතකයේ තැන්පත් කිරීම.",
-    distractors: ["විධානය මකා දැමීම.", "CPU නවතා දැමීම.", "Monitor off කිරීම.", "Mouse reset කිරීම."]
+    "question": "8-bit රෙජිස්ටරයක -1 නිරූපණය කරන 2's complement අගය කුමක්ද?",
+    "correct": "11111111",
+    "distractors": ["10000001", "11111110", "00000001", "10000000"]
   },
   {
-    question: "Clock Speed මනින ඒකකය කුමක්ද?",
-    correct: "Hertz.",
-    distractors: ["Byte.", "Meter.", "Liter.", "Pixel."]
+    "question": "10110 (base 2) සංඛ්‍යාව 2 න් ගුණ කළ විට ලැබෙන ද්විමය අගය කුමක්ද?",
+    "correct": "101100",
+    "distractors": ["10111", "11110", "10101", "01011"]
   },
   {
-    question: "1 KB සමාන වන්නේ?",
-    correct: "1024 Bytes.",
-    distractors: ["100 Bytes.", "512 Bytes.", "1000 Bytes.", "2048 Bytes."]
+    "question": "111.01 (base 2) හි දශම (Decimal) අගය කුමක්ද?",
+    "correct": "7.25",
+    "distractors": ["7.5", "7.1", "6.25", "3.25"]
   },
   {
-    question: "1 MB සමාන වන්නේ?",
-    correct: "1024 KB.",
-    distractors: ["1000 KB.", "512 KB.", "2048 KB.", "100 KB."]
+    "question": "ෂඩ් දශම පද්ධතියේ (Hexadecimal) පදනම (Base) කුමක්ද?",
+    "correct": "16",
+    "distractors": ["10", "8", "2", "32"]
   },
   {
-    question: "1 GB සමාන වන්නේ?",
-    correct: "1024 MB.",
-    distractors: ["1000 MB.", "512 MB.", "2048 MB.", "100 MB."]
+    "question": "0.125 (base 10) ද්විමය අගයට හැරවූ විට ලැබෙන්නේ කුමක්ද?",
+    "correct": "0.001",
+    "distractors": ["0.100", "0.010", "0.111", "0.101"]
   },
-
   {
-    question: "USB යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Universal Serial Bus.",
-    distractors: ["United Serial Bus.", "Universal System Bus.", "User Serial Base.", "Ultra Storage Bus."]
+    "question": "8-bit රෙජිස්ටරයක 2's complement ක්‍රමයට ගබඩා කළ හැකි විශාලතම ධන සංඛ්‍යාව කුමක්ද?",
+    "correct": "127",
+    "distractors": ["128", "255", "256", "64"]
   },
   {
-    question: "Printer එකක් කුමන වර්ගයේ උපාංගයක්ද?",
-    correct: "Output Device.",
-    distractors: ["Input Device.", "Storage Device.", "Processing Device.", "Communication Device."]
+    "question": "1100 (base 2) - 101 (base 2) හි අගය සොයන්න.",
+    "correct": "0111",
+    "distractors": ["1001", "1011", "0110", "1000"]
   },
   {
-    question: "Keyboard භාවිත වන්නේ?",
-    correct: "දත්ත ඇතුළත් කිරීමට.",
-    distractors: ["දත්ත මුද්‍රණයට.", "දත්ත මකා දැමීමට.", "විදුලිය සැපයීමට.", "Network සම්බන්ධ කිරීමට."]
+    "question": "55 (base 8) සංඛ්‍යාවට පසුව එන ඊළඟ අෂ්ටක සංඛ්‍යාව කුමක්ද?",
+    "correct": "56",
+    "distractors": ["56", "60", "66", "70"]
   },
   {
-    question: "Speaker එකක් වන්නේ?",
-    correct: "Output Device.",
-    distractors: ["Input Device.", "Memory Device.", "Storage Device.", "CPU Part."]
+    "question": "77 (base 8) සංඛ්‍යාවට පසුව එන ඊළඟ අෂ්ටක සංඛ්‍යාව කුමක්ද?",
+    "correct": "100",
+    "distractors": ["78", "100", "80", "111"]
   },
   {
-    question: "Joystick භාවිත වන්නේ?",
-    correct: "Game control සඳහා.",
-    distractors: ["Printing සඳහා.", "Scanning සඳහා.", "Storage සඳහා.", "Typing සඳහා."]
+    "question": "9 (base 16) + 1 (base 16) හි අගය ෂඩ් දශමයෙන් කුමක්ද?",
+    "correct": "A",
+    "distractors": ["10", "B", "F", "91"]
   },
-
   {
-    question: "Touch Screen එකක් වන්නේ?",
-    correct: "Input හා Output දෙකම.",
-    distractors: ["Input only.", "Output only.", "Storage only.", "Memory only."]
+    "question": "ද්විමය සංඛ්‍යා පද්ධතියේ '10' යනුවෙන් දැක්වෙන දශම අගය කුමක්ද?",
+    "correct": "2",
+    "distractors": ["10", "1", "0", "4"]
   },
   {
-    question: "OCR යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Optical Character Recognition.",
-    distractors: ["Optical Code Reader.", "Online Character Reader.", "Output Character Register.", "Open Character Recognition."]
+    "question": "BCD ක්‍රමයට 15 (base 10) නිරූපණය කරන්නේ කෙසේද?",
+    "correct": "0001 0101",
+    "distractors": ["0000 1111", "1111", "0001 1010", "10101"]
   },
   {
-    question: "OMR භාවිත වන්නේ?",
-    correct: "Marked answers හඳුනාගැනීමට.",
-    distractors: ["Sound record කිරීමට.", "Typing සඳහා.", "Printing සඳහා.", "Internet සඳහා."]
+    "question": "Odd Parity ක්‍රමයට අනුව 1101101 දත්තය සඳහා Parity Bit එක කුමක්ද?",
+    "correct": "0",
+    "distractors": ["1", "0", "11", "නොපවතී"]
   },
   {
-    question: "MICR භාවිත වන්නේ?",
-    correct: "Bank cheque කියවීමට.",
-    distractors: ["Photo scan කිරීමට.", "Mouse control සඳහා.", "Sound edit කිරීමට.", "RAM test කිරීමට."]
+    "question": "Even Parity ක්‍රමයට අනුව 1101101 දත්තය සඳහා Parity Bit එක කුමක්ද?",
+    "correct": "1",
+    "distractors": ["1", "0", "11", "නොපවතී"]
   },
   {
-    question: "BIOS සාමාන්‍යයෙන් ගබඩා වන්නේ?",
-    correct: "ROM තුළ.",
-    distractors: ["RAM තුළ.", "Cache තුළ.", "Hard Disk තුළ.", "Register තුළ."]
+    "question": "සංඛ්‍යා පද්ධතියක MSD යන්නෙහි තේරුම කුමක්ද?",
+    "correct": "Most Significant Digit",
+    "distractors": ["Minimum Significant Digit", "Most Standard Digit", "Main Significant Digit", "Most Secondary Digit"]
   },
-
   {
-    question: "Booting යනු කුමක්ද?",
-    correct: "පරිගණකය ආරම්භ කිරීම.",
-    distractors: ["පරිගණකය format කිරීම.", "Mouse reset කිරීම.", "Printer clean කිරීම.", "RAM replace කිරීම."]
+    "question": "FF (base 16) සංඛ්‍යාවට 1 ක් එකතු කළ විට ලැබෙන ෂඩ් දශම අගය කුමක්ද?",
+    "correct": "100",
+    "distractors": ["FG", "101", "FE", "GG"]
   },
   {
-    question: "Cold Boot යනු?",
-    correct: "Power off සිට on කිරීම.",
-    distractors: ["Restart කිරීම.", "Shutdown කිරීම.", "Sleep mode.", "Printer on කිරීම."]
+    "question": "10101 (base 2) හි 1's complement අගය කුමක්ද?",
+    "correct": "01010",
+    "distractors": ["10110", "01011", "11111", "00000"]
   },
   {
-    question: "Warm Boot යනු?",
-    correct: "Restart කිරීම.",
-    distractors: ["Power cable remove කිරීම.", "Monitor off කිරීම.", "Mouse connect කිරීම.", "Printer install කිරීම."]
+    "question": "ෂඩ් දශම පද්ධතියේ 'B' අකුරට පසුව එන සංකේතය කුමක්ද?",
+    "correct": "C",
+    "distractors": ["12", "A", "D", "E"]
   },
   {
-    question: "Operating System එකක් වන්නේ?",
-    correct: "Windows.",
-    distractors: ["MS Word.", "Photoshop.", "Chrome.", "PowerPoint."]
+    "question": "අෂ්ටක පද්ධතියේ පාදය 8 වීම නිසා එහි භාවිතා වන විශාලතම ඉලක්කම කුමක්ද?",
+    "correct": "7",
+    "distractors": ["8", "9", "0", "F"]
   },
   {
-    question: "Application Software එකක් වන්නේ?",
-    correct: "MS Excel.",
-    distractors: ["Linux.", "Windows.", "BIOS.", "ROM."]
+    "question": "2's complement ක්‍රමයට සංඛ්‍යාවක් සෘණ කිරීමේදී මුලින්ම කළ යුත්තේ කුමක්ද?",
+    "correct": "එහි 1's complement එක ලබා ගැනීම.",
+    "distractors": ["1 ක් එකතු කිරීම.", "1 ක් අඩු කිරීම.", "2 න් ගුණ කිරීම.", "බිටු මාරු කිරීම."]
   },
-
   {
-    question: "System Software එකක් වන්නේ?",
-    correct: "Operating System.",
-    distractors: ["Paint.", "Word.", "Excel.", "Photoshop."]
+    "question": "ෂඩ් දශම පද්ධතියේ 'F' සංකේතයේ දශම අගය කුමක්ද?",
+    "correct": "15",
+    "distractors": ["16", "14", "10", "11"]
   },
   {
-    question: "Linux යනු?",
-    correct: "Open Source Operating System.",
-    distractors: ["Spreadsheet software.", "Game software.", "Printer brand.", "Programming language."]
+    "question": "1011 (base 2) යන්න 2's complement ආකාරයෙන් ඇති 4-bit සංඛ්‍යාවක් නම් එහි දශම අගය කුමක්ද?",
+    "correct": "-5",
+    "distractors": ["11", "-3", "-6", "-4"]
   },
   {
-    question: "Compiler එකක් වන්නේ?",
-    correct: "Language Translator.",
-    distractors: ["Input Device.", "Storage Device.", "Output Device.", "CPU Part."]
+    "question": "Floating point නිරූපණයක ඇති ප්‍රධාන කොටස් 3 කුමක්ද?",
+    "correct": "ලකුණ (Sign), දර්ශකය (Exponent), මන්තිස්සාව (Mantissa)",
+    "distractors": ["Base, Power, Value", "Sign, Base, Exponent", "Real, Integer, Binary", "Binary, Octal, Hex"]
   },
   {
-    question: "Utility Software උදාහරණයක් වන්නේ?",
-    correct: "Antivirus.",
-    distractors: ["Keyboard.", "Monitor.", "Mouse.", "CPU."]
+    "question": "ද්විමය සංඛ්‍යාවක MSB (Most Significant Bit) එක 1 නම් එම සංඛ්‍යාව?",
+    "correct": "සෘණ (Negative) සංඛ්‍යාවකි.",
+    "distractors": ["ධන (Positive) සංඛ්‍යාවකි.", "බිංදුවකි.", "භාගයකි.", "ඔත්තේ සංඛ්‍යාවකි."]
   },
   {
-    question: "Antivirus Software භාවිත වන්නේ?",
-    correct: "Virus වලින් ආරක්ෂා කිරීමට.",
-    distractors: ["Typing speed වැඩි කිරීමට.", "Screen size වැඩි කිරීමට.", "RAM increase කිරීමට.", "Printer clean කිරීමට."]
+    "question": "ASCII කේත ක්‍රමයේදී එක් අක්ෂරයක් නිරූපණය කිරීමට සාමාන්‍යයෙන් බිටු (Bits) කීයක් භාවිතා කරයිද?",
+    "correct": "7",
+    "distractors": ["8", "16", "4", "32"]
   },
-
   {
-    question: "Multitasking යනු?",
-    correct: "වැඩ කිහිපයක් එකවර කිරීම.",
-    distractors: ["එක වැඩක් පමණක් කිරීම.", "Power off කිරීම.", "Data delete කිරීම.", "Monitor clean කිරීම."]
+    "question": "EBCDIC කේත ක්‍රමය ප්‍රධාන වශයෙන්ම භාවිතා වන්නේ කුමන පරිගණක වර්ග සඳහාද?",
+    "correct": "Mainframe Computers",
+    "distractors": ["Personal Computers", "Super Computers", "Micro Computers", "Smartphones"]
   },
   {
-    question: "Device Driver භාවිත වන්නේ?",
-    correct: "Hardware control සඳහා.",
-    distractors: ["Typing සඳහා.", "Music play සඳහා.", "Video edit සඳහා.", "Storage format සඳහා."]
+    "question": "Unicode (UTF-16) ක්‍රමයේදී එක් අක්ෂරයක් සඳහා භාවිතා වන බිටු ගණන කීයද?",
+    "correct": "16",
+    "distractors": ["8", "32", "4", "64"]
   },
   {
-    question: "GUI හි වාසියක් වන්නේ?",
-    correct: "Icons සහ windows භාවිතයෙන් පහසු වීම.",
-    distractors: ["Text only interface.", "No mouse support.", "No graphics.", "Only experts සඳහා."]
+    "question": "BCD (Binary Coded Decimal) ක්‍රමයේදී දශම 0 සිට 9 දක්වා නිරූපණයට බිටු කීයක් අවශ්‍යද?",
+    "correct": "4",
+    "distractors": ["2", "8", "1", "16"]
   },
   {
-    question: "CLI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Command Line Interface.",
-    distractors: ["Computer Line Interface.", "Common Link Interface.", "Control Line Input.", "Code Level Interface."]
+    "question": "1110 (base 2) සහ 0001 (base 2) අතර ඇති සම්බන්ධය කුමක්ද?",
+    "correct": "එකිනෙකට 1's complement වේ.",
+    "distractors": ["එකිනෙකට 2's complement වේ.", "සමාන අගයන් වේ.", "එකතු කළ විට 0 වේ.", "ගුණ කළ විට 1 වේ."]
   },
   {
-    question: "CLI භාවිතයේ ප්‍රධාන ලක්ෂණය කුමක්ද?",
-    correct: "Commands type කිරීම.",
-    distractors: ["Icons click කිරීම.", "Touch only use කිරීම.", "Voice only control.", "Mouse only use කිරීම."]
+    "question": "0.101 (base 2) හි දශම අගය සොයන්න.",
+    "correct": "0.625",
+    "distractors": ["0.5", "0.75", "0.375", "0.125"]
   },
-
   {
-    question: "Super Computer භාවිත වන්නේ?",
-    correct: "Weather Forecasting වැනි සංකීර්ණ ගණනයන් සඳහා.",
-    distractors: ["Typing only.", "Music play කිරීම.", "Printing only.", "Scanning only."]
+    "question": "සංඛ්‍යා පද්ධතියක 'පාදය' (Base/Radix) යන්නෙන් අදහස් වන්නේ කුමක්ද?",
+    "correct": "එම පද්ධතියේ ඇති මුළු සංකේත ගණනයි.",
+    "distractors": ["එහි ඇති විශාලතම සංකේතයයි.", "සංඛ්‍යාවක ඇති බිටු ගණනයි.", "පද්ධතියේ නමයි.", "සංඛ්‍යාවක වටිනාකමයි."]
   },
   {
-    question: "Mainframe Computer සුදුසු වන්නේ?",
-    correct: "විශාල ආයතන සඳහා.",
-    distractors: ["Home gaming සඳහා.", "Mobile use සඳහා.", "Camera use සඳහා.", "Printer use සඳහා."]
+    "question": "100 (base 10) සංඛ්‍යාව ෂඩ් දශම පද්ධතියෙන් දක්වන්න.",
+    "correct": "64",
+    "distractors": ["100", "A0", "46", "FF"]
   },
   {
-    question: "Micro Computer උදාහරණයක් වන්නේ?",
-    correct: "Laptop.",
-    distractors: ["Mainframe.", "Super Computer.", "Server Farm.", "Quantum Machine."]
+    "question": "පරිගණකයක අභ්‍යන්තර දත්ත සැකසීම සඳහා වඩාත්ම යෝග්‍ය සංඛ්‍යා පද්ධතිය කුමක්ද?",
+    "correct": "ද්විමය (Binary)",
+    "distractors": ["දශම (Decimal)", "අෂ්ටක (Octal)", "ෂඩ් දශම (Hexadecimal)", "BCD"]
   },
   {
-    question: "Analog Computer භාවිත කරන්නේ?",
-    correct: "Continuous data.",
-    distractors: ["Binary only.", "Text only.", "Image only.", "Audio only."]
+    "question": "2's complement ක්‍රමයේදී 00000000 හි අගය කුමක්ද?",
+    "correct": "0",
+    "distractors": ["-0", "-1", "256", "1"]
   },
   {
-    question: "Digital Computer භාවිත කරන්නේ?",
-    correct: "Binary data.",
-    distractors: ["Water flow.", "Pressure only.", "Temperature only.", "Voltage only."]
+    "question": "ASCII අගය 66 යන්නෙන් නිරූපණය වන අක්ෂරය කුමක්ද?",
+    "correct": "B",
+    "distractors": ["A", "C", "b", "a"]
   },
-
   {
-    question: "1st Generation Computers භාවිත කළේ?",
-    correct: "Vacuum Tubes.",
-    distractors: ["Transistors.", "IC.", "Microprocessors.", "AI Chips."]
+    "question": "ද්විමය සංඛ්‍යාවක LSB එක 0 නම් එම සංඛ්‍යාව සැමවිටම?",
+    "correct": "ඉරට්ටේ සංඛ්‍යාවකි.",
+    "distractors": ["ඔත්තේ සංඛ්‍යාවකි.", "සෘණ සංඛ්‍යාවකි.", "ධන සංඛ්‍යාවකි.", "බිංදුවකි."]
   },
   {
-    question: "2nd Generation Computers භාවිත කළේ?",
-    correct: "Transistors.",
-    distractors: ["Vacuum Tubes.", "IC.", "Microprocessors.", "Quantum Chips."]
+    "question": "32-bit Floating point නිරූපණයක ලකුණ (Sign bit) සඳහා වෙන් කර ඇති බිටු ගණන කීයද?",
+    "correct": "1",
+    "distractors": ["8", "23", "4", "16"]
   },
   {
-    question: "3rd Generation Computers භාවිත කළේ?",
-    correct: "Integrated Circuits.",
-    distractors: ["Vacuum Tubes.", "Transistors.", "Microprocessors.", "AI."]
+    "question": "ෂඩ් දශම සංඛ්‍යා පද්ධතිය භාවිතා කිරීමේ ප්‍රධාන වාසිය කුමක්ද?",
+    "correct": "දිගු ද්විමය සංඛ්‍යා කෙටියෙන් දැක්වීමට හැකි වීම.",
+    "distractors": ["පරිගණකය වේගවත් වීම.", "ගණිත කර්ම පහසු වීම.", "මතකය ඉතිරි වීම.", "වඩාත් නිවැරදි වීම."]
   },
   {
-    question: "4th Generation Computers භාවිත කළේ?",
-    correct: "Microprocessors.",
-    distractors: ["IC.", "Transistors.", "Vacuum Tubes.", "Relay."]
+    "question": "අෂ්ටක 10 (base 8) ට සමාන දශම අගය කුමක්ද?",
+    "correct": "8",
+    "distractors": ["10", "2", "16", "7"]
   },
   {
-    question: "5th Generation Computers සම්බන්ධ වන්නේ?",
-    correct: "Artificial Intelligence.",
-    distractors: ["Vacuum Tubes.", "Punch Cards.", "Floppy Disks.", "Relay."]
+    "question": "8-bit රෙජිස්ටරයක Sign and Magnitude ක්‍රමයට +7 නිරූපණය කරන්නේ කෙසේද?",
+    "correct": "00000111",
+    "distractors": ["10000111", "11111000", "01110000", "00001000"]
   },
-
   {
-    question: "AI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Artificial Intelligence.",
-    distractors: ["Automatic Interface.", "Applied Internet.", "Analog Intelligence.", "Advanced Integration."]
+    "question": "ෂඩ් දශම පද්ධතියේ '10' (base 16) ට සමාන දශම අගය කුමක්ද?",
+    "correct": "16",
+    "distractors": ["10", "1", "15", "17"]
   },
   {
-    question: "Data Bus භාවිත වන්නේ?",
-    correct: "දත්ත හුවමාරු කිරීමට.",
-    distractors: ["Address transfer සඳහා.", "Power supply සඳහා.", "Cooling සඳහා.", "Printing සඳහා."]
+    "question": "8-bit රෙජිස්ටරයක 2's complement ක්‍රමයට -128 නිරූපණය කරන ද්විමය අගය කුමක්ද?",
+    "correct": "10000000",
+    "distractors": ["11111111", "01111111", "11111110", "10000001"]
   },
   {
-    question: "Address Bus භාවිත වන්නේ?",
-    correct: "Memory addresses යැවීමට.",
-    distractors: ["Sound transfer සඳහා.", "Image print සඳහා.", "Mouse move සඳහා.", "Virus scan සඳහා."]
+    "question": "දශම 0.5 (base 10) යන්න ෂඩ් දශම (Hexadecimal) ආකාරයෙන් දැක්වූ විට:",
+    "correct": "0.8",
+    "distractors": ["0.5", "0.4", "0.2", "0.A"]
   },
   {
-    question: "Control Bus භාවිත වන්නේ?",
-    correct: "Control signals යැවීමට.",
-    distractors: ["Data store සඳහා.", "Photo edit සඳහා.", "RAM clean සඳහා.", "USB charge සඳහා."]
+    "question": "ද්විමය සංඛ්‍යාවක් අෂ්ටක (Octal) බවට පත් කිරීමේදී බිටු කීයක් බැගින් සමූහ කළ යුතුද?",
+    "correct": "3",
+    "distractors": ["4", "2", "8", "16"]
   },
   {
-    question: "Word Size වැඩි වීමෙන්?",
-    correct: "CPU performance වැඩිවේ.",
-    distractors: ["Printer speed වැඩිවේ.", "Screen size වැඩිවේ.", "Mouse speed වැඩිවේ.", "Speaker volume වැඩිවේ."]
+    "question": "ද්විමය සංඛ්‍යාවක් ෂඩ් දශම (Hexadecimal) බවට පත් කිරීමේදී බිටු කීයක් බැගින් සමූහ කළ යුතුද?",
+    "correct": "4",
+    "distractors": ["3", "2", "8", "16"]
   },
-
   {
-    question: "Register memory පිහිටා ඇත්තේ?",
-    correct: "CPU තුළ.",
-    distractors: ["Hard Disk තුළ.", "Keyboard තුළ.", "Monitor තුළ.", "Printer තුළ."]
+    "question": "ASCII කේත ක්‍රමය මගින් උපරිම වශයෙන් නිරූපණය කළ හැකි සංකේත ගණන කීයද?",
+    "correct": "128",
+    "distractors": ["256", "64", "1024", "16"]
   },
   {
-    question: "Registers වල ලක්ෂණය කුමක්ද?",
-    correct: "ඉතා වේගවත් මතකයක් වීම.",
-    distractors: ["ඉතා මන්දගාමී වීම.", "Permanent storage වීම.", "Optical memory වීම.", "Magnetic memory වීම."]
+    "question": "Extended ASCII කේත ක්‍රමය මගින් උපරිම වශයෙන් නිරූපණය කළ හැකි සංකේත ගණන කීයද?",
+    "correct": "256",
+    "distractors": ["128", "512", "1024", "64"]
   },
   {
-    question: "Volatile Memory එකක් වන්නේ?",
-    correct: "RAM.",
-    distractors: ["ROM.", "DVD.", "Hard Disk.", "SSD."]
+    "question": "ද්විමය 1101 (base 2) හි 2's complement අගය කුමක්ද?",
+    "correct": "0011",
+    "distractors": ["0010", "1110", "0101", "1011"]
   },
   {
-    question: "Non-Volatile Memory එකක් වන්නේ?",
-    correct: "ROM.",
-    distractors: ["RAM.", "Cache.", "Register.", "SRAM."]
+    "question": "පරිගණකයක 'Byte' එකක් යනු බිටු (Bits) කීයක එකතුවක්ද?",
+    "correct": "8",
+    "distractors": ["4", "16", "32", "64"]
   },
   {
-    question: "SRAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Static RAM.",
-    distractors: ["Stored RAM.", "Speed RAM.", "Serial RAM.", "Simple RAM."]
+    "question": "දශම 1000 (base 10) සඳහා BCD නිරූපණය කුමක්ද?",
+    "correct": "0001 0000 0000 0000",
+    "distractors": ["1111101000", "0001 0001 0001", "1000", "0001"]
   },
-
   {
-    question: "DRAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Dynamic RAM.",
-    distractors: ["Direct RAM.", "Dual RAM.", "Digital RAM.", "Data RAM."]
+    "question": "අෂ්ටක 77 (base 8) ට 1 ක් එකතු කළ විට ලැබෙන අෂ්ටක අගය කුමක්ද?",
+    "correct": "100",
+    "distractors": ["111", "101", "80", "78"]
   },
   {
-    question: "SRAM සාමාන්‍යයෙන් භාවිත වන්නේ?",
-    correct: "Cache Memory සඳහා.",
-    distractors: ["Printer memory.", "Hard Disk.", "ROM chip.", "Monitor memory."]
+    "question": "පහත දැක්වෙන ඒවායින් දත්ත නිරූපණ කේත ක්‍රමයක් (Coding system) නොවන්නේ කුමක්ද?",
+    "correct": "HTML",
+    "distractors": ["ASCII", "Unicode", "BCD", "EBCDIC"]
   },
   {
-    question: "DRAM සාමාන්‍යයෙන් භාවිත වන්නේ?",
-    correct: "Main Memory ලෙස.",
-    distractors: ["CPU Register ලෙස.", "BIOS ලෙස.", "Printer memory ලෙස.", "USB memory ලෙස."]
+    "question": "ෂඩ් දශම පද්ධතියේ 'ABC' (base 16) හි MSD අගය කුමක්ද?",
+    "correct": "A",
+    "distractors": ["C", "B", "10", "12"]
   },
   {
-    question: "SSD යනු?",
-    correct: "Solid State Drive.",
-    distractors: ["System Storage Disk.", "Serial State Drive.", "Secure Storage Device.", "Solid System Disk."]
+    "question": "ද්විමය 10101 (base 2) හි LSB අගය කුමක්ද?",
+    "correct": "1",
+    "distractors": ["0", "10", "5", "2"]
   },
   {
-    question: "CD-ROM හි ROM යන්නෙන් අදහස් වන්නේ?",
-    correct: "Read Only Memory.",
-    distractors: ["Run Output Memory.", "Rapid Only Mode.", "Read Open Module.", "Record Output Media."]
+    "question": "පහත ඒවායින් බර තැබූ (Weighted) සංඛ්‍යා පද්ධතියක් වන්නේ කුමක්ද?",
+    "correct": "ද්විමය (Binary)",
+    "distractors": ["BCD", "Roman numerals", "Gray code", "Tally marks"]
   },
-
   {
-    question: "Plotter භාවිත වන්නේ?",
-    correct: "Large drawings print කිරීමට.",
-    distractors: ["Sound output සඳහා.", "Typing සඳහා.", "Scanning සඳහා.", "Gaming සඳහා."]
+    "question": "දශම සංඛ්‍යාවක් 2 න් බෙදමින් යන විට ලැබෙන ශේෂයන් (Remainders) පහළ සිට ඉහළට ලිවීමෙන් ලැබෙන්නේ කුමන අගයද?",
+    "correct": "ද්විමය අගය",
+    "distractors": ["අෂ්ටක අගය", "ෂඩ් දශම අගය", "BCD අගය", "ASCII අගය"]
   },
   {
-    question: "Barcode Reader භාවිත වන්නේ?",
-    correct: "Barcode scan කිරීමට.",
-    distractors: ["Photo edit කිරීමට.", "Typing සඳහා.", "Printing සඳහා.", "Virus scan සඳහා."]
+    "question": "ෂඩ් දශම පද්ධතියේ 'D' යන්නට සමාන අෂ්ටක අගය කුමක්ද?",
+    "correct": "15",
+    "distractors": ["13", "14", "12", "11"]
   },
   {
-    question: "Smart Card Reader භාවිත වන්නේ?",
-    correct: "Card data read කිරීමට.",
-    distractors: ["Sound play කිරීමට.", "Photo print කිරීමට.", "RAM upgrade කිරීමට.", "Mouse control සඳහා."]
+    "question": "16-bit රෙජිස්ටරයක Unicode අක්ෂර කීයක් ගබඩා කළ හැකිද?",
+    "correct": "1",
+    "distractors": ["2", "4", "8", "16"]
   },
   {
-    question: "HDMI භාවිත වන්නේ?",
-    correct: "Audio හා Video transfer සඳහා.",
-    distractors: ["RAM install සඳහා.", "Keyboard clean සඳහා.", "Printer ink fill සඳහා.", "CPU cool සඳහා."]
+    "question": "දශම 0.25 හි ද්විමය අගය කුමක්ද?",
+    "correct": "0.01",
+    "distractors": ["0.1", "0.11", "0.001", "0.25"]
   },
   {
-    question: "Cloud Computing යනු?",
-    correct: "Internet හරහා සේවා භාවිතය.",
-    distractors: ["Local disk use only.", "Weather system.", "CPU cache type.", "Printer sharing only."]
-  },
-
-  {
-    question: "SaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Software as a Service.",
-    distractors: ["Storage as a Service.", "System as a Service.", "Server as a Software.", "Software and Service."]
-  },
-  {
-    question: "PaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Platform as a Service.",
-    distractors: ["Program as a Service.", "Process as a Service.", "Platform and Software.", "Primary as a Service."]
-  },
-  {
-    question: "IaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Infrastructure as a Service.",
-    distractors: ["Internet as a Service.", "Input as a Service.", "Internal as a Service.", "Integrated as a Service."]
-  },
-  {
-    question: "Cloud Computing වාසියක් වන්නේ?",
-    correct: "Anywhere access.",
-    distractors: ["No internet needed.", "No updates.", "No storage.", "No login."]
-  },
-  {
-    question: "Cloud Computing අවාසියක් වන්නේ?",
-    correct: "Internet connection අවශ්‍ය වීම.",
-    distractors: ["Automatic backup.", "Easy sharing.", "Low hardware cost.", "Anywhere access."]
+    "question": "A/L ICT විෂය නිර්දේශයට අනුව සංඛ්‍යා පද්ධති ඉගෙනීමේ ප්‍රධාන අරමුණ කුමක්ද?",
+    "correct": "පරිගණකය තුළ දත්ත නිරූපණය වන ආකාරය තේරුම් ගැනීම.",
+    "distractors": ["ගණක යන්ත්‍ර භාවිතය ඉගෙනීම.", "අන්තර්ජාලය භාවිතා කිරීම.", "මෘදුකාංග නිර්මාණය.", "දත්ත සමුදාය පාලනය."]
   }
 ]
     let quizData = [...originalQuizData];
