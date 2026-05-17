@@ -187,443 +187,561 @@ const ENABLE_TAB_SECURITY = true;
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
   {
-    question: "මෙහෙයුම් පද්ධතියක GUI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Graphical User Interface.",
-    distractors: ["General User Interface.", "Global User Interface.", "Graphical Unit Interface.", "Group User Interface."]
+    "question": "Binary 1010 හි Decimal අගය කුමක්ද?",
+    "correct": "10",
+    "wrong_answers": ["8", "12", "14", "16"]
   },
   {
-    question: "පරිගණකයේ පියා ලෙස හඳුන්වන්නේ කාටද?",
-    correct: "Charles Babbage.",
-    distractors: ["Blaise Pascal.", "Howard Aiken.", "Ada Lovelace.", "John Von Neumann."]
+    "question": "Decimal 15 හි Binary අගය කුමක්ද?",
+    "correct": "1111",
+    "wrong_answers": ["1010", "1100", "1001", "1110"]
   },
   {
-    question: "Pascaline යන්ත්‍රය නිර්මාණය කළේ කවුද?",
-    correct: "Blaise Pascal.",
-    distractors: ["Charles Babbage.", "Leibnitz.", "Howard Aiken.", "Alan Turing."]
+    "question": "Binary 1001 හි Decimal අගය කුමක්ද?",
+    "correct": "9",
+    "wrong_answers": ["8", "10", "11", "12"]
   },
   {
-    question: "Difference Engine නිර්මාණය කළේ කවුද?",
-    correct: "Charles Babbage.",
-    distractors: ["Pascal.", "Leibnitz.", "Howard Aiken.", "Bill Gates."]
+    "question": "Decimal 20 හි Binary අගය කුමක්ද?",
+    "correct": "10100",
+    "wrong_answers": ["10010", "11000", "10110", "11100"]
   },
   {
-    question: "පළමු Computer Programmer ලෙස සැලකෙන්නේ කවුද?",
-    correct: "Ada Lovelace.",
-    distractors: ["Grace Hopper.", "Pascal.", "Charles Babbage.", "Steve Jobs."]
+    "question": "Binary 1111 හි Decimal අගය කුමක්ද?",
+    "correct": "15",
+    "wrong_answers": ["14", "13", "16", "12"]
   },
   {
-    question: "Mark I පරිගණකය නිපදවූයේ කවුද?",
-    correct: "Howard Aiken.",
-    distractors: ["John Von Neumann.", "Charles Babbage.", "Pascal.", "IBM."]
+    "question": "Decimal 8 හි Binary අගය කුමක්ද?",
+    "correct": "1000",
+    "wrong_answers": ["111", "1001", "1010", "1100"]
   },
   {
-    question: "CPU යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Central Processing Unit.",
-    distractors: ["Computer Processing Unit.", "Central Power Unit.", "Core Processing Unit.", "Central Program Unit."]
+    "question": "Binary 11001 හි Decimal අගය කුමක්ද?",
+    "correct": "25",
+    "wrong_answers": ["24", "26", "27", "28"]
   },
   {
-    question: "ALU හි ප්‍රධාන කාර්යය කුමක්ද?",
-    correct: "Arithmetic හා Logic ක්‍රියා සිදු කිරීම.",
-    distractors: ["දත්ත මුද්‍රණය.", "විදුලිය සැපයීම.", "ජාල සම්බන්ධතා ලබාදීම.", "මතකය ගබඩා කිරීම."]
+    "question": "Decimal 32 හි Binary අගය කුමක්ද?",
+    "correct": "100000",
+    "wrong_answers": ["11111", "100001", "101000", "110000"]
   },
   {
-    question: "RAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Random Access Memory.",
-    distractors: ["Read Access Memory.", "Rapid Access Memory.", "Random Active Memory.", "Run Access Memory."]
+    "question": "Binary 101101 හි Decimal අගය කුමක්ද?",
+    "correct": "45",
+    "wrong_answers": ["44", "46", "47", "48"]
   },
   {
-    question: "ROM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Read Only Memory.",
-    distractors: ["Random Only Memory.", "Read Open Memory.", "Rapid Output Memory.", "Run Only Memory."]
+    "question": "Decimal 50 හි Binary අගය කුමක්ද?",
+    "correct": "110010",
+    "wrong_answers": ["101010", "111000", "100010", "110000"]
   },
   {
-    question: "Cache Memory භාවිතයේ අරමුණ කුමක්ද?",
-    correct: "CPU වේගය වැඩි කිරීම.",
-    distractors: ["Printer quality වැඩි කිරීම.", "Monitor size වැඩි කිරීම.", "Internet speed වැඩි කිරීම.", "Keyboard speed වැඩි කිරීම."]
+    "question": "Octal 7 හි Binary අගය කුමක්ද?",
+    "correct": "111",
+    "wrong_answers": ["101", "110", "100", "011"]
   },
   {
-    question: "Input Device එකක් වන්නේ කුමක්ද?",
-    correct: "Keyboard.",
-    distractors: ["Monitor.", "Printer.", "Speaker.", "Projector."]
+    "question": "Binary 101 හි Octal අගය කුමක්ද?",
+    "correct": "5",
+    "wrong_answers": ["4", "6", "7", "3"]
   },
   {
-    question: "Output Device එකක් වන්නේ කුමක්ද?",
-    correct: "Monitor.",
-    distractors: ["Mouse.", "Keyboard.", "Scanner.", "Barcode Reader."]
+    "question": "Octal 12 හි Binary අගය කුමක්ද?",
+    "correct": "001010",
+    "wrong_answers": ["1010", "1100", "1110", "1001"]
   },
   {
-    question: "Scanner භාවිත වන්නේ කුමක් සඳහාද?",
-    correct: "රූප හා ලේඛන ආදානය සඳහා.",
-    distractors: ["මුද්‍රණය සඳහා.", "ශබ්ද ප්‍රතිදානය සඳහා.", "දත්ත මකා දැමීම සඳහා.", "විදුලිය සැපයීම සඳහා."]
+    "question": "Binary 111000 හි Octal අගය කුමක්ද?",
+    "correct": "70",
+    "wrong_answers": ["60", "71", "50", "72"]
   },
   {
-    question: "Mouse එකක් කුමන වර්ගයේ උපාංගයක්ද?",
-    correct: "Pointing Device.",
-    distractors: ["Storage Device.", "Output Device.", "Processing Device.", "Power Device."]
+    "question": "Octal 25 හි Binary අගය කුමක්ද?",
+    "correct": "010101",
+    "wrong_answers": ["10101", "11100", "11001", "10010"]
   },
   {
-    question: "Hard Disk එකක් වන්නේ කුමක්ද?",
-    correct: "Secondary Storage Device.",
-    distractors: ["Input Device.", "Primary Memory.", "Output Device.", "CPU Unit."]
+    "question": "Binary 100111 හි Octal අගය කුමක්ද?",
+    "correct": "47",
+    "wrong_answers": ["46", "45", "50", "57"]
   },
   {
-    question: "Von Neumann Architecture ඉදිරිපත් කළේ කවුද?",
-    correct: "John Von Neumann.",
-    distractors: ["Charles Babbage.", "Pascal.", "Howard Aiken.", "Bill Gates."]
+    "question": "Octal 77 හි Binary අගය කුමක්ද?",
+    "correct": "111111",
+    "wrong_answers": ["101111", "110111", "111110", "100111"]
   },
   {
-    question: "Fetch-Execute Cycle හි පළමු පියවර කුමක්ද?",
-    correct: "Fetch.",
-    distractors: ["Decode.", "Execute.", "Store.", "Delete."]
+    "question": "Binary 110110 හි Octal අගය කුමක්ද?",
+    "correct": "66",
+    "wrong_answers": ["56", "76", "65", "60"]
   },
   {
-    question: "Decode යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    correct: "විධානය අර්ථකථනය කිරීම.",
-    distractors: ["විධානය මකා දැමීම.", "විධානය මුද්‍රණය කිරීම.", "විධානය සුරැකීම.", "විධානය copy කිරීම."]
+    "question": "Octal 31 හි Binary අගය කුමක්ද?",
+    "correct": "011001",
+    "wrong_answers": ["11001", "11100", "10101", "10001"]
   },
   {
-    question: "Execute යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    correct: "විධානය ක්‍රියාත්මක කිරීම.",
-    distractors: ["විධානය save කිරීම.", "විධානය delete කිරීම.", "විධානය decode කිරීම.", "විධානය print කිරීම."]
+    "question": "Binary 101010 හි Octal අගය කුමක්ද?",
+    "correct": "52",
+    "wrong_answers": ["42", "62", "72", "32"]
   },
-
   {
-    question: "Store යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    correct: "ප්‍රතිඵලය මතකයේ තැන්පත් කිරීම.",
-    distractors: ["විධානය මකා දැමීම.", "CPU නවතා දැමීම.", "Monitor off කිරීම.", "Mouse reset කිරීම."]
+    "question": "Hexadecimal A හි Decimal අගය කුමක්ද?",
+    "correct": "10",
+    "wrong_answers": ["11", "12", "9", "8"]
   },
   {
-    question: "Clock Speed මනින ඒකකය කුමක්ද?",
-    correct: "Hertz.",
-    distractors: ["Byte.", "Meter.", "Liter.", "Pixel."]
+    "question": "Decimal 15 හි Hexadecimal අගය කුමක්ද?",
+    "correct": "F",
+    "wrong_answers": ["E", "A", "D", "10"]
   },
   {
-    question: "1 KB සමාන වන්නේ?",
-    correct: "1024 Bytes.",
-    distractors: ["100 Bytes.", "512 Bytes.", "1000 Bytes.", "2048 Bytes."]
+    "question": "Hexadecimal 1A හි Decimal අගය කුමක්ද?",
+    "correct": "26",
+    "wrong_answers": ["24", "25", "27", "28"]
   },
   {
-    question: "1 MB සමාන වන්නේ?",
-    correct: "1024 KB.",
-    distractors: ["1000 KB.", "512 KB.", "2048 KB.", "100 KB."]
+    "question": "Decimal 255 හි Hexadecimal අගය කුමක්ද?",
+    "correct": "FF",
+    "wrong_answers": ["FE", "EF", "F0", "AA"]
   },
   {
-    question: "1 GB සමාන වන්නේ?",
-    correct: "1024 MB.",
-    distractors: ["1000 MB.", "512 MB.", "2048 MB.", "100 MB."]
+    "question": "Hexadecimal 2F හි Decimal අගය කුමක්ද?",
+    "correct": "47",
+    "wrong_answers": ["46", "45", "48", "49"]
   },
-
   {
-    question: "USB යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Universal Serial Bus.",
-    distractors: ["United Serial Bus.", "Universal System Bus.", "User Serial Base.", "Ultra Storage Bus."]
+    "question": "Decimal 100 හි Hexadecimal අගය කුමක්ද?",
+    "correct": "64",
+    "wrong_answers": ["65", "60", "68", "70"]
   },
   {
-    question: "Printer එකක් කුමන වර්ගයේ උපාංගයක්ද?",
-    correct: "Output Device.",
-    distractors: ["Input Device.", "Storage Device.", "Processing Device.", "Communication Device."]
+    "question": "Hexadecimal FF හි Decimal අගය කුමක්ද?",
+    "correct": "255",
+    "wrong_answers": ["254", "256", "200", "240"]
   },
   {
-    question: "Keyboard භාවිත වන්නේ?",
-    correct: "දත්ත ඇතුළත් කිරීමට.",
-    distractors: ["දත්ත මුද්‍රණයට.", "දත්ත මකා දැමීමට.", "විදුලිය සැපයීමට.", "Network සම්බන්ධ කිරීමට."]
+    "question": "Decimal 16 හි Hexadecimal අගය කුමක්ද?",
+    "correct": "10",
+    "wrong_answers": ["F", "11", "1A", "0F"]
   },
   {
-    question: "Speaker එකක් වන්නේ?",
-    correct: "Output Device.",
-    distractors: ["Input Device.", "Memory Device.", "Storage Device.", "CPU Part."]
+    "question": "Hexadecimal C හි Decimal අගය කුමක්ද?",
+    "correct": "12",
+    "wrong_answers": ["10", "11", "13", "14"]
   },
   {
-    question: "Joystick භාවිත වන්නේ?",
-    correct: "Game control සඳහා.",
-    distractors: ["Printing සඳහා.", "Scanning සඳහා.", "Storage සඳහා.", "Typing සඳහා."]
+    "question": "Decimal 31 හි Hexadecimal අගය කුමක්ද?",
+    "correct": "1F",
+    "wrong_answers": ["2F", "F1", "1E", "2E"]
   },
-
   {
-    question: "Touch Screen එකක් වන්නේ?",
-    correct: "Input හා Output දෙකම.",
-    distractors: ["Input only.", "Output only.", "Storage only.", "Memory only."]
+    "question": "Binary 1010 + 0101 හි පිළිතුර කුමක්ද?",
+    "correct": "1111",
+    "wrong_answers": ["1101", "1110", "1001", "1011"]
   },
   {
-    question: "OCR යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Optical Character Recognition.",
-    distractors: ["Optical Code Reader.", "Online Character Reader.", "Output Character Register.", "Open Character Recognition."]
+    "question": "Binary 1111 - 0001 හි පිළිතුර කුමක්ද?",
+    "correct": "1110",
+    "wrong_answers": ["1100", "1010", "1111", "1000"]
   },
   {
-    question: "OMR භාවිත වන්නේ?",
-    correct: "Marked answers හඳුනාගැනීමට.",
-    distractors: ["Sound record කිරීමට.", "Typing සඳහා.", "Printing සඳහා.", "Internet සඳහා."]
+    "question": "Binary 101 × 10 හි පිළිතුර කුමක්ද?",
+    "correct": "1010",
+    "wrong_answers": ["1001", "1110", "1100", "1011"]
   },
   {
-    question: "MICR භාවිත වන්නේ?",
-    correct: "Bank cheque කියවීමට.",
-    distractors: ["Photo scan කිරීමට.", "Mouse control සඳහා.", "Sound edit කිරීමට.", "RAM test කිරීමට."]
+    "question": "Binary 1000 ÷ 10 හි පිළිතුර කුමක්ද?",
+    "correct": "100",
+    "wrong_answers": ["10", "1000", "101", "110"]
   },
   {
-    question: "BIOS සාමාන්‍යයෙන් ගබඩා වන්නේ?",
-    correct: "ROM තුළ.",
-    distractors: ["RAM තුළ.", "Cache තුළ.", "Hard Disk තුළ.", "Register තුළ."]
+    "question": "Binary 1101 + 0011 හි පිළිතුර කුමක්ද?",
+    "correct": "10000",
+    "wrong_answers": ["1111", "10001", "10100", "11000"]
   },
-
   {
-    question: "Booting යනු කුමක්ද?",
-    correct: "පරිගණකය ආරම්භ කිරීම.",
-    distractors: ["පරිගණකය format කිරීම.", "Mouse reset කිරීම.", "Printer clean කිරීම.", "RAM replace කිරීම."]
+    "question": "Binary 1011 - 0010 හි පිළිතුර කුමක්ද?",
+    "correct": "1001",
+    "wrong_answers": ["1010", "1110", "1000", "1101"]
   },
   {
-    question: "Cold Boot යනු?",
-    correct: "Power off සිට on කිරීම.",
-    distractors: ["Restart කිරීම.", "Shutdown කිරීම.", "Sleep mode.", "Printer on කිරීම."]
+    "question": "Binary 111 × 11 හි පිළිතුර කුමක්ද?",
+    "correct": "10101",
+    "wrong_answers": ["11111", "10001", "10111", "11001"]
   },
   {
-    question: "Warm Boot යනු?",
-    correct: "Restart කිරීම.",
-    distractors: ["Power cable remove කිරීම.", "Monitor off කිරීම.", "Mouse connect කිරීම.", "Printer install කිරීම."]
+    "question": "Binary 1001 + 1001 හි පිළිතුර කුමක්ද?",
+    "correct": "10010",
+    "wrong_answers": ["11010", "10110", "10001", "11100"]
   },
   {
-    question: "Operating System එකක් වන්නේ?",
-    correct: "Windows.",
-    distractors: ["MS Word.", "Photoshop.", "Chrome.", "PowerPoint."]
+    "question": "Binary 1110 - 0100 හි පිළිතුර කුමක්ද?",
+    "correct": "1010",
+    "wrong_answers": ["1000", "1100", "1111", "1011"]
   },
   {
-    question: "Application Software එකක් වන්නේ?",
-    correct: "MS Excel.",
-    distractors: ["Linux.", "Windows.", "BIOS.", "ROM."]
+    "question": "Binary 101 × 101 හි පිළිතුර කුමක්ද?",
+    "correct": "11001",
+    "wrong_answers": ["10101", "11111", "10001", "11011"]
   },
-
   {
-    question: "System Software එකක් වන්නේ?",
-    correct: "Operating System.",
-    distractors: ["Paint.", "Word.", "Excel.", "Photoshop."]
+    "question": "1010 හි 1’s complement එක කුමක්ද?",
+    "correct": "0101",
+    "wrong_answers": ["1010", "1111", "0110", "0001"]
   },
   {
-    question: "Linux යනු?",
-    correct: "Open Source Operating System.",
-    distractors: ["Spreadsheet software.", "Game software.", "Printer brand.", "Programming language."]
+    "question": "1100 හි 1’s complement එක කුමක්ද?",
+    "correct": "0011",
+    "wrong_answers": ["0100", "1110", "1010", "0000"]
   },
   {
-    question: "Compiler එකක් වන්නේ?",
-    correct: "Language Translator.",
-    distractors: ["Input Device.", "Storage Device.", "Output Device.", "CPU Part."]
+    "question": "1010 හි 2’s complement එක කුමක්ද?",
+    "correct": "0110",
+    "wrong_answers": ["0101", "1111", "1001", "0010"]
   },
   {
-    question: "Utility Software උදාහරණයක් වන්නේ?",
-    correct: "Antivirus.",
-    distractors: ["Keyboard.", "Monitor.", "Mouse.", "CPU."]
+    "question": "1111 හි 2’s complement එක කුමක්ද?",
+    "correct": "0001",
+    "wrong_answers": ["1110", "0010", "0101", "1000"]
   },
   {
-    question: "Antivirus Software භාවිත වන්නේ?",
-    correct: "Virus වලින් ආරක්ෂා කිරීමට.",
-    distractors: ["Typing speed වැඩි කිරීමට.", "Screen size වැඩි කිරීමට.", "RAM increase කිරීමට.", "Printer clean කිරීමට."]
+    "question": "1000 හි 1’s complement එක කුමක්ද?",
+    "correct": "0111",
+    "wrong_answers": ["1111", "0001", "0101", "1010"]
   },
-
   {
-    question: "Multitasking යනු?",
-    correct: "වැඩ කිහිපයක් එකවර කිරීම.",
-    distractors: ["එක වැඩක් පමණක් කිරීම.", "Power off කිරීම.", "Data delete කිරීම.", "Monitor clean කිරීම."]
+    "question": "0110 හි 2’s complement එක කුමක්ද?",
+    "correct": "1010",
+    "wrong_answers": ["1001", "1110", "1100", "0101"]
   },
   {
-    question: "Device Driver භාවිත වන්නේ?",
-    correct: "Hardware control සඳහා.",
-    distractors: ["Typing සඳහා.", "Music play සඳහා.", "Video edit සඳහා.", "Storage format සඳහා."]
+    "question": "0001 හි 1’s complement එක කුමක්ද?",
+    "correct": "1110",
+    "wrong_answers": ["1111", "0000", "0010", "1100"]
   },
   {
-    question: "GUI හි වාසියක් වන්නේ?",
-    correct: "Icons සහ windows භාවිතයෙන් පහසු වීම.",
-    distractors: ["Text only interface.", "No mouse support.", "No graphics.", "Only experts සඳහා."]
+    "question": "0101 හි 2’s complement එක කුමක්ද?",
+    "correct": "1011",
+    "wrong_answers": ["1111", "1100", "1001", "0110"]
   },
   {
-    question: "CLI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Command Line Interface.",
-    distractors: ["Computer Line Interface.", "Common Link Interface.", "Control Line Input.", "Code Level Interface."]
+    "question": "ASCII code එකක bit ගණන සාමාන්‍යයෙන් කීයද?",
+    "correct": "7",
+    "wrong_answers": ["8", "16", "32", "64"]
   },
   {
-    question: "CLI භාවිතයේ ප්‍රධාන ලක්ෂණය කුමක්ද?",
-    correct: "Commands type කිරීම.",
-    distractors: ["Icons click කිරීම.", "Touch only use කිරීම.", "Voice only control.", "Mouse only use කිරීම."]
+    "question": "Unicode නිර්මාණය කළේ කුමන ගැටලුව විසඳීමටද?",
+    "correct": "විවිධ භාෂා නිරූපණය",
+    "wrong_answers": ["Internet speed වැඩි කිරීම", "Memory අඩු කිරීම", "CPU වේගය වැඩි කිරීම", "Printer errors නැවැත්වීම"]
   },
-
   {
-    question: "Super Computer භාවිත වන්නේ?",
-    correct: "Weather Forecasting වැනි සංකීර්ණ ගණනයන් සඳහා.",
-    distractors: ["Typing only.", "Music play කිරීම.", "Printing only.", "Scanning only."]
+    "question": "ASCII code එකේ A අකුරේ Decimal අගය කුමක්ද?",
+    "correct": "65",
+    "wrong_answers": ["66", "67", "68", "69"]
   },
   {
-    question: "Mainframe Computer සුදුසු වන්නේ?",
-    correct: "විශාල ආයතන සඳහා.",
-    distractors: ["Home gaming සඳහා.", "Mobile use සඳහා.", "Camera use සඳහා.", "Printer use සඳහා."]
+    "question": "Unicode හි ප්‍රධාන වාසිය කුමක්ද?",
+    "correct": "සියලු භාෂා සඳහා සහාය",
+    "wrong_answers": ["File size අඩු කිරීම", "Processor speed වැඩි කිරීම", "Graphics quality වැඩි කිරීම", "RAM capacity වැඩි කිරීම"]
   },
   {
-    question: "Micro Computer උදාහරණයක් වන්නේ?",
-    correct: "Laptop.",
-    distractors: ["Mainframe.", "Super Computer.", "Server Farm.", "Quantum Machine."]
+    "question": "ASCII හි lowercase a හි Decimal අගය කුමක්ද?",
+    "correct": "97",
+    "wrong_answers": ["96", "98", "99", "100"]
   },
   {
-    question: "Analog Computer භාවිත කරන්නේ?",
-    correct: "Continuous data.",
-    distractors: ["Binary only.", "Text only.", "Image only.", "Audio only."]
+    "question": "Unicode සාමාන්‍යයෙන් bits කීයක් හෝ ඊට වැඩි ප්‍රමාණයක් භාවිතා කරයිද?",
+    "correct": "16",
+    "wrong_answers": ["7", "8", "4", "2"]
   },
   {
-    question: "Digital Computer භාවිත කරන්නේ?",
-    correct: "Binary data.",
-    distractors: ["Water flow.", "Pressure only.", "Temperature only.", "Voltage only."]
+    "question": "ASCII code එක භාවිතා කරන්නේ කුමක් නිරූපණයටද?",
+    "correct": "අක්ෂර",
+    "wrong_answers": ["Images", "Videos", "CPU", "RAM"]
   },
-
   {
-    question: "1st Generation Computers භාවිත කළේ?",
-    correct: "Vacuum Tubes.",
-    distractors: ["Transistors.", "IC.", "Microprocessors.", "AI Chips."]
+    "question": "Unicode හි UTF යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
+    "correct": "Unicode Transformation Format",
+    "wrong_answers": ["Universal Text Format", "Unique Transfer File", "United Type Format", "Universal Translation Form"]
   },
   {
-    question: "2nd Generation Computers භාවිත කළේ?",
-    correct: "Transistors.",
-    distractors: ["Vacuum Tubes.", "IC.", "Microprocessors.", "Quantum Chips."]
+    "question": "1 Byte එකක bits ගණන කීයද?",
+    "correct": "8",
+    "wrong_answers": ["4", "16", "32", "64"]
   },
   {
-    question: "3rd Generation Computers භාවිත කළේ?",
-    correct: "Integrated Circuits.",
-    distractors: ["Vacuum Tubes.", "Transistors.", "Microprocessors.", "AI."]
+    "question": "1 KB සමාන වන්නේ Bytes කීයකටද?",
+    "correct": "1024",
+    "wrong_answers": ["1000", "512", "2048", "4096"]
   },
   {
-    question: "4th Generation Computers භාවිත කළේ?",
-    correct: "Microprocessors.",
-    distractors: ["IC.", "Transistors.", "Vacuum Tubes.", "Relay."]
+    "question": "1 MB සමාන වන්නේ KB කීයකටද?",
+    "correct": "1024",
+    "wrong_answers": ["1000", "2048", "512", "4096"]
   },
   {
-    question: "5th Generation Computers සම්බන්ධ වන්නේ?",
-    correct: "Artificial Intelligence.",
-    distractors: ["Vacuum Tubes.", "Punch Cards.", "Floppy Disks.", "Relay."]
+    "question": "1 GB සමාන වන්නේ MB කීයකටද?",
+    "correct": "1024",
+    "wrong_answers": ["1000", "2048", "512", "4096"]
   },
-
   {
-    question: "AI යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Artificial Intelligence.",
-    distractors: ["Automatic Interface.", "Applied Internet.", "Analog Intelligence.", "Advanced Integration."]
+    "question": "1 TB සමාන වන්නේ GB කීයකටද?",
+    "correct": "1024",
+    "wrong_answers": ["1000", "512", "2048", "4096"]
   },
   {
-    question: "Data Bus භාවිත වන්නේ?",
-    correct: "දත්ත හුවමාරු කිරීමට.",
-    distractors: ["Address transfer සඳහා.", "Power supply සඳහා.", "Cooling සඳහා.", "Printing සඳහා."]
+    "question": "1024 Bytes සමාන වන්නේ කුමක්ද?",
+    "correct": "1 KB",
+    "wrong_answers": ["1 MB", "1 GB", "1 TB", "1 Bit"]
   },
   {
-    question: "Address Bus භාවිත වන්නේ?",
-    correct: "Memory addresses යැවීමට.",
-    distractors: ["Sound transfer සඳහා.", "Image print සඳහා.", "Mouse move සඳහා.", "Virus scan සඳහා."]
+    "question": "Memory unit වලින් විශාලතම එක කුමක්ද?",
+    "correct": "TB",
+    "wrong_answers": ["KB", "MB", "GB", "Byte"]
   },
   {
-    question: "Control Bus භාවිත වන්නේ?",
-    correct: "Control signals යැවීමට.",
-    distractors: ["Data store සඳහා.", "Photo edit සඳහා.", "RAM clean සඳහා.", "USB charge සඳහා."]
+    "question": "Bit යනු කුමක්ද?",
+    "correct": "කුඩාම දත්ත ඒකකය",
+    "wrong_answers": ["විශාලම memory unit", "Storage device එකක්", "Processor එකක්", "Programming language එකක්"]
   },
   {
-    question: "Word Size වැඩි වීමෙන්?",
-    correct: "CPU performance වැඩිවේ.",
-    distractors: ["Printer speed වැඩිවේ.", "Screen size වැඩිවේ.", "Mouse speed වැඩිවේ.", "Speaker volume වැඩිවේ."]
+    "question": "8 Bits එකතුවක් හඳුන්වන්නේ කෙසේද?",
+    "correct": "Byte",
+    "wrong_answers": ["KB", "Nibble", "Word", "Block"]
   },
-
   {
-    question: "Register memory පිහිටා ඇත්තේ?",
-    correct: "CPU තුළ.",
-    distractors: ["Hard Disk තුළ.", "Keyboard තුළ.", "Monitor තුළ.", "Printer තුළ."]
+    "question": "4 Bits එකතුවක් හඳුන්වන්නේ කෙසේද?",
+    "correct": "Nibble",
+    "wrong_answers": ["Byte", "KB", "Word", "Block"]
   },
   {
-    question: "Registers වල ලක්ෂණය කුමක්ද?",
-    correct: "ඉතා වේගවත් මතකයක් වීම.",
-    distractors: ["ඉතා මන්දගාමී වීම.", "Permanent storage වීම.", "Optical memory වීම.", "Magnetic memory වීම."]
+    "question": "Signed binary number එකක MSB bit එකෙන් නිරූපණය වන්නේ කුමක්ද?",
+    "correct": "Sign",
+    "wrong_answers": ["Magnitude", "Parity", "Carry", "Overflow"]
   },
   {
-    question: "Volatile Memory එකක් වන්නේ?",
-    correct: "RAM.",
-    distractors: ["ROM.", "DVD.", "Hard Disk.", "SSD."]
+    "question": "8-bit signed binary system එකක +127 ට පසුව සිදුවන්නේ කුමක්ද?",
+    "correct": "Overflow",
+    "wrong_answers": ["Complement", "Underflow", "Division", "Parity"]
   },
   {
-    question: "Non-Volatile Memory එකක් වන්නේ?",
-    correct: "ROM.",
-    distractors: ["RAM.", "Cache.", "Register.", "SRAM."]
+    "question": "Signed binary number එකක 1 යන්නෙන් අදහස් වන්නේ කුමක්ද?",
+    "correct": "Negative",
+    "wrong_answers": ["Positive", "Zero", "Overflow", "Carry"]
   },
   {
-    question: "SRAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Static RAM.",
-    distractors: ["Stored RAM.", "Speed RAM.", "Serial RAM.", "Simple RAM."]
+    "question": "Signed binary number එකක 0 යන්නෙන් අදහස් වන්නේ කුමක්ද?",
+    "correct": "Positive",
+    "wrong_answers": ["Negative", "Overflow", "Carry", "Error"]
   },
-
   {
-    question: "DRAM යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Dynamic RAM.",
-    distractors: ["Direct RAM.", "Dual RAM.", "Digital RAM.", "Data RAM."]
+    "question": "Overflow එකක් ඇතිවන්නේ කවදාද?",
+    "correct": "Range එක ඉක්මවූ විට",
+    "wrong_answers": ["Binary convert කරන විට", "RAM format කරන විට", "Printer connect කරන විට", "Mouse move කරන විට"]
   },
   {
-    question: "SRAM සාමාන්‍යයෙන් භාවිත වන්නේ?",
-    correct: "Cache Memory සඳහා.",
-    distractors: ["Printer memory.", "Hard Disk.", "ROM chip.", "Monitor memory."]
+    "question": "8-bit signed binary range එක කුමක්ද?",
+    "correct": "-128 to +127",
+    "wrong_answers": ["0 to 255", "-255 to +255", "-127 to +128", "0 to 127"]
   },
   {
-    question: "DRAM සාමාන්‍යයෙන් භාවිත වන්නේ?",
-    correct: "Main Memory ලෙස.",
-    distractors: ["CPU Register ලෙස.", "BIOS ලෙස.", "Printer memory ලෙස.", "USB memory ලෙස."]
+    "question": "Overflow detect කිරීම වැදගත් වන්නේ ඇයි?",
+    "correct": "වැරදි ප්‍රතිඵල වළක්වීමට",
+    "wrong_answers": ["Monitor speed වැඩි කිරීමට", "Storage වැඩි කිරීමට", "Keyboard errors අඩු කිරීමට", "Internet speed වැඩි කිරීමට"]
   },
   {
-    question: "SSD යනු?",
-    correct: "Solid State Drive.",
-    distractors: ["System Storage Disk.", "Serial State Drive.", "Secure Storage Device.", "Solid System Disk."]
+    "question": "BCD code එකෙන් නිරූපණය කරන්නේ කුමක්ද?",
+    "correct": "Decimal digits",
+    "wrong_answers": ["Hexadecimal digits", "Images", "Audio", "Video"]
   },
   {
-    question: "CD-ROM හි ROM යන්නෙන් අදහස් වන්නේ?",
-    correct: "Read Only Memory.",
-    distractors: ["Run Output Memory.", "Rapid Only Mode.", "Read Open Module.", "Record Output Media."]
+    "question": "BCD හි Decimal 5 නිරූපණය වන්නේ කෙසේද?",
+    "correct": "0101",
+    "wrong_answers": ["1010", "1111", "0011", "1001"]
   },
-
   {
-    question: "Plotter භාවිත වන්නේ?",
-    correct: "Large drawings print කිරීමට.",
-    distractors: ["Sound output සඳහා.", "Typing සඳහා.", "Scanning සඳහා.", "Gaming සඳහා."]
+    "question": "BCD හි Decimal 9 නිරූපණය වන්නේ කෙසේද?",
+    "correct": "1001",
+    "wrong_answers": ["1111", "1010", "0111", "1100"]
   },
   {
-    question: "Barcode Reader භාවිත වන්නේ?",
-    correct: "Barcode scan කිරීමට.",
-    distractors: ["Photo edit කිරීමට.", "Typing සඳහා.", "Printing සඳහා.", "Virus scan සඳහා."]
+    "question": "BCD යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
+    "correct": "Binary Coded Decimal",
+    "wrong_answers": ["Binary Converted Data", "Bit Code Decimal", "Binary Control Digit", "Byte Code Data"]
   },
   {
-    question: "Smart Card Reader භාවිත වන්නේ?",
-    correct: "Card data read කිරීමට.",
-    distractors: ["Sound play කිරීමට.", "Photo print කිරීමට.", "RAM upgrade කිරීමට.", "Mouse control සඳහා."]
+    "question": "BCD හි Decimal 2 නිරූපණය වන්නේ කෙසේද?",
+    "correct": "0010",
+    "wrong_answers": ["0001", "0100", "1000", "1110"]
   },
   {
-    question: "HDMI භාවිත වන්නේ?",
-    correct: "Audio හා Video transfer සඳහා.",
-    distractors: ["RAM install සඳහා.", "Keyboard clean සඳහා.", "Printer ink fill සඳහා.", "CPU cool සඳහා."]
+    "question": "BCD code භාවිතා වන්නේ බහුලව කුමන උපකරණවලද?",
+    "correct": "Calculators",
+    "wrong_answers": ["Speakers", "Scanners", "Projectors", "Routers"]
   },
   {
-    question: "Cloud Computing යනු?",
-    correct: "Internet හරහා සේවා භාවිතය.",
-    distractors: ["Local disk use only.", "Weather system.", "CPU cache type.", "Printer sharing only."]
+    "question": "BCD හි Decimal 7 නිරූපණය වන්නේ කෙසේද?",
+    "correct": "0111",
+    "wrong_answers": ["1111", "1011", "0011", "0101"]
   },
-
   {
-    question: "SaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Software as a Service.",
-    distractors: ["Storage as a Service.", "System as a Service.", "Server as a Software.", "Software and Service."]
+    "question": "BCD හි එක් Decimal digit එකක් නිරූපණයට bits කීයක් භාවිතා වේද?",
+    "correct": "4",
+    "wrong_answers": ["8", "2", "16", "32"]
   },
   {
-    question: "PaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Platform as a Service.",
-    distractors: ["Program as a Service.", "Process as a Service.", "Platform and Software.", "Primary as a Service."]
+    "question": "Binary 11111111 හි Decimal අගය කුමක්ද?",
+    "correct": "255",
+    "wrong_answers": ["254", "256", "127", "128"]
   },
   {
-    question: "IaaS යන්නෙහි සම්පූර්ණ නම කුමක්ද?",
-    correct: "Infrastructure as a Service.",
-    distractors: ["Internet as a Service.", "Input as a Service.", "Internal as a Service.", "Integrated as a Service."]
+    "question": "Decimal 64 හි Binary අගය කුමක්ද?",
+    "correct": "1000000",
+    "wrong_answers": ["100000", "111111", "101010", "1100000"]
   },
   {
-    question: "Cloud Computing වාසියක් වන්නේ?",
-    correct: "Anywhere access.",
-    distractors: ["No internet needed.", "No updates.", "No storage.", "No login."]
+    "question": "Hexadecimal 10 හි Decimal අගය කුමක්ද?",
+    "correct": "16",
+    "wrong_answers": ["10", "8", "15", "20"]
   },
   {
-    question: "Cloud Computing අවාසියක් වන්නේ?",
-    correct: "Internet connection අවශ්‍ය වීම.",
-    distractors: ["Automatic backup.", "Easy sharing.", "Low hardware cost.", "Anywhere access."]
+    "question": "Binary 100000 හි Decimal අගය කුමක්ද?",
+    "correct": "32",
+    "wrong_answers": ["16", "64", "31", "30"]
+  },
+  {
+    "question": "Octal 10 හි Decimal අගය කුමක්ද?",
+    "correct": "8",
+    "wrong_answers": ["10", "16", "2", "4"]
+  },
+  {
+    "question": "Hexadecimal B හි Decimal අගය කුමක්ද?",
+    "correct": "11",
+    "wrong_answers": ["10", "12", "13", "14"]
+  },
+  {
+    "question": "Decimal 128 හි Binary අගය කුමක්ද?",
+    "correct": "10000000",
+    "wrong_answers": ["11111111", "1000000", "11000000", "10101010"]
+  },
+  {
+    "question": "Binary 10000000 හි Decimal අගය කුමක්ද?",
+    "correct": "128",
+    "wrong_answers": ["64", "127", "256", "255"]
+  },
+  {
+    "question": "Hexadecimal 20 හි Decimal අගය කුමක්ද?",
+    "correct": "32",
+    "wrong_answers": ["20", "16", "64", "40"]
+  },
+  {
+    "question": "Binary system එකේ radix එක කුමක්ද?",
+    "correct": "2",
+    "wrong_answers": ["8", "10", "16", "4"]
+  },
+  {
+    "question": "Octal system එකේ radix එක කුමක්ද?",
+    "correct": "8",
+    "wrong_answers": ["2", "10", "16", "4"]
+  },
+  {
+    "question": "Decimal system එකේ radix එක කුමක්ද?",
+    "correct": "10",
+    "wrong_answers": ["2", "8", "16", "4"]
+  },
+  {
+    "question": "Hexadecimal system එකේ radix එක කුමක්ද?",
+    "correct": "16",
+    "wrong_answers": ["2", "8", "10", "32"]
+  },
+  {
+    "question": "Hexadecimal system එකේ භාවිතා වන අකුරු කුමන පරාසයේද?",
+    "correct": "A-F",
+    "wrong_answers": ["G-Z", "A-Z", "X-Y", "L-P"]
+  },
+  {
+    "question": "Binary digit එකක් හඳුන්වන්නේ කෙසේද?",
+    "correct": "Bit",
+    "wrong_answers": ["Byte", "Nibble", "Word", "Cell"]
+  },
+  {
+    "question": "Binary 1 + 1 හි පිළිතුර කුමක්ද?",
+    "correct": "10",
+    "wrong_answers": ["1", "11", "0", "01"]
+  },
+  {
+    "question": "Binary 10 + 10 හි පිළිතුර කුමක්ද?",
+    "correct": "100",
+    "wrong_answers": ["10", "11", "101", "110"]
+  },
+  {
+    "question": "Binary 111 + 001 හි පිළිතුර කුමක්ද?",
+    "correct": "1000",
+    "wrong_answers": ["1111", "1010", "1100", "0111"]
+  },
+  {
+    "question": "Decimal 7 හි Binary අගය කුමක්ද?",
+    "correct": "111",
+    "wrong_answers": ["101", "110", "100", "1000"]
+  },
+  {
+    "question": "Binary 10101010 හි Decimal අගය කුමක්ද?",
+    "correct": "170",
+    "wrong_answers": ["160", "180", "150", "190"]
+  },
+  {
+    "question": "Decimal 200 හි Hexadecimal අගය කුමක්ද?",
+    "correct": "C8",
+    "wrong_answers": ["B8", "D8", "CA", "F0"]
+  },
+  {
+    "question": "Hexadecimal 7F හි Decimal අගය කුමක්ද?",
+    "correct": "127",
+    "wrong_answers": ["126", "128", "120", "130"]
+  },
+  {
+    "question": "Octal 17 හි Decimal අගය කුමක්ද?",
+    "correct": "15",
+    "wrong_answers": ["16", "14", "13", "12"]
+  },
+  {
+    "question": "BCD හි Decimal 0 නිරූපණය වන්නේ කෙසේද?",
+    "correct": "0000",
+    "wrong_answers": ["1111", "1000", "0001", "0011"]
+  },
+  {
+    "question": "ASCII table එකේ සංඛ්‍යා නිරූපණය කිරීමටද භාවිතා වේද?",
+    "correct": "ඔව්",
+    "wrong_answers": ["නැහැ", "Hex වලට පමණි", "Images සඳහා පමණි", "Unicode සඳහා පමණි"]
+  },
+  {
+    "question": "2’s complement method එක බහුලව භාවිතා වන්නේ කුමක් සඳහාද?",
+    "correct": "Negative numbers නිරූපණයට",
+    "wrong_answers": ["Images compress කිරීමට", "Internet connect කිරීමට", "Audio play කිරීමට", "RAM upgrade කිරීමට"]
+  },
+  {
+    "question": "Computer එකක් data process කරන්නේ ප්‍රධාන වශයෙන් කුමන number system එකෙන්ද?",
+    "correct": "Binary",
+    "wrong_answers": ["Decimal", "Octal", "Hexadecimal", "Roman"]
+  },
+  {
+    "question": "Hexadecimal F හි Binary අගය කුමක්ද?",
+    "correct": "1111",
+    "wrong_answers": ["1010", "1100", "1001", "0111"]
+  },
+  {
+    "question": "Hexadecimal A5 හි Decimal අගය කුමක්ද?",
+    "correct": "165",
+    "wrong_answers": ["155", "175", "160", "150"]
+  },
+  {
+    "question": "Binary 100000000 හි Decimal අගය කුමක්ද?",
+    "correct": "256",
+    "wrong_answers": ["255", "128", "512", "254"]
   }
+
 ]
     let quizData = [...originalQuizData];
 
