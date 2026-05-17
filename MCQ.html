@@ -187,561 +187,264 @@ const ENABLE_TAB_SECURITY = true;
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
   {
-    "question": "Binary 1010 හි Decimal අගය කුමක්ද?",
+    "question": "Binary 1010 දශමයට (Decimal) පරිවර්තනය කළ විට ලැබෙන්නේ?",
     "correct": "10",
-    "wrong_answers": ["8", "12", "14", "16"]
+    "distractors": ["8", "12", "14", "16"]
   },
   {
-    "question": "Decimal 15 හි Binary අගය කුමක්ද?",
-    "correct": "1111",
-    "wrong_answers": ["1010", "1100", "1001", "1110"]
+    "question": "Binary 1101 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
+    "correct": "13",
+    "distractors": ["12", "14", "11", "10"]
   },
   {
-    "question": "Binary 1001 හි Decimal අගය කුමක්ද?",
+    "question": "Binary 1001 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
     "correct": "9",
-    "wrong_answers": ["8", "10", "11", "12"]
+    "distractors": ["8", "7", "10", "11"]
   },
   {
-    "question": "Decimal 20 හි Binary අගය කුමක්ද?",
-    "correct": "10100",
-    "wrong_answers": ["10010", "11000", "10110", "11100"]
-  },
-  {
-    "question": "Binary 1111 හි Decimal අගය කුමක්ද?",
+    "question": "Binary 1111 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
     "correct": "15",
-    "wrong_answers": ["14", "13", "16", "12"]
+    "distractors": ["14", "13", "16", "12"]
   },
   {
-    "question": "Decimal 8 හි Binary අගය කුමක්ද?",
-    "correct": "1000",
-    "wrong_answers": ["111", "1001", "1010", "1100"]
-  },
-  {
-    "question": "Binary 11001 හි Decimal අගය කුමක්ද?",
-    "correct": "25",
-    "wrong_answers": ["24", "26", "27", "28"]
-  },
-  {
-    "question": "Decimal 32 හි Binary අගය කුමක්ද?",
-    "correct": "100000",
-    "wrong_answers": ["11111", "100001", "101000", "110000"]
-  },
-  {
-    "question": "Binary 101101 හි Decimal අගය කුමක්ද?",
-    "correct": "45",
-    "wrong_answers": ["44", "46", "47", "48"]
-  },
-  {
-    "question": "Decimal 50 හි Binary අගය කුමක්ද?",
-    "correct": "110010",
-    "wrong_answers": ["101010", "111000", "100010", "110000"]
-  },
-  {
-    "question": "Octal 7 හි Binary අගය කුමක්ද?",
-    "correct": "111",
-    "wrong_answers": ["101", "110", "100", "011"]
-  },
-  {
-    "question": "Binary 101 හි Octal අගය කුමක්ද?",
+    "question": "Binary 0101 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
     "correct": "5",
-    "wrong_answers": ["4", "6", "7", "3"]
+    "distractors": ["4", "6", "7", "8"]
   },
-  {
-    "question": "Octal 12 හි Binary අගය කුමක්ද?",
-    "correct": "001010",
-    "wrong_answers": ["1010", "1100", "1110", "1001"]
-  },
-  {
-    "question": "Binary 111000 හි Octal අගය කුමක්ද?",
-    "correct": "70",
-    "wrong_answers": ["60", "71", "50", "72"]
-  },
-  {
-    "question": "Octal 25 හි Binary අගය කුමක්ද?",
-    "correct": "010101",
-    "wrong_answers": ["10101", "11100", "11001", "10010"]
-  },
-  {
-    "question": "Binary 100111 හි Octal අගය කුමක්ද?",
-    "correct": "47",
-    "wrong_answers": ["46", "45", "50", "57"]
-  },
-  {
-    "question": "Octal 77 හි Binary අගය කුමක්ද?",
-    "correct": "111111",
-    "wrong_answers": ["101111", "110111", "111110", "100111"]
-  },
-  {
-    "question": "Binary 110110 හි Octal අගය කුමක්ද?",
-    "correct": "66",
-    "wrong_answers": ["56", "76", "65", "60"]
-  },
-  {
-    "question": "Octal 31 හි Binary අගය කුමක්ද?",
-    "correct": "011001",
-    "wrong_answers": ["11001", "11100", "10101", "10001"]
-  },
-  {
-    "question": "Binary 101010 හි Octal අගය කුමක්ද?",
-    "correct": "52",
-    "wrong_answers": ["42", "62", "72", "32"]
-  },
-  {
-    "question": "Hexadecimal A හි Decimal අගය කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["11", "12", "9", "8"]
-  },
-  {
-    "question": "Decimal 15 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "F",
-    "wrong_answers": ["E", "A", "D", "10"]
-  },
-  {
-    "question": "Hexadecimal 1A හි Decimal අගය කුමක්ද?",
-    "correct": "26",
-    "wrong_answers": ["24", "25", "27", "28"]
-  },
-  {
-    "question": "Decimal 255 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "FF",
-    "wrong_answers": ["FE", "EF", "F0", "AA"]
-  },
-  {
-    "question": "Hexadecimal 2F හි Decimal අගය කුමක්ද?",
-    "correct": "47",
-    "wrong_answers": ["46", "45", "48", "49"]
-  },
-  {
-    "question": "Decimal 100 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "64",
-    "wrong_answers": ["65", "60", "68", "70"]
-  },
-  {
-    "question": "Hexadecimal FF හි Decimal අගය කුමක්ද?",
-    "correct": "255",
-    "wrong_answers": ["254", "256", "200", "240"]
-  },
-  {
-    "question": "Decimal 16 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["F", "11", "1A", "0F"]
-  },
-  {
-    "question": "Hexadecimal C හි Decimal අගය කුමක්ද?",
-    "correct": "12",
-    "wrong_answers": ["10", "11", "13", "14"]
-  },
-  {
-    "question": "Decimal 31 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "1F",
-    "wrong_answers": ["2F", "F1", "1E", "2E"]
-  },
-  {
-    "question": "Binary 1010 + 0101 හි පිළිතුර කුමක්ද?",
-    "correct": "1111",
-    "wrong_answers": ["1101", "1110", "1001", "1011"]
-  },
-  {
-    "question": "Binary 1111 - 0001 හි පිළිතුර කුමක්ද?",
-    "correct": "1110",
-    "wrong_answers": ["1100", "1010", "1111", "1000"]
-  },
-  {
-    "question": "Binary 101 × 10 හි පිළිතුර කුමක්ද?",
-    "correct": "1010",
-    "wrong_answers": ["1001", "1110", "1100", "1011"]
-  },
-  {
-    "question": "Binary 1000 ÷ 10 හි පිළිතුර කුමක්ද?",
-    "correct": "100",
-    "wrong_answers": ["10", "1000", "101", "110"]
-  },
-  {
-    "question": "Binary 1101 + 0011 හි පිළිතුර කුමක්ද?",
-    "correct": "10000",
-    "wrong_answers": ["1111", "10001", "10100", "11000"]
-  },
-  {
-    "question": "Binary 1011 - 0010 හි පිළිතුර කුමක්ද?",
-    "correct": "1001",
-    "wrong_answers": ["1010", "1110", "1000", "1101"]
-  },
-  {
-    "question": "Binary 111 × 11 හි පිළිතුර කුමක්ද?",
-    "correct": "10101",
-    "wrong_answers": ["11111", "10001", "10111", "11001"]
-  },
-  {
-    "question": "Binary 1001 + 1001 හි පිළිතුර කුමක්ද?",
-    "correct": "10010",
-    "wrong_answers": ["11010", "10110", "10001", "11100"]
-  },
-  {
-    "question": "Binary 1110 - 0100 හි පිළිතුර කුමක්ද?",
-    "correct": "1010",
-    "wrong_answers": ["1000", "1100", "1111", "1011"]
-  },
-  {
-    "question": "Binary 101 × 101 හි පිළිතුර කුමක්ද?",
-    "correct": "11001",
-    "wrong_answers": ["10101", "11111", "10001", "11011"]
-  },
-  {
-    "question": "1010 හි 1’s complement එක කුමක්ද?",
-    "correct": "0101",
-    "wrong_answers": ["1010", "1111", "0110", "0001"]
-  },
-  {
-    "question": "1100 හි 1’s complement එක කුමක්ද?",
-    "correct": "0011",
-    "wrong_answers": ["0100", "1110", "1010", "0000"]
-  },
-  {
-    "question": "1010 හි 2’s complement එක කුමක්ද?",
-    "correct": "0110",
-    "wrong_answers": ["0101", "1111", "1001", "0010"]
-  },
-  {
-    "question": "1111 හි 2’s complement එක කුමක්ද?",
-    "correct": "0001",
-    "wrong_answers": ["1110", "0010", "0101", "1000"]
-  },
-  {
-    "question": "1000 හි 1’s complement එක කුමක්ද?",
-    "correct": "0111",
-    "wrong_answers": ["1111", "0001", "0101", "1010"]
-  },
-  {
-    "question": "0110 හි 2’s complement එක කුමක්ද?",
-    "correct": "1010",
-    "wrong_answers": ["1001", "1110", "1100", "0101"]
-  },
-  {
-    "question": "0001 හි 1’s complement එක කුමක්ද?",
-    "correct": "1110",
-    "wrong_answers": ["1111", "0000", "0010", "1100"]
-  },
-  {
-    "question": "0101 හි 2’s complement එක කුමක්ද?",
-    "correct": "1011",
-    "wrong_answers": ["1111", "1100", "1001", "0110"]
-  },
-  {
-    "question": "ASCII code එකක bit ගණන සාමාන්‍යයෙන් කීයද?",
-    "correct": "7",
-    "wrong_answers": ["8", "16", "32", "64"]
-  },
-  {
-    "question": "Unicode නිර්මාණය කළේ කුමන ගැටලුව විසඳීමටද?",
-    "correct": "විවිධ භාෂා නිරූපණය",
-    "wrong_answers": ["Internet speed වැඩි කිරීම", "Memory අඩු කිරීම", "CPU වේගය වැඩි කිරීම", "Printer errors නැවැත්වීම"]
-  },
-  {
-    "question": "ASCII code එකේ A අකුරේ Decimal අගය කුමක්ද?",
-    "correct": "65",
-    "wrong_answers": ["66", "67", "68", "69"]
-  },
-  {
-    "question": "Unicode හි ප්‍රධාන වාසිය කුමක්ද?",
-    "correct": "සියලු භාෂා සඳහා සහාය",
-    "wrong_answers": ["File size අඩු කිරීම", "Processor speed වැඩි කිරීම", "Graphics quality වැඩි කිරීම", "RAM capacity වැඩි කිරීම"]
-  },
-  {
-    "question": "ASCII හි lowercase a හි Decimal අගය කුමක්ද?",
-    "correct": "97",
-    "wrong_answers": ["96", "98", "99", "100"]
-  },
-  {
-    "question": "Unicode සාමාන්‍යයෙන් bits කීයක් හෝ ඊට වැඩි ප්‍රමාණයක් භාවිතා කරයිද?",
-    "correct": "16",
-    "wrong_answers": ["7", "8", "4", "2"]
-  },
-  {
-    "question": "ASCII code එක භාවිතා කරන්නේ කුමක් නිරූපණයටද?",
-    "correct": "අක්ෂර",
-    "wrong_answers": ["Images", "Videos", "CPU", "RAM"]
-  },
-  {
-    "question": "Unicode හි UTF යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
-    "correct": "Unicode Transformation Format",
-    "wrong_answers": ["Universal Text Format", "Unique Transfer File", "United Type Format", "Universal Translation Form"]
-  },
-  {
-    "question": "1 Byte එකක bits ගණන කීයද?",
-    "correct": "8",
-    "wrong_answers": ["4", "16", "32", "64"]
-  },
-  {
-    "question": "1 KB සමාන වන්නේ Bytes කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "512", "2048", "4096"]
-  },
-  {
-    "question": "1 MB සමාන වන්නේ KB කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "2048", "512", "4096"]
-  },
-  {
-    "question": "1 GB සමාන වන්නේ MB කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "2048", "512", "4096"]
-  },
-  {
-    "question": "1 TB සමාන වන්නේ GB කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "512", "2048", "4096"]
-  },
-  {
-    "question": "1024 Bytes සමාන වන්නේ කුමක්ද?",
-    "correct": "1 KB",
-    "wrong_answers": ["1 MB", "1 GB", "1 TB", "1 Bit"]
-  },
-  {
-    "question": "Memory unit වලින් විශාලතම එක කුමක්ද?",
-    "correct": "TB",
-    "wrong_answers": ["KB", "MB", "GB", "Byte"]
-  },
-  {
-    "question": "Bit යනු කුමක්ද?",
-    "correct": "කුඩාම දත්ත ඒකකය",
-    "wrong_answers": ["විශාලම memory unit", "Storage device එකක්", "Processor එකක්", "Programming language එකක්"]
-  },
-  {
-    "question": "8 Bits එකතුවක් හඳුන්වන්නේ කෙසේද?",
-    "correct": "Byte",
-    "wrong_answers": ["KB", "Nibble", "Word", "Block"]
-  },
-  {
-    "question": "4 Bits එකතුවක් හඳුන්වන්නේ කෙසේද?",
-    "correct": "Nibble",
-    "wrong_answers": ["Byte", "KB", "Word", "Block"]
-  },
-  {
-    "question": "Signed binary number එකක MSB bit එකෙන් නිරූපණය වන්නේ කුමක්ද?",
-    "correct": "Sign",
-    "wrong_answers": ["Magnitude", "Parity", "Carry", "Overflow"]
-  },
-  {
-    "question": "8-bit signed binary system එකක +127 ට පසුව සිදුවන්නේ කුමක්ද?",
-    "correct": "Overflow",
-    "wrong_answers": ["Complement", "Underflow", "Division", "Parity"]
-  },
-  {
-    "question": "Signed binary number එකක 1 යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    "correct": "Negative",
-    "wrong_answers": ["Positive", "Zero", "Overflow", "Carry"]
-  },
-  {
-    "question": "Signed binary number එකක 0 යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    "correct": "Positive",
-    "wrong_answers": ["Negative", "Overflow", "Carry", "Error"]
-  },
-  {
-    "question": "Overflow එකක් ඇතිවන්නේ කවදාද?",
-    "correct": "Range එක ඉක්මවූ විට",
-    "wrong_answers": ["Binary convert කරන විට", "RAM format කරන විට", "Printer connect කරන විට", "Mouse move කරන විට"]
-  },
-  {
-    "question": "8-bit signed binary range එක කුමක්ද?",
-    "correct": "-128 to +127",
-    "wrong_answers": ["0 to 255", "-255 to +255", "-127 to +128", "0 to 127"]
-  },
-  {
-    "question": "Overflow detect කිරීම වැදගත් වන්නේ ඇයි?",
-    "correct": "වැරදි ප්‍රතිඵල වළක්වීමට",
-    "wrong_answers": ["Monitor speed වැඩි කිරීමට", "Storage වැඩි කිරීමට", "Keyboard errors අඩු කිරීමට", "Internet speed වැඩි කිරීමට"]
-  },
-  {
-    "question": "BCD code එකෙන් නිරූපණය කරන්නේ කුමක්ද?",
-    "correct": "Decimal digits",
-    "wrong_answers": ["Hexadecimal digits", "Images", "Audio", "Video"]
-  },
-  {
-    "question": "BCD හි Decimal 5 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0101",
-    "wrong_answers": ["1010", "1111", "0011", "1001"]
-  },
-  {
-    "question": "BCD හි Decimal 9 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "1001",
-    "wrong_answers": ["1111", "1010", "0111", "1100"]
-  },
-  {
-    "question": "BCD යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
-    "correct": "Binary Coded Decimal",
-    "wrong_answers": ["Binary Converted Data", "Bit Code Decimal", "Binary Control Digit", "Byte Code Data"]
-  },
-  {
-    "question": "BCD හි Decimal 2 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0010",
-    "wrong_answers": ["0001", "0100", "1000", "1110"]
-  },
-  {
-    "question": "BCD code භාවිතා වන්නේ බහුලව කුමන උපකරණවලද?",
-    "correct": "Calculators",
-    "wrong_answers": ["Speakers", "Scanners", "Projectors", "Routers"]
-  },
-  {
-    "question": "BCD හි Decimal 7 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0111",
-    "wrong_answers": ["1111", "1011", "0011", "0101"]
-  },
-  {
-    "question": "BCD හි එක් Decimal digit එකක් නිරූපණයට bits කීයක් භාවිතා වේද?",
-    "correct": "4",
-    "wrong_answers": ["8", "2", "16", "32"]
-  },
-  {
-    "question": "Binary 11111111 හි Decimal අගය කුමක්ද?",
-    "correct": "255",
-    "wrong_answers": ["254", "256", "127", "128"]
-  },
-  {
-    "question": "Decimal 64 හි Binary අගය කුමක්ද?",
-    "correct": "1000000",
-    "wrong_answers": ["100000", "111111", "101010", "1100000"]
-  },
-  {
-    "question": "Hexadecimal 10 හි Decimal අගය කුමක්ද?",
-    "correct": "16",
-    "wrong_answers": ["10", "8", "15", "20"]
-  },
-  {
-    "question": "Binary 100000 හි Decimal අගය කුමක්ද?",
-    "correct": "32",
-    "wrong_answers": ["16", "64", "31", "30"]
-  },
-  {
-    "question": "Octal 10 හි Decimal අගය කුමක්ද?",
-    "correct": "8",
-    "wrong_answers": ["10", "16", "2", "4"]
-  },
-  {
-    "question": "Hexadecimal B හි Decimal අගය කුමක්ද?",
-    "correct": "11",
-    "wrong_answers": ["10", "12", "13", "14"]
-  },
-  {
-    "question": "Decimal 128 හි Binary අගය කුමක්ද?",
-    "correct": "10000000",
-    "wrong_answers": ["11111111", "1000000", "11000000", "10101010"]
-  },
-  {
-    "question": "Binary 10000000 හි Decimal අගය කුමක්ද?",
-    "correct": "128",
-    "wrong_answers": ["64", "127", "256", "255"]
-  },
-  {
-    "question": "Hexadecimal 20 හි Decimal අගය කුමක්ද?",
-    "correct": "32",
-    "wrong_answers": ["20", "16", "64", "40"]
-  },
-  {
-    "question": "Binary system එකේ radix එක කුමක්ද?",
-    "correct": "2",
-    "wrong_answers": ["8", "10", "16", "4"]
-  },
-  {
-    "question": "Octal system එකේ radix එක කුමක්ද?",
-    "correct": "8",
-    "wrong_answers": ["2", "10", "16", "4"]
-  },
-  {
-    "question": "Decimal system එකේ radix එක කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["2", "8", "16", "4"]
-  },
-  {
-    "question": "Hexadecimal system එකේ radix එක කුමක්ද?",
-    "correct": "16",
-    "wrong_answers": ["2", "8", "10", "32"]
-  },
-  {
-    "question": "Hexadecimal system එකේ භාවිතා වන අකුරු කුමන පරාසයේද?",
-    "correct": "A-F",
-    "wrong_answers": ["G-Z", "A-Z", "X-Y", "L-P"]
-  },
-  {
-    "question": "Binary digit එකක් හඳුන්වන්නේ කෙසේද?",
-    "correct": "Bit",
-    "wrong_answers": ["Byte", "Nibble", "Word", "Cell"]
-  },
-  {
-    "question": "Binary 1 + 1 හි පිළිතුර කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["1", "11", "0", "01"]
-  },
-  {
-    "question": "Binary 10 + 10 හි පිළිතුර කුමක්ද?",
-    "correct": "100",
-    "wrong_answers": ["10", "11", "101", "110"]
-  },
-  {
-    "question": "Binary 111 + 001 හි පිළිතුර කුමක්ද?",
-    "correct": "1000",
-    "wrong_answers": ["1111", "1010", "1100", "0111"]
-  },
-  {
-    "question": "Decimal 7 හි Binary අගය කුමක්ද?",
-    "correct": "111",
-    "wrong_answers": ["101", "110", "100", "1000"]
-  },
-  {
-    "question": "Binary 10101010 හි Decimal අගය කුමක්ද?",
-    "correct": "170",
-    "wrong_answers": ["160", "180", "150", "190"]
-  },
-  {
-    "question": "Decimal 200 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "C8",
-    "wrong_answers": ["B8", "D8", "CA", "F0"]
-  },
-  {
-    "question": "Hexadecimal 7F හි Decimal අගය කුමක්ද?",
-    "correct": "127",
-    "wrong_answers": ["126", "128", "120", "130"]
-  },
-  {
-    "question": "Octal 17 හි Decimal අගය කුමක්ද?",
-    "correct": "15",
-    "wrong_answers": ["16", "14", "13", "12"]
-  },
-  {
-    "question": "BCD හි Decimal 0 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0000",
-    "wrong_answers": ["1111", "1000", "0001", "0011"]
-  },
-  {
-    "question": "ASCII table එකේ සංඛ්‍යා නිරූපණය කිරීමටද භාවිතා වේද?",
-    "correct": "ඔව්",
-    "wrong_answers": ["නැහැ", "Hex වලට පමණි", "Images සඳහා පමණි", "Unicode සඳහා පමණි"]
-  },
-  {
-    "question": "2’s complement method එක බහුලව භාවිතා වන්නේ කුමක් සඳහාද?",
-    "correct": "Negative numbers නිරූපණයට",
-    "wrong_answers": ["Images compress කිරීමට", "Internet connect කිරීමට", "Audio play කිරීමට", "RAM upgrade කිරීමට"]
-  },
-  {
-    "question": "Computer එකක් data process කරන්නේ ප්‍රධාන වශයෙන් කුමන number system එකෙන්ද?",
-    "correct": "Binary",
-    "wrong_answers": ["Decimal", "Octal", "Hexadecimal", "Roman"]
-  },
-  {
-    "question": "Hexadecimal F හි Binary අගය කුමක්ද?",
-    "correct": "1111",
-    "wrong_answers": ["1010", "1100", "1001", "0111"]
-  },
-  {
-    "question": "Hexadecimal A5 හි Decimal අගය කුමක්ද?",
-    "correct": "165",
-    "wrong_answers": ["155", "175", "160", "150"]
-  },
-  {
-    "question": "Binary 100000000 හි Decimal අගය කුමක්ද?",
-    "correct": "256",
-    "wrong_answers": ["255", "128", "512", "254"]
-  }
 
+  {
+    "question": "Octal 12 binary වලට පරිවර්තනය කළ විට?",
+    "correct": "1010",
+    "distractors": ["1100", "1001", "1110", "1011"]
+  },
+  {
+    "question": "Octal 7 binary වලට පරිවර්තනය කළ විට?",
+    "correct": "111",
+    "distractors": ["110", "101", "100", "011"]
+  },
+  {
+    "question": "Octal 15 binary වලට පරිවර්තනය කළ විට?",
+    "correct": "1101",
+    "distractors": ["1011", "1110", "1001", "1100"]
+  },
+  {
+    "question": "Octal 10 binary වලට පරිවර්තනය කළ විට?",
+    "correct": "1000",
+    "distractors": ["1001", "1010", "1100", "1111"]
+  },
+  {
+    "question": "Octal 3 binary වලට පරිවර්තනය කළ විට?",
+    "correct": "011",
+    "distractors": ["010", "001", "100", "111"]
+  },
+
+  {
+    "question": "Hexadecimal A දශමයට පරිවර්තනය කළ විට?",
+    "correct": "10",
+    "distractors": ["11", "12", "9", "8"]
+  },
+  {
+    "question": "Hexadecimal F දශමයට පරිවර්තනය කළ විට?",
+    "correct": "15",
+    "distractors": ["14", "13", "16", "12"]
+  },
+  {
+    "question": "Hexadecimal 1A දශමයට පරිවර්තනය කළ විට?",
+    "correct": "26",
+    "distractors": ["25", "24", "27", "28"]
+  },
+  {
+    "question": "Hexadecimal 10 දශමයට පරිවර්තනය කළ විට?",
+    "correct": "16",
+    "distractors": ["15", "14", "17", "18"]
+  },
+  {
+    "question": "Hexadecimal B දශමයට පරිවර්තනය කළ විට?",
+    "correct": "11",
+    "distractors": ["10", "12", "13", "14"]
+  },
+
+  {
+    "question": "Binary 101 + 011 = ?",
+    "correct": "1000",
+    "distractors": ["111", "110", "1010", "1001"]
+  },
+  {
+    "question": "Binary 110 + 001 = ?",
+    "correct": "111",
+    "distractors": ["110", "101", "1000", "1110"]
+  },
+  {
+    "question": "Binary 1001 + 0001 = ?",
+    "correct": "1010",
+    "distractors": ["1000", "1100", "1111", "1011"]
+  },
+  {
+    "question": "Binary 111 - 001 = ?",
+    "correct": "110",
+    "distractors": ["101", "100", "111", "011"]
+  },
+  {
+    "question": "Binary 1010 - 0010 = ?",
+    "correct": "1000",
+    "distractors": ["1001", "1011", "1100", "1111"]
+  },
+
+  {
+    "question": "1’s complement of 1010 is?",
+    "correct": "0101",
+    "distractors": ["1011", "0110", "1111", "0001"]
+  },
+  {
+    "question": "1’s complement of 1100 is?",
+    "correct": "0011",
+    "distractors": ["0101", "0110", "1111", "1001"]
+  },
+  {
+    "question": "2’s complement of 1010 is?",
+    "correct": "0110",
+    "distractors": ["0101", "0111", "1001", "1110"]
+  },
+  {
+    "question": "2’s complement of 1000 is?",
+    "correct": "1000",
+    "distractors": ["0111", "1111", "0001", "0100"]
+  },
+  {
+    "question": "2’s complement of 0110 is?",
+    "correct": "1010",
+    "distractors": ["1001", "1100", "1110", "0101"]
+  },
+
+  {
+    "question": "ASCII code භාවිත වන්නේ?",
+    "correct": "Characters represent කිරීමට.",
+    "distractors": ["Images compress කිරීමට.", "CPU cooling.", "RAM cleaning.", "Battery charging."]
+  },
+  {
+    "question": "Unicode භාවිත වන්නේ?",
+    "correct": "World languages represent කිරීමට.",
+    "distractors": ["Only numbers.", "Only images.", "Only sound.", "Only videos."]
+  },
+  {
+    "question": "ASCII character count?",
+    "correct": "128",
+    "distractors": ["256", "64", "512", "1024"]
+  },
+  {
+    "question": "Unicode supports?",
+    "correct": "All languages",
+    "distractors": ["Only English", "Only Sinhala", "Only numbers", "Only symbols"]
+  },
+  {
+    "question": "ASCII code size?",
+    "correct": "7-bit",
+    "distractors": ["8-bit", "16-bit", "32-bit", "4-bit"]
+  },
+
+  {
+    "question": "1 KB equals?",
+    "correct": "1024 Bytes",
+    "distractors": ["1000 Bytes", "512 Bytes", "2048 Bytes", "1 Byte"]
+  },
+  {
+    "question": "1 MB equals?",
+    "correct": "1024 KB",
+    "distractors": ["1000 KB", "512 KB", "2048 KB", "1 GB"]
+  },
+  {
+    "question": "1 GB equals?",
+    "correct": "1024 MB",
+    "distractors": ["1000 MB", "512 MB", "2048 MB", "1 TB"]
+  },
+  {
+    "question": "1 TB equals?",
+    "correct": "1024 GB",
+    "distractors": ["1000 GB", "512 GB", "2048 GB", "1 PB"]
+  },
+  {
+    "question": "Smallest memory unit?",
+    "correct": "Bit",
+    "distractors": ["Byte", "KB", "MB", "Word"]
+  },
+
+  {
+    "question": "Overflow occurs when?",
+    "correct": "Result exceeds storage limit",
+    "distractors": ["CPU stops", "RAM clears", "Disk formats", "Mouse fails"]
+  },
+  {
+    "question": "Signed number representation used for negative numbers?",
+    "correct": "Two's complement",
+    "distractors": ["BCD", "ASCII", "Gray code", "Excess-3"]
+  },
+  {
+    "question": "MSB in signed binary represents?",
+    "correct": "Sign bit",
+    "distractors": ["Parity", "Memory", "Speed", "Address"]
+  },
+  {
+    "question": "Positive overflow happens when?",
+    "correct": "Result too large for positive range",
+    "distractors": ["CPU heats", "Disk full", "Keyboard error", "Mouse lag"]
+  },
+  {
+    "question": "Negative numbers stored using?",
+    "correct": "2’s complement",
+    "distractors": ["ASCII", "BCD", "Octal", "Hex"]
+  },
+
+  {
+    "question": "BCD stands for?",
+    "correct": "Binary Coded Decimal",
+    "distractors": ["Binary Computer Data", "Bit Code Data", "Basic Count Data", "Binary Control Design"]
+  },
+  {
+    "question": "BCD used to represent?",
+    "correct": "Decimal digits",
+    "distractors": ["Images", "Sound", "Text files", "Programs"]
+  },
+  {
+    "question": "BCD of 9 is?",
+    "correct": "1001",
+    "distractors": ["1000", "1010", "1100", "1111"]
+  },
+  {
+    "question": "BCD of 5 is?",
+    "correct": "0101",
+    "distractors": ["0110", "0011", "1111", "1000"]
+  },
+  {
+    "question": "BCD range per digit?",
+    "correct": "0000 to 1001",
+    "distractors": ["0000 to 1111", "0001 to 1010", "0010 to 1110", "0000 to 1110"]
+  },
+
+  {
+    "question": "Binary 1 + 1 = ?",
+    "correct": "10",
+    "distractors": ["11", "01", "00", "100"]
+  },
+  {
+    "question": "Binary 1111 + 1 = ?",
+    "correct": "10000",
+    "distractors": ["11110", "11111", "10001", "11000"]
+  },
+  {
+    "question": "Hexadecimal 2 + 3 = ?",
+    "correct": "5",
+    "distractors": ["6", "7", "8", "9"]
+  },
+  {
+    "question": "Octal 7 + 1 = ?",
+    "correct": "10",
+    "distractors": ["11", "12", "13", "14"]
+  },
+  {
+    "question": "Decimal 10 in binary is?",
+    "correct": "1010",
+    "distractors": ["1001", "1100", "1110", "1000"]
+  }
 ]
     let quizData = [...originalQuizData];
 
