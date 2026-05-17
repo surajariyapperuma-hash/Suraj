@@ -1,984 +1,629 @@
 <!DOCTYPE html>
 <html lang="si">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>තොරතුරු තාක්ෂණ ප්‍රශ්නාවලිය</title>
-    <!-- Tailwind CSS CDN for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- html2canvas CDN for converting HTML to JPEG -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            min-height: 100vh;
-            padding: 15px;
-            box-sizing: border-box;
-            -webkit-user-select: none; 
-            -moz-user-select: none; 
-            -ms-user-select: none; 
-            user-select: none; 
-        }
-        .quiz-card {
-            max-width: 550px;
-            width: 100%;
-            background-color: white;
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
-        }
-        
-        .option-button {
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-            padding: 0.75rem;
-            font-size: 1.0rem;
-        }
-        .option-button:hover:not(.disabled) {
-            background-color: #e0f2f1;
-        }
-        .correct-answer {
-            background-color: #84cc16 !important;
-            color: white !important;
-            border-color: #65a30d !important;
-        }
-        .incorrect-answer {
-            background-color: #ef4444 !important;
-            color: white !important;
-            border-color: #dc2626 !important;
-        }
-        .disabled {
-            pointer-events: none;
-            opacity: 0.8;
-        }
-        #timer-progress {
-            transition: width 1s linear;
-        }
-        
-        #result-card-to-capture {
-            background-color: #e0f7fa;
-            border: 3px solid #00bcd4;
-        }
-        .logo-placeholder {
-            border-radius: 50%;
-            object-fit: cover;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>තොරතුරු තාක්ෂණ ප්‍රශ්නාවලිය</title>
+
+<!-- Sinhala Font -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Noto Sans Sinhala',sans-serif;
+    background:#ececec;
+    min-height:100vh;
+    width:100%;
+    overflow-x:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding:20px;
+}
+
+.quiz-card{
+    width:100%;
+    max-width:700px;
+
+    background:white;
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+    animation:fade 0.4s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0px);
+    }
+}
+
+.option-button{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #d1d5db;
+
+    background:#f9fafb;
+
+    cursor:pointer;
+
+    transition:0.2s;
+    font-size:15px;
+    text-align:left;
+}
+
+.option-button:hover{
+    background:#dbeafe;
+}
+
+.correct-answer{
+    background:#22c55e !important;
+    color:white !important;
+}
+
+.incorrect-answer{
+    background:#ef4444 !important;
+    color:white !important;
+}
+
+.disabled{
+    pointer-events:none;
+    opacity:0.9;
+}
+
+#timer-progress{
+    transition:1s linear;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid #d1d5db;
+    outline:none;
+}
+
+input:focus{
+    border-color:#2563eb;
+}
+
+button{
+    border:none;
+}
+
+.main-btn{
+    width:100%;
+    padding:14px;
+    border-radius:14px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.main-btn:hover{
+    transform:scale(1.01);
+}
+
+.blue{
+    background:#2563eb;
+}
+
+.blue:hover{
+    background:#1d4ed8;
+}
+
+.green{
+    background:#16a34a;
+}
+
+.green:hover{
+    background:#15803d;
+}
+
+.gray{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.hidden{
+    display:none;
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="quiz-card">
-    <h1 class="text-2xl font-bold text-gray-800 mb-2 text-center">තොරතුරු තාක්ෂණ ප්‍රශ්නාවලිය</h1>
-    <p class="text-center text-sm text-blue-700 mb-6 font-semibold">NextGen ICT By Suraj අපි විභාග ලියන අලුත් විදිහ.</p>
 
-    <div id="start-screen" class="text-center p-5 bg-blue-50 rounded-lg shadow"> 
-        <h2 class="text-xl font-extrabold mb-4 text-blue-800">ප්‍රශ්නාවලිය ආරම්භ කිරීමට සූදානම්ද?</h2>
-        
-        <div class="mb-3 text-left">
-            <label for="student-name" class="block text-xs font-medium text-gray-700 mb-1">ශිෂ්‍යයාගේ නම (Student Name):</label>
-            <input type="text" id="student-name" placeholder="ඔබේ සම්පුර්ණ නම ඇතුළත් කරන්න" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" required>
+    <h1 class="text-3xl font-black text-center text-gray-800 mb-2">
+        තොරතුරු තාක්ෂණ ප්‍රශ්නාවලිය
+    </h1>
+
+    <p class="text-center text-blue-700 font-bold mb-6">
+        NextGen ICT By Suraj
+    </p>
+
+    <!-- START -->
+    <div id="start-screen">
+
+        <div class="mb-4">
+            <label class="block mb-2 font-semibold">
+                ශිෂ්‍යයාගේ නම
+            </label>
+
+            <input
+            type="text"
+            id="student-name"
+            placeholder="ඔබගේ නම">
         </div>
-        <div class="mb-4 text-left">
-            <label for="student-class" class="block text-xs font-medium text-gray-700 mb-1">පන්තිය (Class):</label>
-            <input type="text" id="student-class" placeholder="උදා: 10 වසර නැණපියස පන්තිය" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm" required>
+
+        <div class="mb-5">
+            <label class="block mb-2 font-semibold">
+                පන්තිය
+            </label>
+
+            <input
+            type="text"
+            id="student-class"
+            placeholder="ඔබගේ පන්තිය">
         </div>
-        
-        <button onclick="showInstructions()" class="w-full bg-gray-200 text-gray-700 py-1 text-sm rounded-lg hover:bg-gray-300 transition duration-300 mb-3 shadow-sm">
-            උපදෙස් කියවන්න (Read Instructions)
-        </button>
-        
-        <button onclick="validateAndStartQuiz()" class="w-full bg-blue-600 text-white py-3 text-xl rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg transform hover:scale-[1.01]">
+
+        <button
+        onclick="startQuiz()"
+        class="main-btn blue">
             Start Quiz
         </button>
-        <p id="validation-message" class="text-red-600 mt-2 text-xs font-semibold hidden">නම සහ පන්තිය ඇතුළත් කිරීම අනිවාර්යයි!</p>
+
     </div>
 
-    <!-- Timer UI Component -->
-    <div id="timer-display" class="mb-3 text-center hidden">
-        <div id="timer-bar" class="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden mb-2">
-            <div id="timer-progress" class="h-1.5 bg-red-500 transition-all duration-1000 ease-linear" style="width: 100%;"></div>
-        </div>
-        <div class="text-center px-2">
-            <p class="text-xs text-gray-600 font-medium"><span id="time-left">40</span> තත්පර ඉතිරිව ඇත</p>
-        </div>
-    </div>
-    
-    <div id="quiz-container" class="hidden"></div>
-    
-    <div id="results-container" class="hidden">
-        <div id="result-card-to-capture" class="p-5 rounded-lg mb-4 shadow-xl"> 
-            <img src="icon.png" onerror="this.onerror=null;this.src='01.png'" alt="GK ICT Logo" class="logo-placeholder w-16 h-16 mx-auto mb-3">
-            <h2 class="text-2xl font-extrabold text-center mb-1 text-blue-900">ප්‍රශ්නාවලියේ අවසන් ප්‍රතිඵලය</h2>
-            <p class="text-center text-base text-gray-700 mb-4 border-b pb-3 border-blue-400">NextGen ICT By Suraj - තොරතුරු තාක්ෂණ ප්‍රශ්නාවලිය</p>
-            
-            <div class="mb-4 text-center">
-                <p class="text-lg font-bold text-gray-800 mb-1">නම: <span id="display-student-name" class="font-extrabold text-blue-800">--</span></p>
-                <p class="text-sm font-semibold text-gray-600">පන්තිය: <span id="display-student-class" class="font-bold text-blue-700">--</span></p>
+    <!-- TIMER -->
+    <div id="timer-display" class="hidden mb-5">
+
+        <div class="w-full h-3 bg-gray-200 rounded-full overflow-hidden mb-2">
+
+            <div
+            id="timer-progress"
+            class="h-3 bg-red-500"
+            style="width:100%">
             </div>
 
-            <p id="correct-answers-count" class="text-lg font-bold text-center mb-2 text-gray-700"></p>
-            <p id="final-percentage" class="text-3xl font-black text-center mb-3"></p>
-            <p id="result-date" class="text-xs text-center text-gray-600">දිනය සහ වේලාව: --</p>
         </div>
-        
-        <button onclick="captureResultsAsImage()" class="w-full bg-green-600 text-white py-2.5 rounded-lg hover:bg-green-700 transition duration-300 mb-3 shadow-md transform hover:scale-[1.02]">
-            ප්‍රතිඵල ලේඛනය බාගත කරන්න (JPEG)
-        </button>
-        
-        <button onclick="resetQuizState()" class="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition duration-300">
-            නැවත මුලට යන්න (Go to Start)
-        </button>
-    </div>
-</div>
 
-<div id="instruction-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 flex items-center justify-center hidden">
-    <div id="modal-content" class="bg-white rounded-xl shadow-2xl p-5 m-4 max-w-sm sm:max-w-md w-full max-h-[90vh] overflow-y-auto">
-        <h3 class="text-xl font-bold text-blue-700 mb-3 border-b pb-1.5">ප්‍රශ්නාවලියේ උපදෙස්</h3>
-        <ul id="instructions-list" class="text-left text-gray-700 space-y-2 list-disc list-inside mb-4 text-sm">
-            <li>සියලුම ප්‍රශ්න සඳහා පිළිතුරු දියයුතුය.</li>
-            <li>සෑම ප්‍රශ්නයකටම පිළිතුරු 4ක් පවතින අතර ඉන් එකක් පමණක් නිවැරදි වේ.</li>
-            <li id="instr-security-warning" class="text-red-600 font-bold hidden">වැදගත්: ප්‍රශ්නාවලිය අතරතුර වෙනත් Tab එකකට මාරු වුවහොත් හෝ Inspect Element කිරීමට උත්සාහ කළහොත් ප්‍රශ්නාවලිය Reset වේ!</li>
-            <li>ප්‍රතිඵල JPEG එකක් ලෙස බාගත කළ හැකිය.</li>
-        </ul>
-        <button onclick="hideInstructions()" class="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg">
-            තේරුම් ගත්තා (Got It)
-        </button>
+        <p class="text-center text-sm font-semibold text-gray-600">
+            <span id="time-left">90:00</span>
+        </p>
+
     </div>
+
+    <!-- QUIZ -->
+    <div id="quiz-container" class="hidden"></div>
+
+    <!-- RESULTS -->
+    <div id="results-container" class="hidden">
+
+        <div
+        id="result-card-to-capture"
+        class="bg-cyan-50 border-4 border-cyan-400 rounded-2xl p-6 mb-5">
+
+            <h2 class="text-3xl font-black text-center text-blue-800 mb-4">
+                ප්‍රතිඵලය
+            </h2>
+
+            <div class="text-center mb-4">
+
+                <p class="text-lg font-bold">
+                    නම :
+                    <span id="display-student-name"></span>
+                </p>
+
+                <p class="text-md text-gray-600">
+                    පන්තිය :
+                    <span id="display-student-class"></span>
+                </p>
+
+            </div>
+
+            <p
+            id="correct-answers-count"
+            class="text-center text-lg font-bold mb-2">
+            </p>
+
+            <p
+            id="final-percentage"
+            class="text-center text-4xl font-black text-green-600 mb-3">
+            </p>
+
+            <p
+            id="result-date"
+            class="text-center text-sm text-gray-500">
+            </p>
+
+        </div>
+
+        <button
+        onclick="captureResultsAsImage()"
+        class="main-btn green mb-3">
+            Download Result
+        </button>
+
+        <button
+        onclick="resetQuizState()"
+        class="main-btn blue">
+            Restart
+        </button>
+
+    </div>
+
 </div>
 
 <script>
-    /*// --- SETTINGS (මෙහිදී අගයන් වෙනස් කළ හැක) ---
-   const ENABLE_TIMER = true;        // කාලගණකය අවශ්‍ය නම් true කරන්න
-    const TIME_LIMIT = 90;            // තත්පර ගණන
-    const ENABLE_SHUFFLE = true;       // ප්‍රශ්න සහ පිළිතුරු Shuffle වීමට true කරන්න
-    const ENABLE_TAB_SECURITY = true;  // වෙනත් Tab එකකට යන විට Reset වීමට true කරන්න (එපා නම් false)*/
-	
-	// --- SETTINGS (මුළු පේපර් එකටම එකක් වන සේ වෙනස් කර ඇත) ---
+
+/* SETTINGS */
+
 const ENABLE_TIMER = true;
-const TOTAL_MINUTES = 90; // ඔබට අවශ්‍ය මුළු මිනිත්තු ගණන (මෙහි 25 ලෙස යොදා ඇත)
-const TIME_LIMIT = TOTAL_MINUTES * 60; // මිනිත්තු තත්පර වලට හැරවීම (මුළු තත්පර 1500)
+
+const TOTAL_MINUTES = 90;
+
+const TIME_LIMIT = TOTAL_MINUTES * 60;
+
 const ENABLE_SHUFFLE = true;
-const ENABLE_TAB_SECURITY = true;
 
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let isQuestionLocked = false;
-    let timeRemaining = TIME_LIMIT;
-    let timerInterval;
-    let studentName = '';
-    let studentClass = '';
-    let isQuizStarted = false;
+/* VARIABLES */
 
-    const startScreen = document.getElementById('start-screen');
-    const quizContainer = document.getElementById('quiz-container');
-    const resultsContainer = document.getElementById('results-container');
-    const timerDisplay = document.getElementById('timer-display');
-    const instructionModal = document.getElementById('instruction-modal');
+let currentQuestionIndex = 0;
 
-    // මුල් ප්‍රශ්නාවලිය
+let score = 0;
+
+let quizData = [];
+
+let timerInterval;
+
+let timeRemaining = TIME_LIMIT;
+
+let studentName = '';
+
+let studentClass = '';
+
+/* SAMPLE QUESTIONS */
+
 const originalQuizData = [
 
-{ "question": "Binary 1010 හි Decimal අගය කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["8", "12", "14", "16"]
-  },
-  {
-    "question": "Decimal 15 හි Binary අගය කුමක්ද?",
-    "correct": "1111",
-    "wrong_answers": ["1010", "1100", "1001", "1110"]
-  },
-  {
-    "question": "Binary 1001 හි Decimal අගය කුමක්ද?",
-    "correct": "9",
-    "wrong_answers": ["8", "10", "11", "12"]
-  },
-  {
-    "question": "Decimal 20 හි Binary අගය කුමක්ද?",
-    "correct": "10100",
-    "wrong_answers": ["10010", "11000", "10110", "11100"]
-  },
-  {
-    "question": "Binary 1111 හි Decimal අගය කුමක්ද?",
-    "correct": "15",
-    "wrong_answers": ["14", "13", "16", "12"]
-  },
-  {
-    "question": "Decimal 8 හි Binary අගය කුමක්ද?",
-    "correct": "1000",
-    "wrong_answers": ["111", "1001", "1010", "1100"]
-  },
-  {
-    "question": "Binary 11001 හි Decimal අගය කුමක්ද?",
-    "correct": "25",
-    "wrong_answers": ["24", "26", "27", "28"]
-  },
-  {
-    "question": "Decimal 32 හි Binary අගය කුමක්ද?",
-    "correct": "100000",
-    "wrong_answers": ["11111", "100001", "101000", "110000"]
-  },
-  {
-    "question": "Binary 101101 හි Decimal අගය කුමක්ද?",
-    "correct": "45",
-    "wrong_answers": ["44", "46", "47", "48"]
-  },
-  {
-    "question": "Decimal 50 හි Binary අගය කුමක්ද?",
-    "correct": "110010",
-    "wrong_answers": ["101010", "111000", "100010", "110000"]
-  },
-  {
-    "question": "Octal 7 හි Binary අගය කුමක්ද?",
-    "correct": "111",
-    "wrong_answers": ["101", "110", "100", "011"]
-  },
-  {
-    "question": "Binary 101 හි Octal අගය කුමක්ද?",
-    "correct": "5",
-    "wrong_answers": ["4", "6", "7", "3"]
-  },
-  {
-    "question": "Octal 12 හි Binary අගය කුමක්ද?",
-    "correct": "001010",
-    "wrong_answers": ["1010", "1100", "1110", "1001"]
-  },
-  {
-    "question": "Binary 111000 හි Octal අගය කුමක්ද?",
-    "correct": "70",
-    "wrong_answers": ["60", "71", "50", "72"]
-  },
-  {
-    "question": "Octal 25 හි Binary අගය කුමක්ද?",
-    "correct": "010101",
-    "wrong_answers": ["10101", "11100", "11001", "10010"]
-  },
-  {
-    "question": "Binary 100111 හි Octal අගය කුමක්ද?",
-    "correct": "47",
-    "wrong_answers": ["46", "45", "50", "57"]
-  },
-  {
-    "question": "Octal 77 හි Binary අගය කුමක්ද?",
-    "correct": "111111",
-    "wrong_answers": ["101111", "110111", "111110", "100111"]
-  },
-  {
-    "question": "Binary 110110 හි Octal අගය කුමක්ද?",
-    "correct": "66",
-    "wrong_answers": ["56", "76", "65", "60"]
-  },
-  {
-    "question": "Octal 31 හි Binary අගය කුමක්ද?",
-    "correct": "011001",
-    "wrong_answers": ["11001", "11100", "10101", "10001"]
-  },
-  {
-    "question": "Binary 101010 හි Octal අගය කුමක්ද?",
-    "correct": "52",
-    "wrong_answers": ["42", "62", "72", "32"]
-  },
-  {
-    "question": "Hexadecimal A හි Decimal අගය කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["11", "12", "9", "8"]
-  },
-  {
-    "question": "Decimal 15 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "F",
-    "wrong_answers": ["E", "A", "D", "10"]
-  },
-  {
-    "question": "Hexadecimal 1A හි Decimal අගය කුමක්ද?",
-    "correct": "26",
-    "wrong_answers": ["24", "25", "27", "28"]
-  },
-  {
-    "question": "Decimal 255 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "FF",
-    "wrong_answers": ["FE", "EF", "F0", "AA"]
-  },
-  {
-    "question": "Hexadecimal 2F හි Decimal අගය කුමක්ද?",
-    "correct": "47",
-    "wrong_answers": ["46", "45", "48", "49"]
-  },
-  {
-    "question": "Decimal 100 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "64",
-    "wrong_answers": ["65", "60", "68", "70"]
-  },
-  {
-    "question": "Hexadecimal FF හි Decimal අගය කුමක්ද?",
-    "correct": "255",
-    "wrong_answers": ["254", "256", "200", "240"]
-  },
-  {
-    "question": "Decimal 16 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["F", "11", "1A", "0F"]
-  },
-  {
-    "question": "Hexadecimal C හි Decimal අගය කුමක්ද?",
-    "correct": "12",
-    "wrong_answers": ["10", "11", "13", "14"]
-  },
-  {
-    "question": "Decimal 31 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "1F",
-    "wrong_answers": ["2F", "F1", "1E", "2E"]
-  },
-  {
-    "question": "Binary 1010 + 0101 හි පිළිතුර කුමක්ද?",
-    "correct": "1111",
-    "wrong_answers": ["1101", "1110", "1001", "1011"]
-  },
-  {
-    "question": "Binary 1111 - 0001 හි පිළිතුර කුමක්ද?",
-    "correct": "1110",
-    "wrong_answers": ["1100", "1010", "1111", "1000"]
-  },
-  {
-    "question": "Binary 101 × 10 හි පිළිතුර කුමක්ද?",
-    "correct": "1010",
-    "wrong_answers": ["1001", "1110", "1100", "1011"]
-  },
-  {
-    "question": "Binary 1000 ÷ 10 හි පිළිතුර කුමක්ද?",
-    "correct": "100",
-    "wrong_answers": ["10", "1000", "101", "110"]
-  },
-  {
-    "question": "Binary 1101 + 0011 හි පිළිතුර කුමක්ද?",
-    "correct": "10000",
-    "wrong_answers": ["1111", "10001", "10100", "11000"]
-  },
-  {
-    "question": "Binary 1011 - 0010 හි පිළිතුර කුමක්ද?",
-    "correct": "1001",
-    "wrong_answers": ["1010", "1110", "1000", "1101"]
-  },
-  {
-    "question": "Binary 111 × 11 හි පිළිතුර කුමක්ද?",
-    "correct": "10101",
-    "wrong_answers": ["11111", "10001", "10111", "11001"]
-  },
-  {
-    "question": "Binary 1001 + 1001 හි පිළිතුර කුමක්ද?",
-    "correct": "10010",
-    "wrong_answers": ["11010", "10110", "10001", "11100"]
-  },
-  {
-    "question": "Binary 1110 - 0100 හි පිළිතුර කුමක්ද?",
-    "correct": "1010",
-    "wrong_answers": ["1000", "1100", "1111", "1011"]
-  },
-  {
-    "question": "Binary 101 × 101 හි පිළිතුර කුමක්ද?",
-    "correct": "11001",
-    "wrong_answers": ["10101", "11111", "10001", "11011"]
-  },
-  {
-    "question": "1010 හි 1’s complement එක කුමක්ද?",
-    "correct": "0101",
-    "wrong_answers": ["1010", "1111", "0110", "0001"]
-  },
-  {
-    "question": "1100 හි 1’s complement එක කුමක්ද?",
-    "correct": "0011",
-    "wrong_answers": ["0100", "1110", "1010", "0000"]
-  },
-  {
-    "question": "1010 හි 2’s complement එක කුමක්ද?",
-    "correct": "0110",
-    "wrong_answers": ["0101", "1111", "1001", "0010"]
-  },
-  {
-    "question": "1111 හි 2’s complement එක කුමක්ද?",
-    "correct": "0001",
-    "wrong_answers": ["1110", "0010", "0101", "1000"]
-  },
-  {
-    "question": "1000 හි 1’s complement එක කුමක්ද?",
-    "correct": "0111",
-    "wrong_answers": ["1111", "0001", "0101", "1010"]
-  },
-  {
-    "question": "0110 හි 2’s complement එක කුමක්ද?",
-    "correct": "1010",
-    "wrong_answers": ["1001", "1110", "1100", "0101"]
-  },
-  {
-    "question": "0001 හි 1’s complement එක කුමක්ද?",
-    "correct": "1110",
-    "wrong_answers": ["1111", "0000", "0010", "1100"]
-  },
-  {
-    "question": "0101 හි 2’s complement එක කුමක්ද?",
-    "correct": "1011",
-    "wrong_answers": ["1111", "1100", "1001", "0110"]
-  },
-  {
-    "question": "ASCII code එකක bit ගණන සාමාන්‍යයෙන් කීයද?",
-    "correct": "7",
-    "wrong_answers": ["8", "16", "32", "64"]
-  },
-  {
-    "question": "Unicode නිර්මාණය කළේ කුමන ගැටලුව විසඳීමටද?",
-    "correct": "විවිධ භාෂා නිරූපණය",
-    "wrong_answers": ["Internet speed වැඩි කිරීම", "Memory අඩු කිරීම", "CPU වේගය වැඩි කිරීම", "Printer errors නැවැත්වීම"]
-  },
-  {
-    "question": "ASCII code එකේ A අකුරේ Decimal අගය කුමක්ද?",
-    "correct": "65",
-    "wrong_answers": ["66", "67", "68", "69"]
-  },
-  {
-    "question": "Unicode හි ප්‍රධාන වාසිය කුමක්ද?",
-    "correct": "සියලු භාෂා සඳහා සහාය",
-    "wrong_answers": ["File size අඩු කිරීම", "Processor speed වැඩි කිරීම", "Graphics quality වැඩි කිරීම", "RAM capacity වැඩි කිරීම"]
-  },
-  {
-    "question": "ASCII හි lowercase a හි Decimal අගය කුමක්ද?",
-    "correct": "97",
-    "wrong_answers": ["96", "98", "99", "100"]
-  },
-  {
-    "question": "Unicode සාමාන්‍යයෙන් bits කීයක් හෝ ඊට වැඩි ප්‍රමාණයක් භාවිතා කරයිද?",
-    "correct": "16",
-    "wrong_answers": ["7", "8", "4", "2"]
-  },
-  {
-    "question": "ASCII code එක භාවිතා කරන්නේ කුමක් නිරූපණයටද?",
-    "correct": "අක්ෂර",
-    "wrong_answers": ["Images", "Videos", "CPU", "RAM"]
-  },
-  {
-    "question": "Unicode හි UTF යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
-    "correct": "Unicode Transformation Format",
-    "wrong_answers": ["Universal Text Format", "Unique Transfer File", "United Type Format", "Universal Translation Form"]
-  },
-  {
-    "question": "1 Byte එකක bits ගණන කීයද?",
-    "correct": "8",
-    "wrong_answers": ["4", "16", "32", "64"]
-  },
-  {
-    "question": "1 KB සමාන වන්නේ Bytes කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "512", "2048", "4096"]
-  },
-  {
-    "question": "1 MB සමාන වන්නේ KB කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "2048", "512", "4096"]
-  },
-  {
-    "question": "1 GB සමාන වන්නේ MB කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "2048", "512", "4096"]
-  },
-  {
-    "question": "1 TB සමාන වන්නේ GB කීයකටද?",
-    "correct": "1024",
-    "wrong_answers": ["1000", "512", "2048", "4096"]
-  },
-  {
-    "question": "1024 Bytes සමාන වන්නේ කුමක්ද?",
-    "correct": "1 KB",
-    "wrong_answers": ["1 MB", "1 GB", "1 TB", "1 Bit"]
-  },
-  {
-    "question": "Memory unit වලින් විශාලතම එක කුමක්ද?",
-    "correct": "TB",
-    "wrong_answers": ["KB", "MB", "GB", "Byte"]
-  },
-  {
-    "question": "Bit යනු කුමක්ද?",
-    "correct": "කුඩාම දත්ත ඒකකය",
-    "wrong_answers": ["විශාලම memory unit", "Storage device එකක්", "Processor එකක්", "Programming language එකක්"]
-  },
-  {
-    "question": "8 Bits එකතුවක් හඳුන්වන්නේ කෙසේද?",
-    "correct": "Byte",
-    "wrong_answers": ["KB", "Nibble", "Word", "Block"]
-  },
-  {
-    "question": "4 Bits එකතුවක් හඳුන්වන්නේ කෙසේද?",
-    "correct": "Nibble",
-    "wrong_answers": ["Byte", "KB", "Word", "Block"]
-  },
-  {
-    "question": "Signed binary number එකක MSB bit එකෙන් නිරූපණය වන්නේ කුමක්ද?",
-    "correct": "Sign",
-    "wrong_answers": ["Magnitude", "Parity", "Carry", "Overflow"]
-  },
-  {
-    "question": "8-bit signed binary system එකක +127 ට පසුව සිදුවන්නේ කුමක්ද?",
-    "correct": "Overflow",
-    "wrong_answers": ["Complement", "Underflow", "Division", "Parity"]
-  },
-  {
-    "question": "Signed binary number එකක 1 යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    "correct": "Negative",
-    "wrong_answers": ["Positive", "Zero", "Overflow", "Carry"]
-  },
-  {
-    "question": "Signed binary number එකක 0 යන්නෙන් අදහස් වන්නේ කුමක්ද?",
-    "correct": "Positive",
-    "wrong_answers": ["Negative", "Overflow", "Carry", "Error"]
-  },
-  {
-    "question": "Overflow එකක් ඇතිවන්නේ කවදාද?",
-    "correct": "Range එක ඉක්මවූ විට",
-    "wrong_answers": ["Binary convert කරන විට", "RAM format කරන විට", "Printer connect කරන විට", "Mouse move කරන විට"]
-  },
-  {
-    "question": "8-bit signed binary range එක කුමක්ද?",
-    "correct": "-128 to +127",
-    "wrong_answers": ["0 to 255", "-255 to +255", "-127 to +128", "0 to 127"]
-  },
-  {
-    "question": "Overflow detect කිරීම වැදගත් වන්නේ ඇයි?",
-    "correct": "වැරදි ප්‍රතිඵල වළක්වීමට",
-    "wrong_answers": ["Monitor speed වැඩි කිරීමට", "Storage වැඩි කිරීමට", "Keyboard errors අඩු කිරීමට", "Internet speed වැඩි කිරීමට"]
-  },
-  {
-    "question": "BCD code එකෙන් නිරූපණය කරන්නේ කුමක්ද?",
-    "correct": "Decimal digits",
-    "wrong_answers": ["Hexadecimal digits", "Images", "Audio", "Video"]
-  },
-  {
-    "question": "BCD හි Decimal 5 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0101",
-    "wrong_answers": ["1010", "1111", "0011", "1001"]
-  },
-  {
-    "question": "BCD හි Decimal 9 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "1001",
-    "wrong_answers": ["1111", "1010", "0111", "1100"]
-  },
-  {
-    "question": "BCD යන්නෙන් අදහස් කරන්නේ කුමක්ද?",
-    "correct": "Binary Coded Decimal",
-    "wrong_answers": ["Binary Converted Data", "Bit Code Decimal", "Binary Control Digit", "Byte Code Data"]
-  },
-  {
-    "question": "BCD හි Decimal 2 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0010",
-    "wrong_answers": ["0001", "0100", "1000", "1110"]
-  },
-  {
-    "question": "BCD code භාවිතා වන්නේ බහුලව කුමන උපකරණවලද?",
-    "correct": "Calculators",
-    "wrong_answers": ["Speakers", "Scanners", "Projectors", "Routers"]
-  },
-  {
-    "question": "BCD හි Decimal 7 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0111",
-    "wrong_answers": ["1111", "1011", "0011", "0101"]
-  },
-  {
-    "question": "BCD හි එක් Decimal digit එකක් නිරූපණයට bits කීයක් භාවිතා වේද?",
-    "correct": "4",
-    "wrong_answers": ["8", "2", "16", "32"]
-  },
-  {
-    "question": "Binary 11111111 හි Decimal අගය කුමක්ද?",
-    "correct": "255",
-    "wrong_answers": ["254", "256", "127", "128"]
-  },
-  {
-    "question": "Decimal 64 හි Binary අගය කුමක්ද?",
-    "correct": "1000000",
-    "wrong_answers": ["100000", "111111", "101010", "1100000"]
-  },
-  {
-    "question": "Hexadecimal 10 හි Decimal අගය කුමක්ද?",
-    "correct": "16",
-    "wrong_answers": ["10", "8", "15", "20"]
-  },
-  {
-    "question": "Binary 100000 හි Decimal අගය කුමක්ද?",
-    "correct": "32",
-    "wrong_answers": ["16", "64", "31", "30"]
-  },
-  {
-    "question": "Octal 10 හි Decimal අගය කුමක්ද?",
-    "correct": "8",
-    "wrong_answers": ["10", "16", "2", "4"]
-  },
-  {
-    "question": "Hexadecimal B හි Decimal අගය කුමක්ද?",
-    "correct": "11",
-    "wrong_answers": ["10", "12", "13", "14"]
-  },
-  {
-    "question": "Decimal 128 හි Binary අගය කුමක්ද?",
-    "correct": "10000000",
-    "wrong_answers": ["11111111", "1000000", "11000000", "10101010"]
-  },
-  {
-    "question": "Binary 10000000 හි Decimal අගය කුමක්ද?",
-    "correct": "128",
-    "wrong_answers": ["64", "127", "256", "255"]
-  },
-  {
-    "question": "Hexadecimal 20 හි Decimal අගය කුමක්ද?",
-    "correct": "32",
-    "wrong_answers": ["20", "16", "64", "40"]
-  },
-  {
-    "question": "Binary system එකේ radix එක කුමක්ද?",
-    "correct": "2",
-    "wrong_answers": ["8", "10", "16", "4"]
-  },
-  {
-    "question": "Octal system එකේ radix එක කුමක්ද?",
-    "correct": "8",
-    "wrong_answers": ["2", "10", "16", "4"]
-  },
-  {
-    "question": "Decimal system එකේ radix එක කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["2", "8", "16", "4"]
-  },
-  {
-    "question": "Hexadecimal system එකේ radix එක කුමක්ද?",
-    "correct": "16",
-    "wrong_answers": ["2", "8", "10", "32"]
-  },
-  {
-    "question": "Hexadecimal system එකේ භාවිතා වන අකුරු කුමන පරාසයේද?",
-    "correct": "A-F",
-    "wrong_answers": ["G-Z", "A-Z", "X-Y", "L-P"]
-  },
-  {
-    "question": "Binary digit එකක් හඳුන්වන්නේ කෙසේද?",
-    "correct": "Bit",
-    "wrong_answers": ["Byte", "Nibble", "Word", "Cell"]
-  },
-  {
-    "question": "Binary 1 + 1 හි පිළිතුර කුමක්ද?",
-    "correct": "10",
-    "wrong_answers": ["1", "11", "0", "01"]
-  },
-  {
-    "question": "Binary 10 + 10 හි පිළිතුර කුමක්ද?",
-    "correct": "100",
-    "wrong_answers": ["10", "11", "101", "110"]
-  },
-  {
-    "question": "Binary 111 + 001 හි පිළිතුර කුමක්ද?",
-    "correct": "1000",
-    "wrong_answers": ["1111", "1010", "1100", "0111"]
-  },
-  {
-    "question": "Decimal 7 හි Binary අගය කුමක්ද?",
-    "correct": "111",
-    "wrong_answers": ["101", "110", "100", "1000"]
-  },
-  {
-    "question": "Binary 10101010 හි Decimal අගය කුමක්ද?",
-    "correct": "170",
-    "wrong_answers": ["160", "180", "150", "190"]
-  },
-  {
-    "question": "Decimal 200 හි Hexadecimal අගය කුමක්ද?",
-    "correct": "C8",
-    "wrong_answers": ["B8", "D8", "CA", "F0"]
-  },
-  {
-    "question": "Hexadecimal 7F හි Decimal අගය කුමක්ද?",
-    "correct": "127",
-    "wrong_answers": ["126", "128", "120", "130"]
-  },
-  {
-    "question": "Octal 17 හි Decimal අගය කුමක්ද?",
-    "correct": "15",
-    "wrong_answers": ["16", "14", "13", "12"]
-  },
-  {
-    "question": "BCD හි Decimal 0 නිරූපණය වන්නේ කෙසේද?",
-    "correct": "0000",
-    "wrong_answers": ["1111", "1000", "0001", "0011"]
-  },
-  {
-    "question": "ASCII table එකේ සංඛ්‍යා නිරූපණය කිරීමටද භාවිතා වේද?",
-    "correct": "ඔව්",
-    "wrong_answers": ["නැහැ", "Hex වලට පමණි", "Images සඳහා පමණි", "Unicode සඳහා පමණි"]
-  },
-  {
-    "question": "2’s complement method එක බහුලව භාවිතා වන්නේ කුමක් සඳහාද?",
-    "correct": "Negative numbers නිරූපණයට",
-    "wrong_answers": ["Images compress කිරීමට", "Internet connect කිරීමට", "Audio play කිරීමට", "RAM upgrade කිරීමට"]
-  },
-  {
-    "question": "Computer එකක් data process කරන්නේ ප්‍රධාන වශයෙන් කුමන number system එකෙන්ද?",
-    "correct": "Binary",
-    "wrong_answers": ["Decimal", "Octal", "Hexadecimal", "Roman"]
-  },
-  {
-    "question": "Hexadecimal F හි Binary අගය කුමක්ද?",
-    "correct": "1111",
-    "wrong_answers": ["1010", "1100", "1001", "0111"]
-  },
-  {
-    "question": "Hexadecimal A5 හි Decimal අගය කුමක්ද?",
-    "correct": "165",
-    "wrong_answers": ["155", "175", "160", "150"]
-  },
-  {
-    "question": "Binary 100000000 හි Decimal අගය කුමක්ද?",
-    "correct": "256",
-    "wrong_answers": ["255", "128", "512", "254"]
-  }
+{
+question:"Binary 1010 හි Decimal අගය කුමක්ද?",
+correct:"10",
+wrong_answers:["8","12","14","16"]
+},
+
+{
+question:"Decimal 15 හි Binary අගය කුමක්ද?",
+correct:"1111",
+wrong_answers:["1010","1100","1001","1110"]
+},
+
+{
+question:"1 Byte එකක bits ගණන කීයද?",
+correct:"8",
+wrong_answers:["4","16","32","64"]
+}
+
 ];
-    let quizData = [...originalQuizData];
 
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
+/* SHUFFLE */
 
-    // --- SECURITY LOGIC ---
-    function handleSecurityReset(reason) {
-        if (isQuizStarted) {
-            alert(`ආරක්ෂිත හේතූන් මත ප්‍රශ්නාවලිය Reset විය! (${reason})`);
-            resetQuizState();
-        }
-    }
+function shuffleArray(array){
 
-    // Tab Security Toggle Logic
-    document.addEventListener("visibilitychange", function() {
-        if (ENABLE_TAB_SECURITY && document.hidden) {
-            handleSecurityReset("Tab Switch Detected");
-        }
-    });
+for(let i=array.length-1;i>0;i--){
 
-    window.addEventListener("blur", function() {
-        if (ENABLE_TAB_SECURITY) {
-            handleSecurityReset("Window Focus Lost");
-        }
-    });
+const j=Math.floor(Math.random()*(i+1));
 
-    // Inspect Element (Always Blocked for Security)
-    document.addEventListener('contextmenu', e => e.preventDefault());
+[array[i],array[j]]=[array[j],array[i]];
 
-    document.onkeydown = function(e) {
-        if (e.keyCode == 123 || 
-           (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || 
-           (e.ctrlKey && e.keyCode == 85)) {
-            e.preventDefault();
-            handleSecurityReset("Inspect Element Attempted");
-            return false;
-        }
-    };
+}
 
-    function showInstructions() {
-        if (ENABLE_TAB_SECURITY) {
-            document.getElementById('instr-security-warning').classList.remove('hidden');
-        } else {
-            document.getElementById('instr-security-warning').classList.add('hidden');
-        }
-        instructionModal.classList.remove('hidden');
-    }
+return array;
 
-    function hideInstructions() {
-        instructionModal.classList.add('hidden');
-    }
+}
 
-    function validateAndStartQuiz() {
-        studentName = document.getElementById('student-name').value.trim();
-        studentClass = document.getElementById('student-class').value.trim();
+/* START QUIZ */
 
-        if (!studentName || !studentClass) {
-            document.getElementById('validation-message').classList.remove('hidden');
-            return;
-        }
-        startQuiz();
-    }
+function startQuiz(){
 
-    function startTimer() {
-        if (!ENABLE_TIMER) return;
-        if (timerInterval) clearInterval(timerInterval);
-        //timeRemaining = TIME_LIMIT;
-        updateTimerUI();
-        timerInterval = setInterval(() => {
-            timeRemaining--;
-            updateTimerUI();
-            if (timeRemaining <= 0) {
-                clearInterval(timerInterval);
-                handleTimeout();
-            }
-        }, 1000);
-    }
+studentName =
+document.getElementById("student-name").value.trim();
 
-    function updateTimerUI() {
-        if (!ENABLE_TIMER) return;
-		const minutes = Math.floor(timeRemaining / 60);
-		const seconds = timeRemaining % 60;
-        document.getElementById('time-left').textContent =`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`; //timeRemaining;
-        const progress = (timeRemaining / TIME_LIMIT) * 100;
-        document.getElementById('timer-progress').style.width = `${progress}%`;
-    }
-	
+studentClass =
+document.getElementById("student-class").value.trim();
 
-    function handleTimeout() {
-        isQuestionLocked = true;
-        const correct = quizData[currentQuestionIndex].correct;
-        document.querySelectorAll('.option-button').forEach(btn => {
-            if (btn.textContent.trim() === correct) btn.classList.add('correct-answer');
-            btn.classList.add('disabled');
-        });
-        const nb = document.getElementById('next-button');
-        nb.disabled = false;
-        nb.classList.replace('bg-gray-400', 'bg-blue-600');
-    }
+if(!studentName || !studentClass){
 
-    function renderQuestion() {
-        if (currentQuestionIndex >= quizData.length) {
-            showResults();
-            return;
-        }
+alert("නම සහ පන්තිය ඇතුළත් කරන්න");
 
-        isQuestionLocked = false;
-        const currentQ = quizData[currentQuestionIndex];
-        
-        let options = [...currentQ.distractors, currentQ.correct];
-        if (ENABLE_SHUFFLE) {
-            options = shuffleArray(options);
-        }
+return;
 
-        quizContainer.innerHTML = `
-            <div class="mb-4">
-                <p class="text-base font-semibold text-cyan-700 mb-2">ප්‍රශ්නය ${currentQuestionIndex + 1} / ${quizData.length}</p>
-                <h2 class="text-lg font-bold text-gray-700">${currentQ.question}</h2>
-            </div>
-            <div id="options-list" class="space-y-2">
-                ${options.map(opt => `
-                    <button class="option-button w-full text-left p-3 border border-gray-300 rounded-lg text-gray-700 bg-gray-50" onclick="checkAnswer(this, '${currentQ.correct.replace(/'/g, "\\'")}')">${opt}</button>
-                `).join('')}
-            </div>
-            <button id="next-button" onclick="nextQuestion()" class="mt-4 w-full bg-gray-400 text-white py-2.5 rounded-lg transition duration-300" disabled>ඊළඟ ප්‍රශ්නය (Next)</button>
-        `;
-        
-        if (ENABLE_TIMER) {
-            timerDisplay.classList.remove('hidden');
-            startTimer();
-        } else {
-            timerDisplay.classList.add('hidden');
-        }
-    }
+}
 
-    function checkAnswer(btn, correct) {
-        if (isQuestionLocked) return;
-        if (ENABLE_TIMER) clearInterval(timerInterval);
-        isQuestionLocked = true;
+quizData=[...originalQuizData];
 
-        if (btn.textContent.trim() === correct) {
-            score++;
-            btn.classList.add('correct-answer');
-        } else {
-            btn.classList.add('incorrect-answer');
-            document.querySelectorAll('.option-button').forEach(b => {
-                if (b.textContent.trim() === correct) b.classList.add('correct-answer');
-            });
-        }
+if(ENABLE_SHUFFLE){
 
-        document.querySelectorAll('.option-button').forEach(b => b.classList.add('disabled'));
-        const nb = document.getElementById('next-button');
-        nb.disabled = false;
-        nb.classList.replace('bg-gray-400', 'bg-blue-600');
-    }
+shuffleArray(quizData);
 
-    function nextQuestion() {
-        currentQuestionIndex++;
-        renderQuestion();
-    }
+}
 
-    function showResults() {
-	clearInterval(timerInterval);
-    
-    // විභාගය අවසන් කළ බව සටහන් කිරීම
-    localStorage.setItem('exam_done_it', 'true');
-        //isQuizStarted = false; 
-        quizContainer.classList.add('hidden');
-        timerDisplay.classList.add('hidden');
-        resultsContainer.classList.remove('hidden');
-        
-        document.getElementById('display-student-name').textContent = studentName;
-        document.getElementById('display-student-class').textContent = studentClass;
-        
-        const perc = Math.round((score / quizData.length) * 100);
-        document.getElementById('correct-answers-count').textContent = `නිවැරදි පිළිතුරු: ${score} / ${quizData.length}`;
-        document.getElementById('final-percentage').textContent = `ලකුණු: ${perc}%`;
-        
-        const now = new Date();
-        document.getElementById('result-date').textContent = `දිනය: ${now.toLocaleDateString('si-LK')} | වේලාව: ${now.toLocaleTimeString('si-LK')}`;
-    }
+document
+.getElementById("start-screen")
+.classList.add("hidden");
 
-    function captureResultsAsImage() {
-        const card = document.getElementById('result-card-to-capture');
-        html2canvas(card, { scale: 2 }).then(canvas => {
-            const link = document.createElement('a');
-            link.download = `Result_${studentName}.jpeg`;
-            link.href = canvas.toDataURL('image/jpeg', 0.9);
-            link.click();
-        });
-    }
+document
+.getElementById("quiz-container")
+.classList.remove("hidden");
 
-    function resetQuizState() {
-        currentQuestionIndex = 0;
-        score = 0;
-        isQuizStarted = false;
-        if (timerInterval) clearInterval(timerInterval);
-        startScreen.classList.remove('hidden');
-        quizContainer.classList.add('hidden');
-        resultsContainer.classList.add('hidden');
-        timerDisplay.classList.add('hidden');
-        document.getElementById('student-name').value = '';
-        document.getElementById('student-class').value = '';
-    }
+if(ENABLE_TIMER){
 
-    function startQuiz() {
-	// මීට පෙර විභාගය කර ඇත්දැයි පරීක්ෂා කිරීම
-    if (localStorage.getItem('exam_done_it') === 'false') {
-        alert("ඔබ මෙම විභාගය දැනටමත් එක් වරක් අවසන් කර ඇත!");
-        return; 
-    }
-        isQuizStarted = true;
-        quizData = [...originalQuizData];
-        if (ENABLE_SHUFFLE) {
-            shuffleArray(quizData);
-        }
-        startScreen.classList.add('hidden');
-        quizContainer.classList.remove('hidden');
-        renderQuestion();
-    }
+document
+.getElementById("timer-display")
+.classList.remove("hidden");
 
+startTimer();
 
+}
+
+renderQuestion();
+
+}
+
+/* TIMER */
+
+function startTimer(){
+
+clearInterval(timerInterval);
+
+updateTimerUI();
+
+timerInterval=setInterval(()=>{
+
+timeRemaining--;
+
+updateTimerUI();
+
+if(timeRemaining<=0){
+
+clearInterval(timerInterval);
+
+showResults();
+
+}
+
+},1000);
+
+}
+
+function updateTimerUI(){
+
+const minutes=Math.floor(timeRemaining/60);
+
+const seconds=timeRemaining%60;
+
+document.getElementById("time-left").innerText=
+`${minutes}:${seconds<10?'0':''}${seconds}`;
+
+const progress=
+(timeRemaining/TIME_LIMIT)*100;
+
+document
+.getElementById("timer-progress")
+.style.width=`${progress}%`;
+
+}
+
+/* RENDER QUESTION */
+
+function renderQuestion(){
+
+if(currentQuestionIndex>=quizData.length){
+
+showResults();
+
+return;
+
+}
+
+const q=quizData[currentQuestionIndex];
+
+let options=[
+...q.wrong_answers,
+q.correct
+];
+
+if(ENABLE_SHUFFLE){
+
+shuffleArray(options);
+
+}
+
+document.getElementById("quiz-container").innerHTML=`
+
+<div class="mb-4">
+
+<p class="text-blue-700 font-bold mb-2">
+ප්‍රශ්නය ${currentQuestionIndex+1}
+/
+${quizData.length}
+</p>
+
+<h2 class="text-xl font-bold text-gray-800">
+${q.question}
+</h2>
+
+</div>
+
+<div class="space-y-3">
+
+${options.map(option=>`
+
+<button
+class="option-button"
+onclick="checkAnswer(this,'${q.correct}')">
+
+${option}
+
+</button>
+
+`).join("")}
+
+</div>
+
+`;
+
+}
+
+/* CHECK ANSWER */
+
+function checkAnswer(button,correct){
+
+const buttons=
+document.querySelectorAll(".option-button");
+
+buttons.forEach(btn=>{
+
+btn.classList.add("disabled");
+
+if(btn.innerText.trim()===correct){
+
+btn.classList.add("correct-answer");
+
+}
+
+});
+
+if(button.innerText.trim()===correct){
+
+score++;
+
+}else{
+
+button.classList.add("incorrect-answer");
+
+}
+
+setTimeout(()=>{
+
+currentQuestionIndex++;
+
+renderQuestion();
+
+},1000);
+
+}
+
+/* RESULTS */
+
+function showResults(){
+
+clearInterval(timerInterval);
+
+document
+.getElementById("quiz-container")
+.classList.add("hidden");
+
+document
+.getElementById("timer-display")
+.classList.add("hidden");
+
+document
+.getElementById("results-container")
+.classList.remove("hidden");
+
+document
+.getElementById("display-student-name")
+.innerText=studentName;
+
+document
+.getElementById("display-student-class")
+.innerText=studentClass;
+
+const percentage=
+Math.round(
+(score/quizData.length)*100
+);
+
+document
+.getElementById("correct-answers-count")
+.innerText=
+`නිවැරදි පිළිතුරු : ${score}/${quizData.length}`;
+
+document
+.getElementById("final-percentage")
+.innerText=
+`${percentage}%`;
+
+const now=new Date();
+
+document
+.getElementById("result-date")
+.innerText=
+now.toLocaleString();
+
+}
+
+/* DOWNLOAD RESULT */
+
+function captureResultsAsImage(){
+
+html2canvas(
+document.getElementById("result-card-to-capture")
+).then(canvas=>{
+
+const link=document.createElement("a");
+
+link.download="result.jpeg";
+
+link.href=
+canvas.toDataURL();
+
+link.click();
+
+});
+
+}
+
+/* RESET */
+
+function resetQuizState(){
+
+location.reload();
+
+}
 
 </script>
 
-<script src="Questions.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
