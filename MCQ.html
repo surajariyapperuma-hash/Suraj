@@ -186,267 +186,509 @@ const ENABLE_TAB_SECURITY = true;
 
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
+ [
   {
-    "question": "Binary 1010 දශමයට (Decimal) පරිවර්තනය කළ විට ලැබෙන්නේ?",
-    "correct": "10",
-    "distractors": ["8", "12", "14", "16"]
+    "question": "පරිගණක මෙහෙයුම් පද්ධතියක් (Operating System) අයත් වන්නේ කුමන මෘදුකාංග ගණයටද?",
+    "correct": "පද්ධති මෘදුකාංග (System Software)",
+    "distractors": ["යෙදුම් මෘදුකාංග (Application Software)", "උපයෝගිතා මෘදුකාංග (Utility Software)", "මෘදුකාංග පිරික්සුම් (Malware)", "ප්‍රභව විවෘත මෘදුකාංග (Open Source Software)"]
   },
   {
-    "question": "Binary 1101 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
-    "correct": "13",
-    "distractors": ["12", "14", "11", "10"]
+    "question": "පරිගණක පද්ධතියක දෘඪාංග (Hardware) සහ යෙදුම් මෘදුකාංග (Applications) අතර සන්නිවේදනය සපයන ප්‍රධාන සම්බන්ධකය කුමක්ද?",
+    "correct": "මෙහෙයුම් පද්ධතිය (Operating System)",
+    "distractors": ["මධ්‍ය සැකසුම් ඒකකය (CPU)", "ප්‍රධාන මතකය (RAM)", "පරිශීලකයා (User)", "උපක්‍රම ධාවක (Device Drivers)"]
   },
   {
-    "question": "Binary 1001 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
-    "correct": "9",
-    "distractors": ["8", "7", "10", "11"]
+    "question": "මෙහෙයුම් පද්ධතියක හරය (Core) ලෙස හැඳින්වෙන, සියලු මූලික පාලන කටයුතු සිදුකරන සංරචකය කුමක්ද?",
+    "correct": "කර්නලය (Kernel)",
+    "distractors": ["වැඩතල පරිසරය (Desktop Environment)", "උපක්‍රම ධාවකය (Device Driver)", "ප්‍රේරකය (Prompt)", "කවුළුව (Window)"]
   },
   {
-    "question": "Binary 1111 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
-    "correct": "15",
-    "distractors": ["14", "13", "16", "12"]
+    "question": "Apple Mac OS X සහ iOS මෙහෙයුම් පද්ධතිවල භාවිතා වන කර්නල් (Kernel) වර්ගය කුමක්ද?",
+    "correct": "XNU kernel",
+    "distractors": ["WindowsNT kernel", "Linux kernel", "DOS kernel", "Unix kernel"]
   },
   {
-    "question": "Binary 0101 දශමයට පරිවර්තනය කළ විට ලැබෙන්නේ?",
-    "correct": "5",
-    "distractors": ["4", "6", "7", "8"]
+    "question": "පරිගණක මෙහෙයුම් පද්ධති පරිණාමයේ (Evolution) මුල්ම අවධිය (Late 1940s - Mid 1950s) හැඳින්විය හැක්කේ කුමන නමකින්ද?",
+    "correct": "මෙහෙයුම් පද්ධති නොමැති අවධිය (No Operating System)",
+    "distractors": ["සරල කාණ්ඩ පද්ධති (Simple Batch Systems)", "කාල විභජන පද්ධති (Time Sharing Systems)", "බහු ක්‍රමලේඛිත පද්ධති (Multi-programmed Systems)", "තථ්‍ය කාල පද්ධති (Real-time Systems)"]
+  },
+  {
+    "question": "මධ්‍ය සැකසුම් ඒකකයේ (CPU) කාලය උපරිම ලෙස ප්‍රයෝජනයට ගැනීමට එකවර ක්‍රියාවලි කිහිපයක් ප්‍රධාන මතකයේ රඳවා තබා ගන්නා පද්ධති වර්ගය කුමක්ද?",
+    "correct": "බහු ක්‍රමලේඛිත කාණ්ඩ පද්ධති (Multi-Programmed Batch Systems)",
+    "distractors": ["සරල කාණ්ඩ පද්ධති (Simple Batch Systems)", "ඒක පරිශීලක පද්ධති (Single User Systems)", "තථ්‍ය කාල පද්ධති (Real Time Systems)", "විධාන පේලි පද්ධති (CLI Systems)"]
+  },
+  {
+    "question": "පරිශීලකයන් කිහිපදෙනෙකුට එකවර පරිගණකයක සම්පත් (CPU කාලය) බෙදාගනිමින් වැඩ කිරීමට අවස්ථාව සලසන පද්ධති මොනවාද?",
+    "correct": "කාල විභජන පද්ධති (Time Sharing Systems)",
+    "distractors": ["සරල කාණ්ඩ පද්ධති (Simple Batch Systems)", "තථ්‍ය කාල පද්ධති (Real Time Systems)", "ඒක කාර්ය පද්ධති (Single Task Systems)", "DOS පද්ධති (DOS Systems)"]
+  },
+  {
+    "question": "ක්‍රමලේඛයකින් මධ්‍ය සැකසුම් ඒකකය (CPU) තුළ ක්‍රියාත්මක වන සක්‍රීය කොටසක් හඳුන්වනු ලබන්නේ කුමන නමකින්ද?",
+    "correct": "ක්‍රියායනයක් (Process)",
+    "distractors": ["වැඩසටහනක් (Program)", "ගොනුවක් (File)", "පොටක් (Thread)", "මතක කොටසක් (Memory Block)"]
+  },
+  {
+    "question": "මෙහෙයුම් පද්ධතියක් මඟින් මධ්‍ය සැකසුම් ඒකකය (CPU) කාලය කළමනාකරණය කිරීම සඳහා භාවිත කරනු ලබන උපක්‍රමය කුමක්ද?",
+    "correct": "ක්‍රියාවලි උපලේඛනය (Process Scheduling)",
+    "distractors": ["අවකාශ කළමනාකරණය (Space Management)", "ගොනු පද්ධතිය (File System)", "උපාංග පාලනය (Device Control)", "සුරක්ෂිතතාව (Security)"]
+  },
+  {
+    "question": "ප්‍රධාන මතකය (RAM) සහ දෘඩ තැටිය (Hard Disk) වැනි සම්පත් මෙහෙයුම් පද්ධතියක් මඟින් කළමනාකරණය කරනු ලබන්නේ කුමන ක්‍රමවේදයට අනුවද?",
+    "correct": "අවකාශය මඟින් සම්පත් කළමනාකරණය (Space Multiplexing)",
+    "distractors": ["කාලය මඟින් සම්පත් කළමනාකරණය (Time Multiplexing)", "ක්‍රියාවලි උපලේඛනය (Process Scheduling)", "පරිශීලක අතුරුමුහුණත් මඟින් (User Interface)", "තථ්‍ය කාල සැකසුම් මඟින් (Real Time Processing)"]
+  },
+  {
+    "question": "විධාන සහ උපදෙස් ඇතුළත් කිරීම සඳහා ප්‍රේරකයක් (Prompt) භාවිත වන, පරිශීලකයා විසින් සියලු විධාන යතුරු ලියනය කළ යුතු අතුරුමුහුණත් වර්ගය කුමක්ද?",
+    "correct": "විධාන පේලි අතුරු මුහුණත (Command Line Interface / CLI)",
+    "distractors": ["චිත්‍රක පරිශීලක අතුරුමුහුණත (Graphical User Interface / GUI)", "මෙනු පාදක අතුරුමුහුණත (Menu Driven Interface)", "ස්පර්ශ අතුරුමුහුණත (Touch Interface)", "හඬ පාදක අතුරුමුහුණත (Voice Interface)"]
+  },
+  {
+    "question": "චිත්‍රක පරිශීලක අතුරුමුහුණතක (GUI) දක්නට ලැබෙන 'WIMP' යන කෙටි යෙදුමෙහි නිවැරදි අර්ථය කුමක්ද?",
+    "correct": "Windows, Icons, Menus, Pointer",
+    "distractors": ["Windows, Internet, Memory, Process", "Word, Image, Mouse, Printer", "Web, Icon, Menu, Program", "Windows, Interface, Management, Pointer"]
+  },
+  {
+    "question": "එක් වේලාවකට එක පරිශීලකයෙකුට පමණක් භාවිතා කළ හැකි අතර, එම පරිශීලකයාටද එකවර කළ හැක්කේ එකම කාර්යයක් (Task) පමණක් වන මෙහෙයුම් පද්ධති වර්ගය කුමක්ද?",
+    "correct": "ඒක පරිශීලක - ඒක කාර්ය (Single user - Single task)",
+    "distractors": ["ඒක පරිශීලක - බහු කාර්ය (Single user - Multi task)", "බහු පරිශීලක - බහු කාර්ය (Multi user - Multi task)", "බහු පොට පද්ධති (Multi-threading Systems)", "තථ්‍ය කාල පද්ධති (Real Time Systems)"]
+  },
+  {
+    "question": "සාමාන්‍යයෙන් අප නිවෙස්වල භාවිත කරන Desktop හෝ Laptop පරිගණකවල ඇති Windows 10/11 හෝ Mac OS අයත් වන මෙහෙයුම් පද්ධති වර්ගීකරණය කුමක්ද?",
+    "correct": "ඒක පරිශීලක - බහු කාර්ය (Single user - Multi task)",
+    "distractors": ["ඒක පරිශීලක - ඒක කාර්ය (Single user - Single task)", "බහු පරිශීලක - බහු කාර්ය (Multi user - Multi task)", "තථ්‍ය කාල පද්ධති (Real-time Systems)", "සරල කාණ්ඩ පද්ධති (Simple Batch Systems)"]
+  },
+  {
+    "question": "එක් මෘදුකාංගයක හෝ ක්‍රියාවලියක (Process) කොටස් වෙන් වෙන් වශයෙන් සමගාමීව ධාවනය කිරීමේ මෙහෙයුම් පද්ධති හැකියාව හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "බහු අනුක්‍රියායනය / බහුපොට (Multi-threading)",
+    "distractors": ["බහු කාර්යය (Multi-tasking)", "බහු පරිශීලක (Multi-user)", "කාල විභජනය (Time Sharing)", "කාණ්ඩ සැකසුම (Batch Processing)"]
+  },
+  {
+    "question": "ආදානයක් ලැබුණු විගස කිසිදු ප්‍රමාදයකින් (Buffering delay) තොරව ක්ෂණිකව දත්ත සකසා ප්‍රතිදාන ලබා දිය යුතු පද්ධතිවල (උදා: ATM යන්ත්‍ර, රොබෝ පාලන පද්ධති) භාවිත වන මෙහෙයුම් පද්ධති වර්ගය කුමක්ද?",
+    "correct": "තථ්‍ය කාල මෙහෙයුම් පද්ධති (Real Time Operating Systems - RTOS)",
+    "distractors": ["කාල විභජන පද්ධති (Time Sharing Systems)", "කාණ්ඩ මෙහෙයුම් පද්ධති (Batch Operating Systems)", "විධාන පේලි පද්ධති (CLI Systems)", "ජාල මෙහෙයුම් පද්ධති (Network Operating Systems)"]
+  },
+  {
+    "question": "ද්විතීක ආචයන උපාංගයක (Hard Disk) දත්ත ගබඩා කිරීමට සහ නැවත ලබා ගැනීම සඳහා මෙහෙයුම් පද්ධතිය මඟින් සපයන වියුක්ත යාන්ත්‍රණය (Abstract Mechanism) කුමක්ද?",
+    "correct": "දත්ත ගොනුව (Data File)",
+    "distractors": ["මතක කොටස (Memory Sector)", "බහලුම (Folder / Directory)", "උපක්‍රම ධාවකය (Device Driver)", "කර්නලය (Kernel)"]
+  },
+  {
+    "question": "ගොනුවක නම අවසානයේ ඇති තිතකින් (.doc, .jpg, .exe) වෙන් වන කොටස (File Extension) මඟින් මෙහෙයුම් පද්ධතියට ලබා දෙන ඉඟිය කුමක්ද?",
+    "correct": "ගොනුව අයත් වන වර්ගය (File Type)",
+    "distractors": ["ගොනුවේ ප්‍රමාණය (File Size)", "ගොනුව නිර්මාණය කළ දිනය (Created Date)", "ගොනුව සඟවා ඇති බව (Hidden Attribute)", "ගොනුවේ ආරක්ෂාව (File Security)"]
+  },
+  {
+    "question": "පරිශීලකයාට දෘඩ තැටිය තුළ ඇති ගොනු, බහලුම් (Folders) සහ ගොනු ව්‍යුහයන් (Tree Structure) ලෙස පහසුවෙන් දැකගත හැකි ආකාරය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "තර්කානුකූල දර්ශනය (Logical View)",
+    "distractors": ["භෞතික දර්ශනය (Physical View)", "ගොනු උපලක්ෂණ (File Attributes)", "ගොනු පද්ධතිය (File System)", "ගොනු ආරක්ෂාව (File Security)"]
+  },
+  {
+    "question": "ගොනුවක් දෘඩ තැටියේ පථ (Tracks) සහ ඛණ්ඩ (Sectors) ලෙස සැබවින්ම ගබඩා වී ඇති ආකාරය හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "භෞතික දර්ශනය (Physical View)",
+    "distractors": ["තර්කානුකූල දර්ශනය (Logical View)", "ගොනු ප්‍රරූප (File Types)", "WIMP දර්ශනය (WIMP View)", "කර්නල් දර්ශනය (Kernel View)"]
+  },
+  {
+    "question": "ගොනුවක ප්‍රමාණය, නිර්මාණය කළ දිනය, වේලාව සහ එය කියවීමට පමණක් හැකිද (Read-only) යන්න දැක්වෙන දත්ත සමූහය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "ගොනු උපලක්ෂණ (File Attributes)",
+    "distractors": ["ගොනු පද්ධති (File Systems)", "ගොනු දිගු (File Extensions)", "ගොනු ව්‍යුහය (File Structure)", "ගොනු නාමාවලි (Directories)"]
+  },
+  {
+    "question": "මයික්‍රොසොෆ්ට් වින්ඩෝස් (Windows) මෙහෙයුම් පද්ධතිවල බහුලවම භාවිත වන නවීන ගොනු පද්ධතිය (File System) කුමක්ද?",
+    "correct": "NTFS (New Technology File System)",
+    "distractors": ["FAT32 (File Allocation Table 32)", "ext4 (Extended File System 4)", "HFS+ (Hierarchical File System)", "APFS (Apple File System)"]
+  },
+  {
+    "question": "අනවසර පරිශීලකයන්ගෙන් දත්ත ආරක්ෂා කිරීම සඳහා, පරිශීලකයාගේ අනන්‍යතාවය තහවුරු කරගැනීමට මෙහෙයුම් පද්ධතියක් මඟින් භාවිත කරන මූලිකම ක්‍රමවේදය කුමක්ද?",
+    "correct": "සහතික කිරීම / මුරපද භාවිතය (Authentication / Passwords)",
+    "distractors": ["ගොනු උපලක්ෂණ වෙනස් කිරීම (Changing File Attributes)", "ප්‍රවේශ වරප්‍රසාද (Access Privileges)", "තර්කානුකූල දර්ශනය (Logical View)", "උපක්‍රම ධාවක යාවත්කාලීන කිරීම (Updating Device Drivers)"]
+  },
+  {
+    "question": "විවිධ පරිශීලකයන්ට ගොනුවක් කියවීමට පමණක් (Read), වෙනස් කිරීමට (Write) හෝ ක්‍රියාත්මක කිරීමට (Execute) ඇති අවසරයන් පාලනය කිරීම මෙහෙයුම් පද්ධතිය තුළ හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "ප්‍රවේශ වරප්‍රසාද (Access Privileges)",
+    "distractors": ["සහතික කිරීම (Authentication)", "ගොනු ප්‍රරූප (File Types)", "කාණ්ඩ සැකසුම (Batch Processing)", "ක්‍රියාවලි උපලේඛනය (Process Scheduling)"]
+  },
+  {
+    "question": "පරිගණකය පණගන්වන අවස්ථාවේදී (Booting), මෙහෙයුම් පද්ධතිය ප්‍රධාන මතකයට (RAM) ඇතුළත් කිරීමට මුලින්ම ක්‍රියාත්මක වන රොම් (ROM) මතකයේ ඇති කුඩා ක්‍රමලේඛය කුමක්ද?",
+    "correct": "Bootstrap Loader (BIOS)",
+    "distractors": ["Kernel", "Device Driver", "Task Manager", "Command Prompt"]
+  },
+  {
+    "question": "පරිගණකයක් පණගැන්වීමේ ක්‍රියාවලිය (Booting) ප්‍රධාන කොටස් දෙකකට බෙදිය හැකිය. ඒවා මොනවාද?",
+    "correct": "Cold booting සහ Warm booting",
+    "distractors": ["Hard booting සහ Soft booting", "Fast booting සහ Slow booting", "System booting සහ Application booting", "Internal booting සහ External booting"]
+  },
+  {
+    "question": "ක්‍රියාත්මක වෙමින් පවතින පරිගණක පද්ධතියක් නිවා දමන්නේ නැතුව (Shutdown නොකර) නැවත පණගැන්වීම (Restart) හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "Warm Booting",
+    "distractors": ["Cold Booting", "Hard Booting", "Power Booting", "Flash Booting"]
+  },
+  {
+    "question": "මෙහෙයුම් පද්ධතියක් මඟින් ක්‍රියාවලි (Processes) කළමනාකරණය කිරීමේදී, ක්‍රියාවලියක් නිර්මාණය වූ මුල්ම අවස්ථාවේ පවතින තත්ත්වය (Process State) කුමක්ද?",
+    "correct": "නව තත්ත්වය (New State)",
+    "distractors": ["සූදානම් තත්ත්වය (Ready State)", "ධාවන තත්ත්වය (Running State)", "ප්‍රතිලම්භිත තත්ත්වය (Blocked State)", "අවසන් වූ තත්ත්වය (Terminated State)"]
+  },
+  {
+    "question": "ප්‍රධාන මතකය (RAM) තුළ ධාවනය වීමට සූදානම්ව, CPU කාලය ලැබෙන තෙක් බලා සිටින ක්‍රියාවලීන් පවතින තත්ත්වය කුමක්ද?",
+    "correct": "සූදානම් තත්ත්වය (Ready State)",
+    "distractors": ["නව තත්ත්වය (New State)", "ධාවන තත්ත්වය (Running State)", "ප්‍රතිලම්භිත තත්ත්වය (Blocked State)", "අත්හිටුවන ලද තත්ත්වය (Suspended State)"]
+  },
+  {
+    "question": "ධාවනය වෙමින් පවතින ක්‍රියාවලියකට කිසියම් ආදාන/ප්‍රතිදාන (I/O) කාර්යයක් සම්පූර්ණ කරගැනීමට සිදු වූ විට, එය මාරු වන තත්ත්වය කුමක්ද?",
+    "correct": "අවහිර වූ / බලාපොරොත්තුවන තත්ත්වය (Blocked / Waiting State)",
+    "distractors": ["සූදානම් තත්ත්වය (Ready State)", "නව තත්ත්වය (New State)", "අවසන් වූ තත්ත්වය (Terminated State)", "ධාවන තත්ත්වය (Running State)"]
+  },
+  {
+    "question": "ක්‍රියාවලියක සියලුම දත්ත සහ වත්මන් තත්ත්වය පිළිබඳ තොරතුරු (Process ID, Program Counter, CPU Registers) ගබඩා කර ඇති මෙහෙයුම් පද්ධති ව්‍යුහය කුමක්ද?",
+    "correct": "ක්‍රියාවලි පාලන කොටස (Process Control Block - PCB)",
+    "distractors": ["පද්ධති පාලන කොටස (System Control Block)", "මතක පාලන කොටස (Memory Control Block)", "ගොනු පාලන කොටස (File Control Block)", "කර්නල් පාලන කොටස (Kernel Control Block)"]
+  },
+  {
+    "question": "දිගුකාලීන නියමකරණ්‍ය (Long-term Scheduler / Job Scheduler) මඟින් සිදු කරනු ලබන ප්‍රධාන කාර්යය කුමක්ද?",
+    "correct": "ද්විතීක ආචයනයෙන් ක්‍රියාවලි තෝරා ප්‍රධාන මතකයේ (RAM) Ready Queue වෙත ඇතුළත් කිරීම.",
+    "distractors": ["Ready Queue හි ඇති ක්‍රියාවලියක් CPU වෙත ලබා දීම.", "I/O කාර්යයක් සඳහා ක්‍රියාවලියක් අවහිර කිරීම.", "ධාවනය වන ක්‍රියාවලියක් අවසන් කිරීම.", "ප්‍රධාන මතකයේ ඉඩ මදි වූ විට ක්‍රියාවලි ද්විතීක ආචයනයට තාවකාලිකව මාරු කිරීම."]
+  },
+  {
+    "question": "Ready Queue හි ඇති ක්‍රියාවලීන් අතරින් ඊළඟට CPU එක වෙත ලබා දිය යුත්තේ කුමන ක්‍රියාවලියද යන්න තීරණය කරන්නේ කවුද?",
+    "correct": "කෙටිකාලීන උපලේඛකය (Short-term Scheduler / CPU Scheduler)",
+    "distractors": ["දිගුකාලීන උපලේඛකය (Long-term Scheduler)", "මධ්‍යකාලීන උපලේඛකය (Medium-term Scheduler)", "මතක කළමනාකරු (Memory Manager)", "උපාංග පාලකය (Device Controller)"]
+  },
+  {
+    "question": "කෙටිකාලීන උපලේඛකය (Short-term Scheduler) විසින් තෝරාගත් ක්‍රියාවලියකට CPU හි පාලනය සැබවින්ම පවරා දෙන සංරචකය කුමක්ද?",
+    "correct": "විශ්ලේෂකය (Dispatcher)",
+    "distractors": ["කර්නලය (Kernel)", "බාධාව (Interrupt)", "උපලේඛකය (Scheduler)", "ප්‍රේරකය (Prompt)"]
+  },
+  {
+    "question": "පළමුව පැමිණෙන ක්‍රියාවලියට පළමුව CPU කාලය ලබා දෙන, පෙරළා ගැනීමේ අයිතියක් නොමැති (Non-preemptive) උපලේඛන ඇල්ගොරිතමය කුමක්ද?",
+    "correct": "First Come First Served (FCFS)",
+    "distractors": ["Shortest Job First (SJF)", "Round Robin (RR)", "Priority Scheduling", "Multi-level Queue"]
+  },
+  {
+    "question": "Round Robin (RR) උපලේඛන ඇල්ගොරිතමයේදී (Scheduling Algorithm) සෑම ක්‍රියාවලියකටම ලබා දෙන ස්ථාවර කුඩා CPU කාල පරිච්ඡේදය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "කාල කොටස / ක්වොන්ටමය (Time Slice / Quantum)",
+    "distractors": ["CPU චක්‍රය (CPU Cycle)", "ප්‍රමාද කාලය (Latency Time)", "ප්‍රතිචාර කාලය (Response Time)", "ධාවන කාලය (Burst Time)"]
+  },
+  {
+    "question": "ක්‍රියාවලි දෙකක් හෝ කිහිපයක් එකිනෙකා සතු සම්පත් නිදහස් කරන තෙක් සදාකාලිකව බලා සිටීමේ අකර්මණ්‍ය තත්ත්වය මෙහෙයුම් පද්ධතිවල හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "අගුලු වැටීම (Deadlock)",
+    "distractors": ["සහයෝගීතාවය (Cooperation)", "බාධාව (Interrupt)", "සංකේන්ද්‍රණය (Starvation)", "පිටු දෝෂය (Page Fault)"]
+  },
+  {
+    "question": "ප්‍රධාන මතකය (RAM) භෞතිකව ස්ථාවර ප්‍රමාණයේ කුඩා කොටස්වලට බෙදා වෙන් කිරීම මෙහෙයුම් පද්ධති සිද්ධාන්තවලදී හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "රාමු (Frames)",
+    "distractors": ["පිටු (Pages)", "ඛණ්ඩ (Segments)", "ගොනු (Files)", "පථ (Tracks)"]
+  },
+  {
+    "question": "පිටුයොමුගත කිරීමේදී (Paging) තර්කානුකූල මතකය (Logical Memory) සමාන ප්‍රමාණයේ කොටස්වලට බෙදනු ලබන අතර එම කොටස් හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "පිටු (Pages)",
+    "distractors": ["රාමු (Frames)", "ඛණ්ඩ (Segments)", "වලලු (Sectors)", "බ්ලොක් (Blocks)"]
+  },
+  {
+    "question": "පරිගණකයක ඇති භෞතික RAM මතකයේ ප්‍රමාණයට වඩා වැඩි ප්‍රමාණයක වැඩසටහන් ධාවනය කිරීමට මෙහෙයුම් පද්ධතිය භාවිත කරන තාක්ෂණය කුමක්ද?",
+    "correct": "අතථ්‍ය මතකය (Virtual Memory)",
+    "distractors": ["හැඹිලි මතකය (Cache Memory)", "සසම්භාවී මතකය (RAM)", "ස්ථාවර මතකය (ROM)", "ෆ්ලෑෂ් මතකය (Flash Memory)"]
+  },
+  {
+    "question": "අතථ්‍ය මතක ක්‍රියාවලියකදී (Virtual Memory) ප්‍රධාන මතකයේ නොමැති පිටුවක් (Page) ක්‍රියාත්මක කිරීමට CPU එක උත්සාහ කළ විට ඇති වන තත්ත්වය කුමක්ද?",
+    "correct": "පිටු දෝෂය (Page Fault)",
+    "distractors": ["අගුලු වැටීම (Deadlock)", "මතක කාන්දුව (Memory Leak)", "බාධාව (Interrupt)", "පද්ධති බිඳවැටීම (System Crash)"]
+  },
+  {
+    "question": "ප්‍රධාන මතකය (RAM) සහ ද්විතීක මතකය (Hard disk) අතර පිටු (Pages) හුවමාරු කරගැනීමේ ක්‍රියාවලිය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "Swapping / Paging",
+    "distractors": ["Scheduling", "Formatting", "Booting", "Interrupting"]
+  },
+  {
+    "question": "පරිගණක පද්ධතියක දෘඪාංග උපාංගයක් (උදා: Keyboard, Mouse) මඟින් ක්ෂණික අවධානය ලබා ගැනීම සඳහා CPU වෙත යවනු ලබන සංඥාව කුමක්ද?",
+    "correct": "බාධා සංඥාව (Interrupt)",
+    "distractors": ["පද්ධති ඇමතුම (System Call)", "විධානය (Command)", "PCB සංඥාව", "ක්වොන්ටම සංඥාව (Quantum)"]
+  },
+  {
+    "question": "බාධා සංඥාවක් (Interrupt) පැමිණි විට, වත්මන් කාර්යය නතර කර එම බාධාවට අදාළව ක්‍රියාත්මක වන මෙහෙයුම් පද්ධති කේතය (Routine) කුමක්ද?",
+    "correct": "Interrupt Service Routine (ISR)",
+    "distractors": ["Process Control Block (PCB)", "Bootstrap Loader", "Device Driver Code", "File System Routine"]
+  },
+  {
+    "question": "පරිගණකයකට අලුතින් සම්බන්ධ කරන ලද දෘඪාංග උපාංගයක් (Hardware device) නිවැරදිව ක්‍රියා කරවීම සඳහා මෙහෙයුම් පද්ධතියට අත්‍යවශ්‍ය වන විශේෂ මෘදුකාංගය කුමක්ද?",
+    "correct": "උපක්‍රම ධාවකය (Device Driver)",
+    "distractors": ["යෙදුම් මෘදුකාංගය (Application Software)", "සම්පාදකය (Compiler)", "උපයෝගිතා මෘදුකාංගය (Utility Software)", "කර්නලය (Kernel)"]
+  },
+  {
+    "question": "භෞතික මතකය (RAM) තුළ ක්‍රියාවලි ඇතුළත් කිරීමේදී සහ ඉවත් කිරීමේදී මතකය අතරමැද භාවිත කළ නොහැකි කුඩා හිස් ඉඩ ඉතිරිවීමේ ගැටලුව හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "ඛණ්ඩනිකරණය (Fragmentation)",
+    "distractors": ["පිටුගත කිරීම (Paging)", "අගුලු වැටීම (Deadlock)", "ස්විචනය (Swapping)", "උපලේඛනය (Scheduling)"]
+  },
+  {
+    "question": "ක්‍රියාවලියකට වෙන් කරන ලද මතක කොටසක් ඇතුළතම භාවිතයට නොගෙන ඉතිරි වන හිස් ඉඩ ප්‍රමාණය හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "අභ්‍යන්තර ඛණ්ඩනය (Internal Fragmentation)",
+    "distractors": ["බාහිර ඛණ්ඩනය (External Fragmentation)", "පිටු දෝෂය (Page Fault)", "අතථ්‍ය මතකය (Virtual Memory)", "මතක විභජනය (Memory Partitioning)"]
+  },
+  {
+    "question": "යෙදුම් මෘදුකාංගයක් (Application) මඟින් මෙහෙයුම් පද්ධතියේ කර්නලය (Kernel) වෙතින් සේවාවක් ලබා ගැනීම සඳහා සිදු කරන ඉල්ලීම හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "පද්ධති ඇමතුම (System Call)",
+    "distractors": ["බාධා කිරීම (Interrupt)", "විධානය (Command)", "ප්‍රොම්ප්ට් (Prompt)", "ක්‍රියාවලි පාලනය (Process Control)"]
+  },
+  {
+    "question": "දෘඩ තැටියක (Hard Disk) දත්ත ගබඩා කිරීමට පෙර එය පථ (Tracks) සහ ඛණ්ඩ (Sectors) වලට වෙන් කරමින් සකස් කිරීමේ ක්‍රියාවලිය කුමක්ද?",
+    "correct": "ආකෘතිකරණය (Formatting)",
+    "distractors": ["ඛණ්ඩනය (Fragmentation)", "බූට් කිරීම (Booting)", "පිටුගත කිරීම (Paging)", "උපලේඛනය (Scheduling)"]
+  },
+  {
+    "question": "පහත සඳහන් මෘදුකාංග අතරින් ප්‍රභව විවෘත (Open Source) මෙහෙයුම් පද්ධතියක් සඳහා උදාහරණයක් වන්නේ කුමක්ද?",
+    "correct": "Linux",
+    "distractors": ["MS Windows 11", "Apple macOS", "MS DOS", "iOS"]
+  },
+  {
+    "question": "ක්‍රියාවලියක් (Process) ධාවනය වෙමින් පවතින විට, හදිසියේම ඊට වඩා ප්‍රමුඛතාවයෙන් වැඩි (Higher Priority) ක්‍රියාවලියක් පැමිණියහොත් වත්මන් ක්‍රියාවලිය නවත්වා නව ක්‍රියාවලියට CPU එක ලබා දීමේ ක්‍රමවේදය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "පෙරළා ගැනීමේ අයිතිය ඇති උපලේඛනය (Preemptive Scheduling)",
+    "distractors": ["පෙරළා ගැනීමේ අයිතිය නොමැති උපලේඛනය (Non-preemptive Scheduling)", "කාණ්ඩ උපලේඛනය (Batch Scheduling)", "ස්ථාවර උපලේඛනය (Static Scheduling)", "සමගාමී උපලේඛනය (Concurrent Scheduling)"]
+  },
+  {
+    "question": "Shortest Job First (SJF) උපලේඛන ඇල්ගොරිතමයේදී, ඊළඟට ධාවනය සඳහා තෝරා ගනු ලබන්නේ කුමන ආකාරයේ ක්‍රියාවලියක්ද?",
+    "correct": "අඩුම ධාවන කාලයක් (Shortest CPU Burst Time) ඇති ක්‍රියාවලිය",
+    "distractors": ["පළමු පැමිණේන්නාට පලමු සේවය", "ප්‍රමුඛතා පාදක (Highest Priority) ඇති ක්‍රියාවලිය", "වැඩිම මතක ධාරිතාවක් (RAM) අවශ්‍ය ක්‍රියාවලිය", "අවසන් වරට නිර්මාණය කරන ලද ක්‍රියාවලිය"]
+  },
+  {
+    "question": "යම් ක්‍රියාවලියක් සූදානම් තත්ත්වයේ (Ready State) සිට ධාවන තත්ත්වය (Running State) වෙත මාරු කිරීම සිදු කරනු ලබන්නේ කුමන සංරචකය මඟින්ද?",
+    "correct": "කෙටිකාලීන උපලේඛකය (Short-term Scheduler)",
+    "distractors": ["දිගුකාලීන උපලේඛකය (Long-term Scheduler)", "මධ්‍යකාලීන උපලේඛකය (Medium-term Scheduler)", "උපාංග කළමනාකරු (Device Manager)", "ගොනු කළමනාකරු (File Manager)"]
+  },
+  {
+    "question": "ප්‍රධාන මතකයේ (RAM) ඉඩ ප්‍රමාණය සීමිත වන විට, Ready Queue හි ඇති ක්‍රියාවලි කිහිපයක් තාවකාලිකව ද්විතීක ආචයනය (Hard Disk) වෙත මාරු කරන්නේ කුමන උපලේඛකය මඟින්ද?",
+    "correct": "මධ්‍යකාලීන උපලේඛකය (Medium-term Scheduler)",
+    "distractors": ["කෙටිකාලීන උපලේඛකය (Short-term Scheduler)", "දිගුකාලීන උපලේඛකය (Long-term Scheduler)", "I/O උපලේඛකය (I/O Scheduler)", "කර්නල් උපලේඛකය (Kernel Scheduler)"]
+  },
+  {
+    "question": "පරිගණක මෙහෙයුම් පද්ධතියක් මඟින් මතක කළමනාකරණය (Memory Management) සිදු කිරීමේ ප්‍රධානතම අරමුණ කුමක්ද?",
+    "correct": "ප්‍රධාන මතකය (RAM) කාර්යක්ෂමව ක්‍රියාවලි අතර බෙදාහැරීම සහ පාලනය කිරීම",
+    "distractors": ["ද්විතීක ආචයන උපාංගවල ඉඩ වැඩි කිරීම", "පරිගණකයේ ආරක්ෂාව තහවුරු කිරීම", "නව මෘදුකාංග ස්ථාපනය (Install) කිරීම", "CPU හි වේගය වැඩි කිරීම"]
+  },
+  {
+    "question": "මතකය වෙන් කිරීමේදී (Memory Allocation), පැමිණෙන ක්‍රියාවලිය සඳහා ප්‍රධාන මතකයේ ඇති ප්‍රමාණවත් ප්‍රමාණයේ මුල්ම හිස් ඉඩ කොටස (First available hole) වෙන් කිරීමේ ක්‍රමය කුමක්ද?",
+    "correct": "First-fit ක්‍රමය",
+    "distractors": ["Best-fit ක්‍රමය", "Worst-fit ක්‍රමය", "Next-fit ක්‍රමය", "Quick-fit ක්‍රමය"]
+  },
+  {
+    "question": "මතකය වෙන් කිරීමේදී, පැමිණෙන ක්‍රියාවලියේ ප්‍රමාණයට වඩාත්ම ගැලපෙන, අවම ඉතිරි ඉඩක් (Smallest leftover hole) ඉතිරි වන මතක කොටස තේරීමේ ක්‍රමවේදය කුමක්ද?",
+    "correct": "Best-fit ක්‍රමය",
+    "distractors": ["First-fit ක්‍රමය", "Worst-fit ක්‍රමය", "Next-fit ක්‍රමය", "Random-fit ක්‍රමය"]
+  },
+  {
+    "question": "මතකය වෙන් කිරීමේදී (Memory Allocation), පද්ධතියේ ඇති විශාලතම හිස් මතක කොටස (Largest available hole) ක්‍රියාවලියක් සඳහා වෙන් කර දීමේ ක්‍රමවේදය කුමක්ද?",
+    "correct": "Worst-fit ක්‍රමය",
+    "distractors": ["First-fit ක්‍රමය", "Best-fit ක්‍රමය", "Next-fit ක්‍රමය", "Exact-fit ක්‍රමය"]
+  },
+  {
+    "question": "පිටුගත කිරීමේ තාක්ෂණයේදී (Paging), CPU එක මඟින් උත්පාදනය කරනු ලබන මතක ලිපිනය (Address) හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "තර්කානුකූල ලිපිනය (Logical Address)",
+    "distractors": ["භෞතික ලිපිනය (Physical Address)", "මූලික ලිපිනය (Base Address)", "රාමු ලිපිනය (Frame Address)", "පිටු ලිපිනය (Page Address)"]
+  },
+  {
+    "question": "පිටුගත කිරීමේදී (Paging), තර්කානුකූල ලිපිනයක් (Logical Address) භෞතික ලිපිනයක් (Physical Address) බවට පරිවර්තනය කිරීමට උදව් වන වගුව කුමක්ද?",
+    "correct": "පිටු වගුව (Page Table)",
+    "distractors": ["රාමු වගුව (Frame Table)", "ක්‍රියාවලි වගුව (Process Table)", "ලිපින වගුව (Address Table)", "ඛණ්ඩ වගුව (Segment Table)"]
+  },
+  {
+    "question": "දත්ත ගොනු නාමාවලියක් (Directory Structure) තුළ තවත් නාමාවලියක් පවතින විට, එම ඇතුළතින්ම ඇති නාමාවලිය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "උප-නාමාවලිය (Sub-directory)",
+    "distractors": ["මූල නාමාවලිය (Root Directory)", "ප්‍රධාන නාමාවලිය (Main Directory)", "ගොනු සමූහය (File Group)", "පද්ධති නාමාවලිය (System Directory)"]
+  },
+  {
+    "question": "ලිනක්ස් (Linux) මෙහෙයුම් පද්ධතියක සියලුම ගොනු සහ බහලුම් ආරම්භ වන ප්‍රධානතම මුල් බහලුම (Top-level directory) හඳුන්වන්නේ කුමන ලකුණකින්ද?",
+    "correct": "/ (Root)",
+    "distractors": ["C:\\", "Home", "Admin", "\\ (Backslash)"]
+  },
+  {
+    "question": "ගොනු පද්ධතියක (File System) මූල බහලුමේ (Root) සිට කිසියම් ගොනුවක් පවතින ස්ථානය දක්වා ඇති සම්පූර්ණ ගමන් මඟ දැක්වීම හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "නිරපේක්ෂ පථය (Absolute Path)",
+    "distractors": ["සාපේක්ෂ පථය (Relative Path)", "ගොනු දිගුව (File Extension)", "තර්කානුකූල පථය (Logical Path)", "භෞතික පථය (Physical Path)"]
+  },
+  {
+    "question": "වත්මන් බහලුමේ (Current Working Directory) සිට ආරම්භ කර කිසියම් ගොනුවක් පවතින ස්ථානය දක්වා ඇති ගමන් මඟ දැක්වීම හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "සාපේක්ෂ පථය (Relative Path)",
+    "distractors": ["නිරපේක්ෂ පථය (Absolute Path)", "මූල පථය (Root Path)", "ස්ථාවර පථය (Static Path)", "පද්ධති පථය (System Path)"]
+  },
+  {
+    "question": "වින්ඩෝස් (Windows) මෙහෙයුම් පද්ධතියක ඇති FAT32 ගොනු පද්ධතියක ගබඩා කළ හැකි උපරිම තනි ගොනුවක (Single File Size) ප්‍රමාණය කොපමණද?",
+    "correct": "4 GB",
+    "distractors": ["2 GB", "8 GB", "16 GB", "සීමාවක් නොමැත"]
+  },
+  {
+    "question": "මෙහෙයුම් පද්ධතියක පරිශීලක ගිණුම් පාලනයේදී (User Account Control), පද්ධතියේ සියලුම සැකසුම් වෙනස් කිරීමට සහ ඕනෑම මෘදුකාංගයක් ස්ථාපනය කිරීමට සම්පූර්ණ බලය ඇති පරිශීලකයා කවුද?",
+    "correct": "පරිපාලක (Administrator / Root User)",
+    "distractors": ["සාමාන්‍ය පරිශීලකයා (Standard User)", "අමුත්තා (Guest User)", "සීමිත පරිශීලකයා (Restricted User)", "ජාල පරිශීලකයා (Network User)"]
+  },
+  {
+    "question": "දත්ත ගොනුවක් පරිගණක ජාලයක් හෝ අන්තර්ජාලය හරහා වෙනත් අයෙකු වෙත යැවීමේදී, එහි ආරක්ෂාව සඳහා කියවිය නොහැකි රහස් කේතයක් බවට පත් කිරීමේ ක්‍රියාවලිය කුමක්ද?",
+    "correct": "ගුප්තකේතනය (Encryption)",
+    "distractors": ["විකේතනය (Decryption)", "ආකෘතිකරණය (Formatting)", "සහතික කිරීම (Authentication)", "පිටුගත කිරීම (Paging)"]
+  },
+  {
+    "question": "ගුප්තකේතනය කරන ලද (Encrypted) රහස්‍ය දත්ත සමූහයක් නැවත සාමාන්‍ය කියවිය හැකි දත්ත බවට පත් කිරීමේ ප්‍රතිලෝම ක්‍රියාවලිය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "විකේතනය (Decryption)",
+    "distractors": ["ගුප්තකේතනය (Encryption)", "සම්පීඩනය (Compression)", "ඛණ්ඩනය (Fragmentation)", "ආකෘතිකරණය (Formatting)"]
+  },
+  {
+    "question": "ලිනක්ස් (Linux) මෙහෙයුම් පද්ධතියක වත්මන් බහලුම තුළ ඇති ගොනු සහ බහලුම් ලේඛනය (List) බලා ගැනීම සඳහා භාවිත කරන විධානය (Command) කුමක්ද?",
+    "correct": "ls",
+    "distractors": ["dir", "cd", "mkdir", "list"]
+  },
+  {
+    "question": "ලිනක්ස් (Linux) විධාන පේලි අතුරුමුහුණතේදී (CLI) අලුතින් බහලුමක් (New Folder / Directory) නිර්මාණය කිරීමට භාවිත කරන විධානය කුමක්ද?",
+    "correct": "mkdir",
+    "distractors": ["cd", "rmdir", "create", "newdir"]
+  },
+  {
+    "question": "ලිනක්ස් (Linux) පද්ධතියක එක් බහලුමක සිට තවත් බහලුමක් වෙත මාරු වීම (Change Directory) සඳහා භාවිත කරන විධානය කුමක්ද?",
+    "correct": "cd",
+    "distractors": ["ls", "pwd", "mv", "cp"]
+  },
+  {
+    "question": "ලිනක්ස් (Linux) පද්ධතියක දැනට තමන් වැඩ කරමින් සිටින බහලුමේ සම්පූර්ණ පථය (Present Working Directory) තිරය මත බලා ගැනීමට භාවිත කරන විධානය කුමක්ද?",
+    "correct": "pwd",
+    "distractors": ["path", "ls", "cd", "whoami"]
+  },
+  {
+    "question": "පරිගණකයක දෘඩ තැටිය තුළ ඇති විසිරී පවතින දත්ත කොටස් (Scattered Data Blocks) එකට එකතු කර, ගොනුවලට ඉක්මනින් ප්‍රවේශ වීමට හැකි වන සේ සකසන උපයෝගිතා මෘදුකාංගය (Utility) කුමක්ද?",
+    "correct": "Disk Defragmenter",
+    "distractors": ["Disk Cleanup", "Antivirus", "Backup Software", "Device Manager"]
+  },
+  {
+    "question": "පහත දැක්වෙන මෙහෙයුම් පද්ධති අතරින් ජංගම දුරකථන (Smartphones) සඳහාම විශේෂයෙන් සකස් කරන ලද ප්‍රභව විවෘත (Open Source) මෙහෙයුම් පද්ධතිය කුමක්ද?",
+    "correct": "Android",
+    "distractors": ["iOS", "Windows Phone", "Symbian", "Linux Ubuntu"]
+  },
+  {
+    "question": "පරිගණකයක් පණගන්වන විට සියලුම දෘඪාංග උපාංග (RAM, Keyboard, Hard disk ආදිය) නිවැරදිව ක්‍රියා කරන්නේදැයි පරීක්ෂා කරන BIOS මඟින් සිදුකරන මූලික පරීක්ෂාව කුමක්ද?",
+    "correct": "POST (Power-On Self-Test)",
+    "distractors": ["Bootstrapping", "Interrupt Service", "Formatting", "Fragmentation Check"]
   },
 
   {
-    "question": "Octal 12 binary වලට පරිවර්තනය කළ විට?",
-    "correct": "1010",
-    "distractors": ["1100", "1001", "1110", "1011"]
+    "question": "ලිනක්ස් (Linux) පරිසරයක ගොනුවක් හෝ බහලුමක් වෙනත් ස්ථානයකට ගෙනයෑම (Move) හෝ එහි නම වෙනස් කිරීම (Rename) සඳහා භාවිත කරන විධානය කුමක්ද?",
+    "correct": "mv",
+    "distractors": ["cp", "rn", "move", "chname"]
   },
   {
-    "question": "Octal 7 binary වලට පරිවර්තනය කළ විට?",
-    "correct": "111",
-    "distractors": ["110", "101", "100", "011"]
+    "question": "ලිනක්ස් (Linux) මෙහෙයුම් පද්ධතියක පවතින ගොනුවක් හෝ බහලුමක් පිටපත් කිරීම (Copy) සඳහා භාවිත කරන විධානය කුමක්ද?",
+    "correct": "cp",
+    "distractors": ["mv", "copy", "ln", "ls"]
   },
   {
-    "question": "Octal 15 binary වලට පරිවර්තනය කළ විට?",
-    "correct": "1101",
-    "distractors": ["1011", "1110", "1001", "1100"]
+    "question": "ලිනක්ස් (Linux) පද්ධතියක ඇති හිස් බහලුමක් (Empty Directory) මකා දැමීම සඳහා භාවිත කරනු ලබන විධානය කුමක්ද?",
+    "correct": "rmdir",
+    "distractors": ["rm", "del", "deldir", "mkdir"]
   },
   {
-    "question": "Octal 10 binary වලට පරිවර්තනය කළ විට?",
-    "correct": "1000",
-    "distractors": ["1001", "1010", "1100", "1111"]
+    "question": "ලිනක්ස් (Linux) විධාන පේලි අතුරුමුහුණතේදී (CLI) සාමාන්‍ය ගොනුවක් (File) සම්පූර්ණයෙන්ම මකා දැමීමට භාවිත කරන විධානය කුමක්ද?",
+    "correct": "rm",
+    "distractors": ["del", "rmdir", "clear", "remove"]
   },
   {
-    "question": "Octal 3 binary වලට පරිවර්තනය කළ විට?",
-    "correct": "011",
-    "distractors": ["010", "001", "100", "111"]
-  },
-
-  {
-    "question": "Hexadecimal A දශමයට පරිවර්තනය කළ විට?",
-    "correct": "10",
-    "distractors": ["11", "12", "9", "8"]
+    "question": "ලිනක්ස් (Linux) පර්යන්තයේ (Terminal) තිරය මත ඇති පෙර දත්ත සියල්ල ඉවත් කර තිරය පිරිසිදු කර ගැනීමට (Clear screen) භාවිත කරන විධානය කුමක්ද?",
+    "correct": "clear",
+    "distractors": ["cls", "clean", "reset", "refresh"]
   },
   {
-    "question": "Hexadecimal F දශමයට පරිවර්තනය කළ විට?",
-    "correct": "15",
-    "distractors": ["14", "13", "16", "12"]
+    "question": "පරිගණකයක එකකට වඩා වැඩි මධ්‍ය සැකසුම් ඒකක (Multiple CPUs) පවතින විට, ඒවා එකවර භාවිත කරමින් කාර්යයන් සිදු කිරීම මෙහෙයුම් පද්ධතිවල හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "බහු සැකසුම (Multi-processing)",
+    "distractors": ["බහු කාර්යය (Multi-tasking)", "බහුපොට (Multi-threading)", "කාල විභජනය (Time Sharing)", "කාණ්ඩ සැකසුම (Batch Processing)"]
   },
   {
-    "question": "Hexadecimal 1A දශමයට පරිවර්තනය කළ විට?",
-    "correct": "26",
-    "distractors": ["25", "24", "27", "28"]
+    "question": "ලිනක්ස් (Linux) ගොනු පද්ධතියක ගොනුවක ප්‍රවේශ අවසරයන් (File Permissions) වෙනස් කිරීම සඳහා භාවිත කරනු ලබන විධානය කුමක්ද?",
+    "correct": "chmod",
+    "distractors": ["chown", "chperm", "lsperm", "modfile"]
   },
   {
-    "question": "Hexadecimal 10 දශමයට පරිවර්තනය කළ විට?",
-    "correct": "16",
-    "distractors": ["15", "14", "17", "18"]
+    "question": "ලිනක්ස් (Linux) ගොනුවක 'rwxr-xr--' ලෙස අවසර දක්වා ඇති විට, එහි මුල්ම 'rwx' කොටසින් අදහස් වන්නේ කාහට ඇති අවසරයන්ද?",
+    "correct": "ගොනුවේ අයිතිකරුට ඇති අවසර (Owner / User Permissions)",
+    "distractors": ["කණ්ඩායමට ඇති අවසර (Group Permissions)", "අනෙකුත් සියලුම පරිශීලකයන්ට ඇති අවසර (Others Permissions)", "පද්ධති පරිපාලකයාට ඇති අවසර (Root Permissions)", "අමුත්තන්ට ඇති අවසර (Guest Permissions)"]
   },
   {
-    "question": "Hexadecimal B දශමයට පරිවර්තනය කළ විට?",
-    "correct": "11",
-    "distractors": ["10", "12", "13", "14"]
-  },
-
-  {
-    "question": "Binary 101 + 011 = ?",
-    "correct": "1000",
-    "distractors": ["111", "110", "1010", "1001"]
+    "question": "මෙහෙයුම් පද්ධතියක කර්නලය (Kernel) සෘජුවම පරිශීලකයාට නිරාවරණය නොවන අතර, පරිශීලකයා සහ කර්නලය අතර සම්බන්ධය ගොඩනගන බාහිර ස්තරය (Outer Layer) හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "කබොල (Shell)",
+    "distractors": ["අතුරුමුහුණත (Interface)", "ප්‍රොම්ප්ට් (Prompt)", "ධාවකය (Driver)", "යෙදුම (Application)"]
   },
   {
-    "question": "Binary 110 + 001 = ?",
-    "correct": "111",
-    "distractors": ["110", "101", "1000", "1110"]
+    "question": "මතක කළමනාකරණයේදී (Memory Management) පද්ධතිය පුරා විසිරී ඇති කුඩා හිස් ඉඩකඩ (Holes) සියල්ල එකතු කර විශාල තනි මතක කොටසක් බවට පත් කිරීමේ ක්‍රියාවලිය කුමක්ද?",
+    "correct": "සංගතීකරණය / සම්පිණ්ඩනය (Compaction)",
+    "distractors": ["ඛණ්ඩනය (Fragmentation)", "පිටුගත කිරීම (Paging)", "ස්වැපිං (Swapping)", "ආකෘතිකරණය (Formatting)"]
   },
   {
-    "question": "Binary 1001 + 0001 = ?",
-    "correct": "1010",
-    "distractors": ["1000", "1100", "1111", "1011"]
+    "question": "ක්‍රියාවලි උපලේඛනගත කිරීමේදී (Scheduling) මධ්‍ය සැකසුම් ඒකකය (CPU) තුළ ක්‍රියාවලියක් සැබවින්ම ධාවනය වීමට ගතවන කාලය හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "ධාවන කාලය (Burst Time)",
+    "distractors": ["පැමිණීමේ කාලය (Arrival Time)", "පොරොත්තු කාලය (Waiting Time)", "ප්‍රතිචාර කාලය (Response Time)", "නිමාවීමේ කාලය (Turnaround Time)"]
   },
   {
-    "question": "Binary 111 - 001 = ?",
-    "correct": "110",
-    "distractors": ["101", "100", "111", "011"]
+    "question": "ක්‍රියාවලියක් Ready Queue එකට පැමිණි අවස්ථාවේ සිට එහි සියලුම වැඩකටයුතු අවසන් වී පද්ධතියෙන් ඉවත් වන තෙක් ගතවන මුළු කාලය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "පෙරළීමේ කාලය (Turnaround Time)",
+    "distractors": ["පොරොත්තු කාලය (Waiting Time)", "ධාවන කාලය (Burst Time)", "ප්‍රතිචාර කාලය (Response Time)", "ප්‍රමාද කාලය (Latency Time)"]
   },
   {
-    "question": "Binary 1010 - 0010 = ?",
-    "correct": "1000",
-    "distractors": ["1001", "1011", "1100", "1111"]
-  },
-
-  {
-    "question": "1’s complement of 1010 is?",
-    "correct": "0101",
-    "distractors": ["1011", "0110", "1111", "0001"]
+    "question": "ක්‍රියාවලියක් Ready Queue හි රැඳී සිටිමින් CPU එක තමන් වෙත ලැබෙන තෙක් බලා සිටි මුළු කාලය හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "පොරොත්තු කාලය (Waiting Time)",
+    "distractors": ["ධාවන කාලය (Burst Time)", "ප්‍රතිචාර කාලය (Response Time)", "පෙරළීමේ කාලය (Turnaround Time)", "පද්ධති කාලය (System Time)"]
   },
   {
-    "question": "1’s complement of 1100 is?",
-    "correct": "0011",
-    "distractors": ["0101", "0110", "1111", "1001"]
+    "question": "ක්‍රියාවලියක් පද්ධතියට ඉදිරිපත් කළ අවස්ථාවේ සිට ඊට ප්‍රථම වතාවට CPU එකෙන් ප්‍රතිචාරයක් දැක්වීමට ගතවන කාලය හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "ප්‍රතිචාර කාලය (Response Time)",
+    "distractors": ["පොරොත්තු කාලය (Waiting Time)", "ධාවන කාලය (Burst Time)", "පෙරළීමේ කාලය (Turnaround Time)", "නිමවුම් කාලය (Throughput)"]
   },
   {
-    "question": "2’s complement of 1010 is?",
-    "correct": "0110",
-    "distractors": ["0101", "0111", "1001", "1110"]
+    "question": "CPU එක මඟින් කාල ඒකකයක් තුළ (උදා: තත්පරයක් හෝ විනාඩියක් තුළ) අවසන් කරනු ලබන මුළු ක්‍රියාවලි සංඛ්‍යාව හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "නිමවුම (Throughput)",
+    "distractors": ["ධාවන කාලය (Burst Time)", "ප්‍රතිචාර කාලය (Response Time)", "කාල ක්වොන්ටමය (Time Quantum)", "පරිශීලන අනුපාතය (Utilization Rate)"]
   },
   {
-    "question": "2’s complement of 1000 is?",
-    "correct": "1000",
-    "distractors": ["0111", "1111", "0001", "0100"]
+    "question": "අගුලු වැටීමක් (Deadlock) සිදු වීමට නම් අත්‍යවශ්‍යයෙන්ම සපුරාලිය යුතු 'කාෆ්මන් කොන්දේසි' (Coffman Conditions) ගණන කොපමණද?",
+    "correct": "4",
+    "distractors": ["2", "3", "5", "1"]
   },
   {
-    "question": "2’s complement of 0110 is?",
-    "correct": "1010",
-    "distractors": ["1001", "1100", "1110", "0101"]
-  },
-
-  {
-    "question": "ASCII code භාවිත වන්නේ?",
-    "correct": "Characters represent කිරීමට.",
-    "distractors": ["Images compress කිරීමට.", "CPU cooling.", "RAM cleaning.", "Battery charging."]
+    "question": "අගුලු වැටීමක් (Deadlock) ඇති වීමට බලපාන, එක් ක්‍රියාවලියක් සතු සම්පතක් තවත් ක්‍රියාවලියකට බලහත්කාරයෙන් ලබාගත නොහැකි වීමේ කොන්දේසය කුමක්ද?",
+    "correct": "පෙරළා නොගැනීම (No Preemption)",
+    "distractors": ["අන්‍යෝන්‍ය බහිෂ්කරණය (Mutual Exclusion)", "රැඳී සිටීම සහ බලා සිටීම (Hold and Wait)", "චක්‍රීය බලාසිටීම (Circular Wait)", "බාධා කිරීම (Interrupt)"]
   },
   {
-    "question": "Unicode භාවිත වන්නේ?",
-    "correct": "World languages represent කිරීමට.",
-    "distractors": ["Only numbers.", "Only images.", "Only sound.", "Only videos."]
+    "question": "පිටුගත කිරීමේ තාක්ෂණයේදී (Paging), පරිගණකයක ඇති ප්‍රධාන මතකය (RAM) තුළ පවතින සැබෑ ලිපිනය හඳුන්වන්නේ කුමන නමකින්ද?",
+    "correct": "භෞතික ලිපිනය (Physical Address)",
+    "distractors": ["තර්කානුකූල ලිපිනය (Logical Address)", "අතථ්‍ය ලිපිනය (Virtual Address)", "මූලික ලිපිනය (Base Address)", "සාපේක්ෂ ලිපිනය (Relative Address)"]
   },
   {
-    "question": "ASCII character count?",
-    "correct": "128",
-    "distractors": ["256", "64", "512", "1024"]
+    "question": "ලිනක්ස් (Linux) මෙහෙයුම් පද්ධතියක දැනට පද්ධතියට ලොග් වී සිටින පරිශීලකයා කවුදැයි (Current Username) බලා ගැනීමට භාවිත කරන විධානය කුමක්ද?",
+    "correct": "whoami",
+    "distractors": ["id", "user", "pwd", "who"]
   },
   {
-    "question": "Unicode supports?",
-    "correct": "All languages",
-    "distractors": ["Only English", "Only Sinhala", "Only numbers", "Only symbols"]
+    "question": "ලිනක්ස් (Linux) විධාන පේලි පරිසරයක, කිසියම් කෙටි පෙළක් හෝ විචල්‍යයක අගයක් තිරය මත මුද්‍රණය කර බැලීම (Display text) සඳහා භාවිත කරන විධානය කුමක්ද?",
+    "correct": "echo",
+    "distractors": ["print", "cat", "show", "ls"]
   },
   {
-    "question": "ASCII code size?",
-    "correct": "7-bit",
-    "distractors": ["8-bit", "16-bit", "32-bit", "4-bit"]
-  },
-
-  {
-    "question": "1 KB equals?",
-    "correct": "1024 Bytes",
-    "distractors": ["1000 Bytes", "512 Bytes", "2048 Bytes", "1 Byte"]
+    "question": "ලිනක්ස් (Linux) පද්ධතියක ගොනුවක් ඇතුළත ඇති අන්තර්ගතය (Content) විවෘත නොකර කෙලින්ම Terminal තිරය මත බලා ගැනීම සඳහා බහුලව භාවිත වන විධානය කුමක්ද?",
+    "correct": "cat",
+    "distractors": ["ls", "echo", "open", "view"]
   },
   {
-    "question": "1 MB equals?",
-    "correct": "1024 KB",
-    "distractors": ["1000 KB", "512 KB", "2048 KB", "1 GB"]
+    "question": "මෙහෙයුම් පද්ධතියක දෘඪාංග හා මෘදුකාංග අතර ඇති සම්බන්ධය අවම කරමින්, දෘඪාංගවල ස්වභාවය සඟවා සපයනු ලබන සේවාව හඳුන්වන්නේ කුමක් ලෙසද?",
+    "correct": "දෘඪාංග වියුක්තකරණය (Hardware Abstraction)",
+    "distractors": ["මතක කළමනාකරණය (Memory Management)", "ගොනු පද්ධතිය (File System)", "උපලේඛනගත කිරීම (Scheduling)", "ආකෘතිකරණය (Formatting)"]
   },
   {
-    "question": "1 GB equals?",
-    "correct": "1024 MB",
-    "distractors": ["1000 MB", "512 MB", "2048 MB", "1 TB"]
+    "question": "වින්ඩෝස් (Windows) මෙහෙයුම් පද්ධතියක දැනට ධාවනය වන සියලුම ක්‍රියාවලි (Processes) සහ ඒවා මඟින් ගන්නා RAM/CPU ප්‍රමාණයන් බලා ගැනීමට භාවිත කරන මෙවලම (Tool) කුමක්ද?",
+    "correct": "කාර්ය කළමනාකරු (Task Manager)",
+    "distractors": ["පාලන පුවරුව (Control Panel)", "උපාංග කළමනාකරු (Device Manager)", "ගොනු ගවේෂකය (File Explorer)", "තැටි කළමනාකරු (Disk Management)"]
   },
   {
-    "question": "1 TB equals?",
-    "correct": "1024 GB",
-    "distractors": ["1000 GB", "512 GB", "2048 GB", "1 PB"]
+    "question": "පරිගණකයක් පණගැන්වීමේදී, Bootstrap Loader වැඩසටහන මඟින් මෙහෙයුම් පද්ධතියේ කර්නල් කොටස මුලින්ම පටවනු ලබන්නේ කුමන මතකයටද?",
+    "correct": "ප්‍රධාන මතකය (RAM)",
+    "distractors": ["හැඹිලි මතකය (Cache Memory)", "රොම් මතකය (ROM)", "දෘඩ තැටිය (Hard Disk)", "CPU රෙජිස්තර (Registers)"]
   },
   {
-    "question": "Smallest memory unit?",
-    "correct": "Bit",
-    "distractors": ["Byte", "KB", "MB", "Word"]
-  },
-
-  {
-    "question": "Overflow occurs when?",
-    "correct": "Result exceeds storage limit",
-    "distractors": ["CPU stops", "RAM clears", "Disk formats", "Mouse fails"]
-  },
-  {
-    "question": "Signed number representation used for negative numbers?",
-    "correct": "Two's complement",
-    "distractors": ["BCD", "ASCII", "Gray code", "Excess-3"]
-  },
-  {
-    "question": "MSB in signed binary represents?",
-    "correct": "Sign bit",
-    "distractors": ["Parity", "Memory", "Speed", "Address"]
-  },
-  {
-    "question": "Positive overflow happens when?",
-    "correct": "Result too large for positive range",
-    "distractors": ["CPU heats", "Disk full", "Keyboard error", "Mouse lag"]
-  },
-  {
-    "question": "Negative numbers stored using?",
-    "correct": "2’s complement",
-    "distractors": ["ASCII", "BCD", "Octal", "Hex"]
-  },
-
-  {
-    "question": "BCD stands for?",
-    "correct": "Binary Coded Decimal",
-    "distractors": ["Binary Computer Data", "Bit Code Data", "Basic Count Data", "Binary Control Design"]
-  },
-  {
-    "question": "BCD used to represent?",
-    "correct": "Decimal digits",
-    "distractors": ["Images", "Sound", "Text files", "Programs"]
-  },
-  {
-    "question": "BCD of 9 is?",
-    "correct": "1001",
-    "distractors": ["1000", "1010", "1100", "1111"]
-  },
-  {
-    "question": "BCD of 5 is?",
-    "correct": "0101",
-    "distractors": ["0110", "0011", "1111", "1000"]
-  },
-  {
-    "question": "BCD range per digit?",
-    "correct": "0000 to 1001",
-    "distractors": ["0000 to 1111", "0001 to 1010", "0010 to 1110", "0000 to 1110"]
-  },
-
-  {
-    "question": "Binary 1 + 1 = ?",
-    "correct": "10",
-    "distractors": ["11", "01", "00", "100"]
-  },
-  {
-    "question": "Binary 1111 + 1 = ?",
-    "correct": "10000",
-    "distractors": ["11110", "11111", "10001", "11000"]
-  },
-  {
-    "question": "Hexadecimal 2 + 3 = ?",
-    "correct": "5",
-    "distractors": ["6", "7", "8", "9"]
-  },
-  {
-    "question": "Octal 7 + 1 = ?",
-    "correct": "10",
-    "distractors": ["11", "12", "13", "14"]
-  },
-  {
-    "question": "Decimal 10 in binary is?",
-    "correct": "1010",
-    "distractors": ["1001", "1100", "1110", "1000"]
+    "question": "පහත දැක්වෙන මෙහෙයුම් පද්ධති අතරින් ජාලයක ඇති සේවාදායක පරිගණක (Server Computers) පාලනය කිරීම සඳහාම විශේෂයෙන් සකස් කරන ලද මෙහෙයුම් පද්ධතියක් වන්නේ කුමක්ද?",
+    "correct": "Windows Server / Linux Enterprise",
+    "distractors": ["Windows 11 Home", "Android", "MS-DOS", "Apple iOS"]
   }
-]
-    let quizData = [...originalQuizData];
+]    let quizData = [...originalQuizData];
 
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
