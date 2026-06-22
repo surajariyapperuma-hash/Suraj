@@ -187,255 +187,547 @@ const ENABLE_TAB_SECURITY = true;
     // මුල් ප්‍රශ්නාවලිය
   let originalQuizData = [
 {
-    question: "ICT යන්නෙහි පූර්ණ නාමය කුමක්ද? (What is the full form of ICT?)",
-    correct: "තොරතුරු හා සන්නිවේදන තාක්ෂණය (Information and Communication Technology).",
-    distractors: ["අන්තර්ජාල සන්නිවේදන තාක්ෂණය (Internet Communication Technology).", "තොරතුරු පරිගණක තාක්ෂණය (Information Computer Technology).", "ජාත්‍යන්තර සන්නිවේදන තාක්ෂණය (International Communication Technology).", "ඒකාබද්ධ සන්නිවේදන තාක්ෂණය (Integrated Communication Technology)."]
+    question: "Output Device ප්‍රතිදාන උපාංගයක් යනු කුමක්ද? / What is an Output Device?",
+    correct: "Monitor. (සංදර්ශකය)",
+    distractors: ["Mouse. (මූසිකය)", "Keyboard. (යතුරු පුවරුව)", "Scanner. (ස්කෑනරය)", "Barcode Reader. (තීරු කේත කියවනය)"]
 },
 {
-    question: "දත්ත (Data) යනු කුමක්ද? (What is Data?)",
-    correct: "අමු කරුණු හා සංඛ්‍යා (Raw Facts and Figures).",
-    distractors: ["සැකසූ තොරතුරු (Processed Information).", "දැනුම (Knowledge).", "මෘදුකාංග (Software).", "දත්ත සමුදාය (Database)."]
+    question: "Input Device ආදාන උපාංගයක් යනු කුමක්ද? / What is an Input Device?",
+    correct: "Keyboard. (යතුරු පුවරුව)",
+    distractors: ["Monitor. (සංදර්ශකය)", "Speaker. (ශබ්ද විකාශකය)", "Printer. (මුද්‍රකය)", "Projector. (ප්‍රක්ෂේපකය)"]
 },
 {
-    question: "තොරතුරු (Information) යනු කුමක්ද? (What is Information?)",
-    correct: "සැකසූ දත්ත (Processed Data).",
-    distractors: ["අමු දත්ත (Raw Data).", "දැනුම (Knowledge).", "දෘඩාංග (Hardware).", "මෘදුකාංග (Software)."]
+    question: "AND Gate එකේ ප්‍රතිදානය 1 වන්නේ කවදාද? / When does an AND Gate output 1?",
+    correct: "සියලු ආදාන 1 වූ විට. (When all inputs are 1)",
+    distractors: [
+        "එක් ආදානයක් 1 වූ විට. (When one input is 1)",
+        "සියලු ආදාන 0 වූ විට. (When all inputs are 0)",
+        "ආදාන වෙනස් වූ විට. (When inputs differ)",
+        "සෑම විටම. (Always)"
+    ]
 },
 {
-    question: "පරිගණකයේ පියා ලෙස හඳුන්වන්නේ කාටද? (Who is known as the Father of the Computer?)",
-    correct: "චාල්ස් බැබේජ් (Charles Babbage).",
-    distractors: ["බ්ලේස් පැස්කල් (Blaise Pascal).", "හොවාර්ඩ් අයිකන් (Howard Aiken).", "ඇඩා ලව්ලේස් (Ada Lovelace).", "ජෝන් වොන් නියුමාන් (John Von Neumann)."]
+    question: "OR Gate එකේ ප්‍රතිදානය 1 වන්නේ කවදාද? / When does an OR Gate output 1?",
+    correct: "අවම වශයෙන් එක් ආදානයක් 1 වූ විට. (When at least one input is 1)",
+    distractors: [
+        "සියලු ආදාන 0 වූ විට. (When all inputs are 0)",
+        "සියලු ආදාන 1 වූ විට පමණි. (Only when all inputs are 1)",
+        "ආදාන සමාන වූ විට. (When inputs are equal)",
+        "කවදාවත් නොවේ. (Never)"
+    ]
 },
 {
-    question: "පළමු ක්‍රමලේඛිකාව ලෙස හඳුන්වන්නේ කාටද? (Who is known as the First Programmer?)",
-    correct: "ඇඩා ලව්ලේස් (Ada Lovelace).",
-    distractors: ["ග්‍රේස් හොපර් (Grace Hopper).", "චාල්ස් බැබේජ් (Charles Babbage).", "බ්ලේස් පැස්කල් (Blaise Pascal).", "ජෝන් මෝච්ලි (John Mauchly)."]
+    question: "NOT Gate එකේ වෙනත් නම කුමක්ද? / What is another name for NOT Gate?",
+    correct: "Inverter. (ප්‍රතිවර්තකය)",
+    distractors: ["Converter. (පරිවර්තකය)", "Encoder. (සංකේතකය)", "Decoder. (විසංකේතකය)", "Repeater. (පුනරාවර්තකය)"]
 },
 {
-    question: "CPU යන්නෙන් අදහස් වන්නේ කුමක්ද? (What does CPU stand for?)",
-    correct: "මධ්‍යම සැකසුම් ඒකකය (Central Processing Unit).",
-    distractors: ["මධ්‍යම වැඩසටහන් ඒකකය (Central Program Unit).", "පරිගණක සැකසුම් ඒකකය (Computer Processing Unit).", "මධ්‍යම පාලන ඒකකය (Central Control Unit).", "පරිගණක වැඩසටහන් ඒකකය (Computer Program Unit)."]
+    question: "NAND Gate එක සෑදෙන්නේ කුමන Gate දෙකෙන්ද? / NAND Gate is formed using which gates?",
+    correct: "AND + NOT",
+    distractors: ["OR + NOT", "AND + OR", "NOR + OR", "XOR + NOT"]
 },
 {
-    question: "RAM යනු කුමක්ද? (What is RAM?)",
-    correct: "ප්‍රාථමික මතකය (Primary Memory).",
-    distractors: ["ද්විතීයික මතකය (Secondary Memory).", "බාහිර මතකය (External Memory).", "දෘශ්‍ය මතකය (Optical Memory).", "අතථ්‍ය මතකය (Virtual Memory)."]
+    question: "NOR Gate එක සෑදෙන්නේ කුමන Gate දෙකෙන්ද? / NOR Gate is formed using which gates?",
+    correct: "OR + NOT",
+    distractors: ["AND + NOT", "OR + XOR", "NAND + NOT", "AND + OR"]
 },
 {
-    question: "ROM හි විශේෂත්වය කුමක්ද? (What is the characteristic of ROM?)",
-    correct: "නශ්‍ය නොවන මතකය (Non-Volatile Memory).",
-    distractors: ["නශ්‍ය මතකය (Volatile Memory).", "තාවකාලික මතකය (Temporary Memory).", "ආදාන උපාංගයක් (Input Device).", "ප්‍රතිදාන උපාංගයක් (Output Device)."]
+    question: "Boolean Algebra හි 1 නියෝජනය කරන්නේ කුමක්ද? / What does 1 represent in Boolean Algebra?",
+    correct: "True. (සත්‍ය)",
+    distractors: ["False. (අසත්‍ය)", "Error. (දෝෂය)", "Null. (ශූන්‍ය)", "Unknown. (නොදන්නා)"]
 },
 {
-    question: "1 Byte එකක බිටු කීයක් තිබේද? (How many bits are there in 1 Byte?)",
-    correct: "බිටු 8 (8 Bits).",
-    distractors: ["බිටු 4 (4 Bits).", "බිටු 16 (16 Bits).", "බිටු 32 (32 Bits).", "බිටු 64 (64 Bits)."]
+    question: "Boolean Algebra හි 0 නියෝජනය කරන්නේ කුමක්ද? / What does 0 represent in Boolean Algebra?",
+    correct: "False. (අසත්‍ය)",
+    distractors: ["True. (සත්‍ය)", "Error. (දෝෂය)", "Null. (ශූන්‍ය)", "Unknown. (නොදන්නා)"]
 },
 {
-    question: "1024 Bytes සමාන වන්නේ කුමක්ද? (1024 Bytes equals?)",
-    correct: "කිලෝබයිට් 1 (1 KB).",
-    distractors: ["මෙගාබයිට් 1 (1 MB).", "ගිගාබයිට් 1 (1 GB).", "ටෙරාබයිට් 1 (1 TB).", "බයිට් 1000 (1000 Bytes)."]
+    question: "A.B යන්නෙන් නියෝජනය වන්නේ කුමන Gate එකද? / A.B represents which gate?",
+    correct: "AND Gate",
+    distractors: ["OR Gate", "NOT Gate", "NOR Gate", "XOR Gate"]
 },
 {
-    question: "1024 KB සමාන වන්නේ කුමක්ද? (1024 KB equals?)",
-    correct: "මෙගාබයිට් 1 (1 MB).",
-    distractors: ["ගිගාබයිට් 1 (1 GB).", "ටෙරාබයිට් 1 (1 TB).", "කිලෝබයිට් 100 (100 KB).", "බයිට් 1024 (1024 Bytes)."]
+    question: "A+B යන්නෙන් නියෝජනය වන්නේ කුමන Gate එකද? / A+B represents which gate?",
+    correct: "OR Gate",
+    distractors: ["AND Gate", "NOT Gate", "NAND Gate", "NOR Gate"]
 },
 {
-    question: "Binary Number System එකේ පාද අගය කුමක්ද? (What is the base of Binary Number System?)",
-    correct: "2.",
-    distractors: ["8.", "10.", "16.", "4."]
+    question: "Operating System එකක් යනු කුමක්ද? / What is an Operating System?",
+    correct: "System software that manages computer resources. (පරිගණක සම්පත් කළමනාකරණය කරන පද්ධති මෘදුකාංගය)",
+    distractors: [
+        "Application software. (යෙදුම් මෘදුකාංගය)",
+        "Programming language. (ක්‍රමලේඛන භාෂාව)",
+        "Hardware device. (දෘඩාංග උපාංගය)",
+        "Database. (දත්ත සමුදාය)"
+    ]
 },
 {
-    question: "Decimal Number System එකේ පාද අගය කුමක්ද? (What is the base of Decimal Number System?)",
-    correct: "10.",
-    distractors: ["2.", "8.", "16.", "12."]
+    question: "Windows යනු කුමක්ද? / What is Windows?",
+    correct: "Operating System. (මෙහෙයුම් පද්ධතිය)",
+    distractors: ["Web Browser. (වෙබ් බ්‍රවුසරය)", "Database. (දත්ත සමුදාය)", "Word Processor. (වදන් සැකසුම් මෘදුකාංගය)", "Compiler. (සම්පාදකය)"]
 },
 {
-    question: "Octal Number System එකේ පාද අගය කුමක්ද? (What is the base of Octal Number System?)",
-    correct: "8.",
-    distractors: ["2.", "10.", "16.", "4."]
+    question: "Linux යනු කුමක්ද? / What is Linux?",
+    correct: "Operating System. (මෙහෙයුම් පද්ධතිය)",
+    distractors: ["Spreadsheet. (පැතුරුම්පත)", "Database. (දත්ත සමුදාය)", "Browser. (බ්‍රවුසරය)", "Printer. (මුද්‍රකය)"]
 },
 {
-    question: "Hexadecimal Number System එකේ පාද අගය කුමක්ද? (What is the base of Hexadecimal Number System?)",
-    correct: "16.",
-    distractors: ["2.", "8.", "10.", "12."]
+    question: "Android යනු කුමක්ද? / What is Android?",
+    correct: "Mobile Operating System. (ජංගම මෙහෙයුම් පද්ධතිය)",
+    distractors: ["Database. (දත්ත සමුදාය)", "Programming Language. (ක්‍රමලේඛන භාෂාව)", "Word Processor. (වදන් සැකසුම් මෘදුකාංගය)", "Antivirus. (ප්‍රතිවෛරස මෘදුකාංගය)"]
 },
 {
-    question: "ද්වීමය සංඛ්‍යා පද්ධතියේ භාවිතා වන ඉලක්කම් මොනවාද? (Which digits are used in Binary Number System?)",
-    correct: "0 සහ 1 (0 and 1).",
-    distractors: ["0 සිට 7 දක්වා (0 to 7).", "0 සිට 9 දක්වා (0 to 9).", "1 සිට 10 දක්වා (1 to 10).", "A සිට F දක්වා (A to F)."]
+    question: "GUI යන්නෙහි පූර්ණ නාමය කුමක්ද? / What is the full form of GUI?",
+    correct: "Graphical User Interface. (චිත්‍රක පරිශීලක අතුරුමුහුණත)",
+    distractors: [
+        "General User Interface",
+        "Graph Utility Interface",
+        "Graphic Unit Integration",
+        "Global User Interaction"
+    ]
 },
 {
-    question: "MSB යන්නෙන් අදහස් වන්නේ කුමක්ද? (What does MSB stand for?)",
-    correct: "වැඩිම වෙසෙසි  බිටුව(Most Significant Bit).",
-    distractors: ["අවම වෙසෙසි බිටුව (Least Significant Bit).", "ප්‍රධාන ගබඩා බිටුව (Main Storage Bit).", "මතක පද්ධති බිටුව (Memory System Bit).", "උපරිම ගබඩා බිටුව (Maximum Storage Bit)."]
+    question: "CLI යන්නෙහි පූර්ණ නාමය කුමක්ද? / What is the full form of CLI?",
+    correct: "Command Line Interface. (විධාන රේඛා අතුරුමුහුණත)",
+    distractors: [
+        "Computer Line Interface",
+        "Command Link Interface",
+        "Control Line Integration",
+        "Common Language Interface"
+    ]
 },
 {
-    question: "LSB යන්නෙන් අදහස් වන්නේ කුමක්ද? (What does LSB stand for?)",
-    correct: "අවම වැදගත් බිටුව (Least Significant Bit).",
-    distractors: ["වඩාත් වැදගත් බිටුව (Most Significant Bit).", "අවසාන ගබඩා බිටුව (Last Storage Bit).", "තාර්කික බිටුව (Logical Bit).", "ස්ථානීය බිටුව (Positional Bit)."]
+    question: "Task Manager භාවිතා කරන්නේ කුමක් සඳහාද? / What is Task Manager used for?",
+    correct: "Monitor running processes. (ක්‍රියාත්මක වන ක්‍රියාවලි නිරීක්ෂණය කිරීම)",
+    distractors: [
+        "Create databases. (දත්ත සමුදා නිර්මාණය)",
+        "Edit videos. (වීඩියෝ සංස්කරණය)",
+        "Browse internet. (අන්තර්ජාල සැරිසැරීම)",
+        "Print documents. (ලේඛන මුද්‍රණය)"
+    ]
 },
 {
-    question: "BCD යන්නෙන් අදහස් වන්නේ කුමක්ද? (What does BCD stand for?)",
-    correct: "ද්වීමය කේතනය කළ දශමය (Binary Coded Decimal).",
-    distractors: ["Binary Code Data.", "Bit Coded Decimal.", "Binary Computer Decimal.", "Basic Coded Data."]
+    question: "Booting යනු කුමක්ද? / What is Booting?",
+    correct: "Starting a computer. (පරිගණකය ආරම්භ කිරීම)",
+    distractors: [
+        "Formatting a disk. (තැටිය හැඩතල ගැන්වීම)",
+        "Printing a file. (ගොනුව මුද්‍රණය)",
+        "Scanning a document. (ලේඛනය පරිලෝකනය)",
+        "Deleting files. (ගොනු මකා දැමීම)"
+    ]
 },
 {
-    question: "ASCII භාවිතා කරන්නේ කුමක් සඳහාද? (What is ASCII used for?)",
-    correct: "අක්ෂර නිරූපණය සඳහා (Character Representation).",
-    distractors: ["රූප ගබඩා කිරීම (Image Storage).", "ශබ්ද ගබඩා කිරීම (Audio Storage).", "වීඩියෝ ගබඩා කිරීම (Video Storage).", "ජාලකරණය (Networking)."]
-},
-{
-    question: "Unicode හි ප්‍රධාන වාසිය කුමක්ද? (What is the main advantage of Unicode?)",
-    correct: "බහු භාෂා සඳහා සහාය දැක්වීම (Supports Multiple Languages).",
-    distractors: ["ඉංග්‍රීසි පමණක් සහාය දැක්වීම (Supports English Only).", "රූප ගබඩා කිරීම (Stores Images).", "වීඩියෝ ගබඩා කිරීම (Stores Videos).", "අංක පමණක් සහාය දැක්වීම (Supports Numbers Only)."]
-},
-{
-    question: "4 Bits එකතුවක් හඳුන්වන්නේ කුමක් ලෙසද? (What is a group of 4 bits called?)",
-    correct: "Nibble.",
-    distractors: ["Byte.", "Word.", "Character.", "Block."]
-},
-{
-    question: "8 Bits එකතුවක් හඳුන්වන්නේ කුමක් ලෙසද? (What is a group of 8 bits called?)",
-    correct: "Byte.",
-    distractors: ["Nibble.", "Word.", "Character.", "Block."]
-},
-{
-    question: "Hexadecimal පද්ධතියේ A අගය දශමයෙන් කීයද? (What is the decimal value of hexadecimal A?)",
-    correct: "10.",
-    distractors: ["11.", "12.", "13.", "15."]
-},
-{
-    question: "Hexadecimal පද්ධතියේ F අගය දශමයෙන් කීයද? (What is the decimal value of hexadecimal F?)",
-    correct: "15.",
-    distractors: ["10.", "11.", "12.", "14."]
-},
-{
-    question: "පහත සඳහන් අතරින් ආදාන උපාංගයක් වන්නේ කුමක්ද? (Which of the following is an input device?)",
-    correct: "යතුරු පුවරුව (Keyboard).",
-    distractors: ["තිරය (Monitor).", "මුද්‍රකය (Printer).", "ශබ්ද විකාශකය (Speaker).", "ප්‍රොජෙක්ටරය (Projector)."]
-},
-{
-    question: "පහත සඳහන් අතරින් ප්‍රතිදාන උපාංගයක් වන්නේ කුමක්ද? (Which of the following is an output device?)",
-    correct: "මුද්‍රකය (Printer).",
-    distractors: ["මවුසය (Mouse).", "ස්කෑනරය (Scanner).", "යතුරු පුවරුව (Keyboard).", "මයික්‍රෆෝනය (Microphone)."]
-},
-{
-    question: "OCR යන්නෙන් අදහස් වන්නේ කුමක්ද? (What does OCR stand for?)",
-    correct: "දෘශ්‍ය අක්ෂර හඳුනාගැනීම (Optical Character Recognition).",
-    distractors: ["Output Character Reader.", "Optical Code Reader.", "Online Character Recognition.", "Optical Communication Reader."]
-},
-{
-    question: "Microphone එක භාවිතා කරන්නේ කුමක් සඳහාද? (What is a microphone used for?)",
-    correct: "ශබ්ද ආදානය සඳහා (Sound Input).",
-    distractors: ["ශබ්ද ප්‍රතිදානය සඳහා (Sound Output).", "දත්ත ගබඩා කිරීම සඳහා (Data Storage).", "රූප ආදානය සඳහා (Image Input).", "මුද්‍රණය සඳහා (Printing)."]
-},
-{
-    question: "Monitor එකක කාර්යය කුමක්ද? (What is the function of a monitor?)",
-    correct: "ප්‍රතිදානය ප්‍රදර්ශනය කිරීම (Displaying Output).",
-    distractors: ["දත්ත ඇතුළත් කිරීම (Inputting Data).", "දත්ත ගබඩා කිරීම (Storing Data).", "දත්ත සැකසීම (Processing Data).", "සන්නිවේදනය (Communication)."]
-},
-{
-    question: "Scanner එකක් භාවිතා කරන්නේ කුමක් සඳහාද? (What is a scanner used for?)",
-    correct: "මුද්‍රිත ලේඛන ඩිජිටල් ආකාරයට පරිවර්තනය කිරීම (Converting hard copy documents into digital form).",
-    distractors: ["ලේඛන මුද්‍රණය කිරීම (Printing Documents).", "ශබ්ද වාදනය කිරීම (Playing Audio).", "දත්ත සැකසීම (Processing Data).", "දත්ත ගබඩා කිරීම (Storing Data)."]
-},
-{
-    question: "Touch Screen එකක් වන්නේ? (A Touch Screen is?)",
-    correct: "ආදාන හා ප්‍රතිදාන උපාංගයක් (Both Input and Output Device).",
-    distractors: ["ආදාන උපාංගයක් පමණි (Input Device Only).", "ප්‍රතිදාන උපාංගයක් පමණි (Output Device Only).", "ගබඩා උපාංගයක් (Storage Device).", "සැකසුම් උපාංගයක් (Processing Device)."]
-},
-{
-    question: "පරිගණක පරම්පරා කීයක් හඳුනාගෙන තිබේද? (How many computer generations are identified?)",
-    correct: "පහක් (Five).",
-    distractors: ["තුනක් (Three).", "හතරක් (Four).", "හයක් (Six).", "හතක් (Seven)."]
-},
-{
-    question: "පළමු පරම්පරාවේ පරිගණකවල භාවිතා කළ ප්‍රධාන තාක්ෂණය කුමක්ද? (What technology was used in first generation computers?)",
-    correct: "රික්ත නල (Vacuum Tubes).",
-    distractors: ["ට්‍රාන්සිස්ටර් (Transistors).", "සංයුක්ත පරිපථ (Integrated Circuits).", "ක්ෂුද්‍ර සැකසුම්කාරක (Microprocessors).", "කෘත්‍රිම බුද්ධිය (Artificial Intelligence)."]
-},
-{
-    question: "දෙවන පරම්පරාවේ පරිගණකවල භාවිතා කළේ කුමක්ද? (What was used in second generation computers?)",
-    correct: "ට්‍රාන්සිස්ටර් (Transistors).",
-    distractors: ["රික්ත නල (Vacuum Tubes).", "සංයුක්ත පරිපථ (Integrated Circuits).", "ක්ෂුද්‍ර සැකසුම්කාරක (Microprocessors).", "රොබෝවරු (Robots)."]
-},
-{
-    question: "තෙවන පරම්පරාවේ පරිගණකවල භාවිතා කළේ කුමක්ද? (What was used in third generation computers?)",
-    correct: "සංයුක්ත පරිපථ (Integrated Circuits).",
-    distractors: ["රික්ත නල (Vacuum Tubes).", "ට්‍රාන්සිස්ටර් (Transistors).", "ක්ෂුද්‍ර සැකසුම්කාරක (Microprocessors).", "කෘත්‍රිම බුද්ධිය (Artificial Intelligence)."]
-},
-{
-    question: "සිව්වන පරම්පරාවේ පරිගණකවල භාවිතා කළේ කුමක්ද? (What was used in fourth generation computers?)",
-    correct: "ක්ෂුද්‍ර සැකසුම්කාරක (Microprocessors).",
-    distractors: ["රික්ත නල (Vacuum Tubes).", "ට්‍රාන්සිස්ටර් (Transistors).", "සංයුක්ත පරිපථ (Integrated Circuits).", "රීලේ (Relays)."]
-},
-{
-    question: "පස්වන පරම්පරාවේ පරිගණක සම්බන්ධ වන්නේ කුමක් සමඟද? (Fifth generation computers are associated with?)",
-    correct: "කෘත්‍රිම බුද්ධිය (Artificial Intelligence).",
-    distractors: ["රික්ත නල (Vacuum Tubes).", "ට්‍රාන්සිස්ටර් (Transistors).", "සංයුක්ත පරිපථ (Integrated Circuits).", "Punch Cards."]
-},
-{
-    question: "Pascaline යන්ත්‍රය නිර්මාණය කළේ කවුද? (Who invented Pascaline?)",
-    correct: "බ්ලේස් පැස්කල් (Blaise Pascal).",
-    distractors: ["චාල්ස් බැබේජ් (Charles Babbage).", "ඇඩා ලව්ලේස් (Ada Lovelace).", "හොවාර්ඩ් අයිකන් (Howard Aiken).", "ජෝන් වොන් නියුමාන් (John Von Neumann)."]
-},
-{
-    question: "Analytical Engine නිර්මාණය කළේ කවුද? (Who designed the Analytical Engine?)",
-    correct: "චාල්ස් බැබේජ් (Charles Babbage).",
-    distractors: ["බ්ලේස් පැස්කල් (Blaise Pascal).", "ඇඩා ලව්ලේස් (Ada Lovelace).", "හොවාර්ඩ් අයිකන් (Howard Aiken).", "ජෝන් අටනාසොෆ් (John Atanasoff)."]
-},
-{
-    question: "Punch Card System සමඟ සම්බන්ධ පුද්ගලයා කවුද? (Who is associated with Punch Card System?)",
-    correct: "හර්මන් හොලරිත් (Herman Hollerith).",
-    distractors: ["චාල්ස් බැබේජ් (Charles Babbage).", "ඇඩා ලව්ලේස් (Ada Lovelace).", "බ්ලේස් පැස්කල් (Blaise Pascal).", "හොවාර්ඩ් අයිකන් (Howard Aiken)."]
-},
-{
-    question: "Hardware යනු කුමක්ද? (What is Hardware?)",
-    correct: "පරිගණකයේ භෞතික කොටස් (Physical Components of a Computer).",
-    distractors: ["වැඩසටහන් (Programs).", "දත්ත (Data).", "උපදෙස් (Instructions).", "තොරතුරු (Information)."]
-},
-{
-    question: "Software යනු කුමක්ද? (What is Software?)",
-    correct: "වැඩසටහන් හා උපදෙස් සමූහයක් (A Set of Programs and Instructions).",
-    distractors: ["භෞතික කොටස් (Physical Components).", "දත්ත ගබඩා මාධ්‍ය (Storage Media).", "සන්නිවේදන කේබල් (Communication Cables).", "සැකසුම්කාරක (Processors)."]
-},
-{
-    question: "Keyboard එකේ Function Keys ගණන කීයද? (How many Function Keys are there on a standard keyboard?)",
-    correct: "12.",
-    distractors: ["10.", "8.", "14.", "16."]
-},
-{
-    question: "Mouse එකක ප්‍රධාන භාවිතය කුමක්ද? (What is the primary use of a mouse?)",
-    correct: "දර්ශකය පාලනය හා තේරීම (Pointing and Selecting).",
-    distractors: ["මුද්‍රණය කිරීම (Printing).", "ස්කෑන් කිරීම (Scanning).", "දත්ත ගබඩා කිරීම (Storage).", "සැකසීම (Processing)."]
-},
-{
-    question: "Speaker එකක් වන්නේ? (A Speaker is a?)",
-    correct: "ප්‍රතිදාන උපාංගයක් (Output Device).",
-    distractors: ["ආදාන උපාංගයක් (Input Device).", "ගබඩා උපාංගයක් (Storage Device).", "සැකසුම් උපාංගයක් (Processing Device).", "සන්නිවේදන උපාංගයක් (Communication Device)."]
-},
-{
-    question: "පරිගණකයක් යනු කුමක්ද? (What is a computer?)",
-    correct: "දත්ත තොරතුරු බවට පරිවර්තනය කරන ඉලෙක්ට්‍රොනික උපකරණයකි (An electronic device that processes data into information).",
-    distractors: ["ගබඩා උපකරණයක් පමණි (A storage device only).", "ආදාන උපකරණයක් පමණි (An input device only).", "ප්‍රතිදාන උපකරණයක් පමණි (An output device only).", "සන්නිවේදන උපකරණයක් පමණි (A communication device only)."]
-},
-	  {
-    question: "CPU හි ALU කොටස මඟින් සිදු කරන්නේ කුමක්ද? (What is the function of the ALU in the CPU?)",
-    correct: "අංක ගණිත හා තාර්කික ක්‍රියා සිදු කිරීම (Performing Arithmetic and Logical Operations).",
-    distractors: ["දත්ත ගබඩා කිරීම (Storing Data).", "ආදාන ලබා ගැනීම (Receiving Input).", "ප්‍රතිදාන පෙන්වීම (Displaying Output).", "ජාල සම්බන්ධතා කළමනාකරණය (Managing Network Connections)."]
-},
-	  {
-    question: "1 KB සමාන වන්නේ බයිට් කීයකටද? (How many bytes are equal to 1 KB?)",
-    correct: "1024 Bytes.",
-    distractors: ["1000 Bytes.", "512 Bytes.", "2048 Bytes.", "4096 Bytes."]
-},
-	  {
-    question: "Unicode භාවිතා කිරීමේ ප්‍රධාන අරමුණ කුමක්ද? (What is the main purpose of using Unicode?)",
-    correct: "විවිධ භාෂාවල අක්ෂර නිරූපණය කිරීම (Representing Characters of Multiple Languages).",
-    distractors: ["වීඩියෝ ගොනු සංකෝචනය කිරීම (Compressing Video Files).", "ශබ්ද ගොනු ගබඩා කිරීම (Storing Audio Files).", "ජාල ආරක්ෂාව සැපයීම (Providing Network Security).", "දත්ත සමුදා කළමනාකරණය (Managing Databases)."]
+    question: "RAM යනු කුමක්ද? / What is RAM?",
+    correct: "Random Access Memory. (අහඹු ප්‍රවේශ මතකය)",
+    distractors: [
+        "Read Access Memory",
+        "Random Active Memory",
+        "Read Active Memory",
+        "Remote Access Memory"
+    ]
 }
+{
+    question: "ROM යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does ROM stand for?",
+    correct: "Read Only Memory. (කියවීම සඳහා පමණක් වූ මතකය)",
+    distractors: ["Random Only Memory.", "Read Open Memory.", "Run Only Memory.", "Remote Output Memory."]
+},
+{
+    question: "CPU යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does CPU stand for?",
+    correct: "Central Processing Unit. (මධ්‍යම සැකසුම් ඒකකය)",
+    distractors: ["Computer Processing Unit.", "Central Program Utility.", "Control Processing Unit.", "Computer Program Unit."]
+},
+{
+    question: "Mouse එකක් කුමන වර්ගයේ උපාංගයක්ද? / What type of device is a Mouse?",
+    correct: "Input Device. (ආදාන උපාංගය)",
+    distractors: ["Output Device.", "Storage Device.", "Processing Device.", "Communication Device."]
+},
+{
+    question: "Printer එකක් කුමන වර්ගයේ උපාංගයක්ද? / What type of device is a Printer?",
+    correct: "Output Device. (ප්‍රතිදාන උපාංගය)",
+    distractors: ["Input Device.", "Storage Device.", "Memory Device.", "Communication Device."]
+},
+{
+    question: "Scanner එකක් කුමන වර්ගයේ උපාංගයක්ද? / What type of device is a Scanner?",
+    correct: "Input Device. (ආදාන උපාංගය)",
+    distractors: ["Output Device.", "Storage Device.", "Processing Device.", "Memory Device."]
+},
+{
+    question: "Speaker එකක් කුමන වර්ගයේ උපාංගයක්ද? / What type of device is a Speaker?",
+    correct: "Output Device. (ප්‍රතිදාන උපාංගය)",
+    distractors: ["Input Device.", "Storage Device.", "Communication Device.", "Processing Device."]
+},
+{
+    question: "Hard Disk එකක් කුමන වර්ගයේ උපාංගයක්ද? / What type of device is a Hard Disk?",
+    correct: "Storage Device. (ගබඩා උපාංගය)",
+    distractors: ["Input Device.", "Output Device.", "Processing Device.", "Communication Device."]
+},
+{
+    question: "Pen Drive එකක් කුමන වර්ගයේ උපාංගයක්ද? / What type of device is a Pen Drive?",
+    correct: "Storage Device. (ගබඩා උපාංගය)",
+    distractors: ["Input Device.", "Output Device.", "Processing Device.", "Communication Device."]
+},
+{
+    question: "1 Byte එකක Bit කීයක් තිබේද? / How many bits are in 1 Byte?",
+    correct: "8 Bits. (බිට් 8)",
+    distractors: ["4 Bits.", "16 Bits.", "32 Bits.", "64 Bits."]
+},
+{
+    question: "1024 Bytes සමාන වන්නේ කුමක්ද? / 1024 Bytes equals?",
+    correct: "1 KB. (කිලෝබයිට් 1)",
+    distractors: ["1 MB.", "1 GB.", "512 Bytes.", "1000 Bytes."]
+},
+{
+    question: "1024 KB සමාන වන්නේ කුමක්ද? / 1024 KB equals?",
+    correct: "1 MB. (මෙගාබයිට් 1)",
+    distractors: ["1 GB.", "1024 Bytes.", "512 MB.", "100 MB."]
+},
+{
+    question: "1024 MB සමාන වන්නේ කුමක්ද? / 1024 MB equals?",
+    correct: "1 GB. (ගිගාබයිට් 1)",
+    distractors: ["1 TB.", "1000 MB.", "1024 KB.", "512 GB."]
+},
+{
+    question: "1024 GB සමාන වන්නේ කුමක්ද? / 1024 GB equals?",
+    correct: "1 TB. (ටෙරාබයිට් 1)",
+    distractors: ["1 MB.", "1 KB.", "1000 GB.", "512 TB."]
+},
+{
+    question: "Binary Number System එකේ පාදය කුමක්ද? / What is the base of Binary Number System?",
+    correct: "2",
+    distractors: ["8", "10", "16", "4"]
+},
+{
+    question: "Decimal Number System එකේ පාදය කුමක්ද? / What is the base of Decimal Number System?",
+    correct: "10",
+    distractors: ["2", "8", "16", "12"]
+},
+{
+    question: "Octal Number System එකේ පාදය කුමක්ද? / What is the base of Octal Number System?",
+    correct: "8",
+    distractors: ["2", "10", "16", "4"]
+},
+{
+    question: "Hexadecimal Number System එකේ පාදය කුමක්ද? / What is the base of Hexadecimal Number System?",
+    correct: "16",
+    distractors: ["2", "8", "10", "12"]
+},
+{
+    question: "Word Processing Software එකක් වන්නේ කුමක්ද? / Which is a Word Processing Software?",
+    correct: "Microsoft Word. (මයික්‍රොසොෆ්ට් වර්ඩ්)",
+    distractors: ["Google Chrome.", "Windows.", "MySQL.", "Photoshop."]
+},
+{
+    question: "LibreOffice Writer යනු කුමක්ද? / What is LibreOffice Writer?",
+    correct: "Word Processing Software. (වදන් සැකසුම් මෘදුකාංගය)",
+    distractors: ["Database.", "Browser.", "Operating System.", "Compiler."]
+},
+{
+    question: "Bold Formatting භාවිතා කරන්නේ කුමක් සඳහාද? / What is Bold Formatting used for?",
+    correct: "Make text thicker. (අකුරු තද කිරීම)",
+    distractors: ["Delete text.", "Underline text.", "Insert picture.", "Print page."]
+},
+{
+    question: "Italic Formatting භාවිතා කරන්නේ කුමක් සඳහාද? / What is Italic Formatting used for?",
+    correct: "Slant text. (අකුරු ඇල කිරීම)",
+    distractors: ["Delete text.", "Print document.", "Save file.", "Insert image."]
+},
+{
+    question: "Underline Formatting භාවිතා කරන්නේ කුමක් සඳහාද? / What is Underline Formatting used for?",
+    correct: "Add a line below text. (අකුරු යට ඉරක් දැමීම)",
+    distractors: ["Bold text.", "Delete text.", "Save file.", "Print file."]
+},
+{
+    question: "Ctrl + C භාවිතා කරන්නේ කුමක් සඳහාද? / What is Ctrl + C used for?",
+    correct: "Copy. (පිටපත් කිරීම)",
+    distractors: ["Paste.", "Cut.", "Save.", "Print."]
+},
+{
+    question: "Ctrl + V භාවිතා කරන්නේ කුමක් සඳහාද? / What is Ctrl + V used for?",
+    correct: "Paste. (අලවීම)",
+    distractors: ["Copy.", "Cut.", "Undo.", "Save."]
+},
+{
+    question: "Ctrl + X භාවිතා කරන්නේ කුමක් සඳහාද? / What is Ctrl + X used for?",
+    correct: "Cut. (කපා ගැනීම)",
+    distractors: ["Paste.", "Copy.", "Undo.", "Print."]
+},
+{
+    question: "Ctrl + S භාවිතා කරන්නේ කුමක් සඳහාද? / What is Ctrl + S used for?",
+    correct: "Save. (සුරැකීම)",
+    distractors: ["Copy.", "Paste.", "Print.", "Open."]
+},
+{
+    question: "Ctrl + Z භාවිතා කරන්නේ කුමක් සඳහාද? / What is Ctrl + Z used for?",
+    correct: "Undo. (අවලංගු කිරීම)",
+    distractors: ["Redo.", "Save.", "Paste.", "Copy."]
+},
+{
+    question: "Ctrl + A භාවිතා කරන්නේ කුමක් සඳහාද? / What is Ctrl + A used for?",
+    correct: "Select All. (සියල්ල තේරීම)",
+    distractors: ["Copy.", "Paste.", "Save.", "Print."]
+},
+{
+    question: "Find and Replace භාවිතා කරන්නේ කුමක් සඳහාද? / What is Find and Replace used for?",
+    correct: "Search and replace text. (පෙළ සොයා ප්‍රතිස්ථාපනය කිරීම)",
+    distractors: ["Insert image.", "Create chart.", "Save file.", "Print document."]
+},
+{
+    question: "Mail Merge භාවිතා කරන්නේ කුමක් සඳහාද? / What is Mail Merge used for?",
+    correct: "Create personalized documents. (පුද්ගලීකරණය කළ ලේඛන සෑදීම)",
+    distractors: ["Create database.", "Draw charts.", "Edit photos.", "Browse internet."]
+},
+{
+    question: "Page Break එකක කාර්යය කුමක්ද? / What is the function of a Page Break?",
+    correct: "Start a new page. (නව පිටුවක් ආරම්භ කිරීම)",
+    distractors: ["Delete page.", "Print page.", "Insert image.", "Change font."]
+},
+{
+    question: "Header එකක් යනු කුමක්ද? / What is a Header?",
+    correct: "Text at the top of a page. (පිටුවේ ඉහළ පෙළ)",
+    distractors: ["Text at bottom.", "Page number.", "File name.", "Document title."]
+},
+{
+    question: "Footer එකක් යනු කුමක්ද? / What is a Footer?",
+    correct: "Text at the bottom of a page. (පිටුවේ පහළ පෙළ)",
+    distractors: ["Text at top.", "Page title.", "Document name.", "Heading."]
+},
+{
+    question: "Hyperlink එකක් භාවිතා කරන්නේ කුමක් සඳහාද? / What is a Hyperlink used for?",
+    correct: "Link to another page or website. (වෙනත් පිටුවකට හෝ වෙබ් අඩවියකට සම්බන්ධ කිරීම)",
+    distractors: ["Print document.", "Save file.", "Insert table.", "Check spelling."]
+},
+{
+    question: "WordArt භාවිතා කරන්නේ කුමක් සඳහාද? / What is WordArt used for?",
+    correct: "Create decorative text. (අලංකාර පෙළ නිර්මාණය)",
+    distractors: ["Insert image.", "Delete text.", "Save file.", "Create table."]
+},
+{
+    question: "SmartArt භාවිතා කරන්නේ කුමක් සඳහාද? / What is SmartArt used for?",
+    correct: "Create visual diagrams. (දෘශ්‍ය රූප සටහන් සෑදීම)",
+    distractors: ["Write code.", "Store files.", "Print documents.", "Browse internet."]
+},
+{
+    question: "Chart එකක් භාවිතා කරන්නේ කුමක් සඳහාද? / What is a Chart used for?",
+    correct: "Represent data graphically. (දත්ත චිත්‍රමය ලෙස පෙන්වීම)",
+    distractors: ["Store files.", "Edit videos.", "Connect internet.", "Delete files."]
+},
+{
+    question: "Page Orientation වර්ග දෙක කුමක්ද? / What are the two page orientations?",
+    correct: "Portrait and Landscape. (සිරස් හා තිරස්)",
+    distractors: ["Top and Bottom.", "Left and Right.", "Wide and Narrow.", "Large and Small."]
+},
+{
+    question: "Page Margins යනු කුමක්ද? / What are Page Margins?",
+    correct: "Blank spaces around page edges. (පිටුවේ වටා ඇති හිස් ඉඩ)",
+    distractors: ["Headers.", "Footers.", "Page Numbers.", "Pictures."]
+},
+{
+    question: "Spelling & Grammar Tool භාවිතා කරන්නේ කුමක් සඳහාද? / What is the Spelling & Grammar Tool used for?",
+    correct: "Check spelling and grammar mistakes. (අක්ෂර වින්‍යාස හා ව්‍යාකරණ දෝෂ පරීක්ෂා කිරීම)",
+    distractors: ["Insert images.", "Create tables.", "Print files.", "Save documents."]
+},
+{
+    question: "Antivirus Software එකක කාර්යය කුමක්ද? / What is the function of Antivirus Software?",
+    correct: "Detect and remove malware. (හානිකර මෘදුකාංග හඳුනාගෙන ඉවත් කිරීම)",
+    distractors: ["Create documents.", "Play music.", "Edit images.", "Manage printers."]
+},
+{
+    question: "Google Chrome යනු කුමක්ද? / What is Google Chrome?",
+    correct: "Web Browser. (වෙබ් බ්‍රවුසරය)",
+    distractors: ["Operating System.", "Database.", "Word Processor.", "Compiler."]
+},
+{
+    question: "Microsoft Excel භාවිතා කරන්නේ කුමක් සඳහාද? / What is Microsoft Excel used for?",
+    correct: "Spreadsheet Processing. (පැතුරුම්පත් සැකසීම)",
+    distractors: ["Word Processing.", "Database Management.", "Video Editing.", "Operating System."]
+},
+{
+    question: "Microsoft PowerPoint භාවිතා කරන්නේ කුමක් සඳහාද? / What is Microsoft PowerPoint used for?",
+    correct: "Create Presentations. (ඉදිරිපත් කිරීම් සෑදීම)",
+    distractors: ["Database Creation.", "Programming.", "Word Processing.", "Web Browsing."]
+},
+{
+    question: "MS Access භාවිතා කරන්නේ කුමක් සඳහාද? / What is MS Access used for?",
+    correct: "Database Management. (දත්ත සමුදා කළමනාකරණය)",
+    distractors: ["Word Processing.", "Spreadsheet Processing.", "Video Editing.", "Web Browsing."]
+}
+{
+    question: "ALU යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does ALU stand for?",
+    correct: "Arithmetic Logic Unit. (අංක ගණිත හා තාර්කික ඒකකය)",
+    distractors: ["Advanced Logic Unit.", "Arithmetic Link Unit.", "Automatic Logic Unit.", "Array Logic Unit."]
+},
+{
+    question: "Control Unit එකේ කාර්යය කුමක්ද? / What is the function of the Control Unit?",
+    correct: "Control and coordinate computer operations. (පරිගණක ක්‍රියාකාරකම් පාලනය හා සම්බන්ධීකරණය කිරීම)",
+    distractors: ["Store data.", "Print documents.", "Play audio.", "Display images."]
+},
+{
+    question: "Cache Memory යනු කුමක්ද? / What is Cache Memory?",
+    correct: "High-speed memory used by CPU. (CPU විසින් භාවිතා කරන වේගවත් මතකය)",
+    distractors: ["Secondary storage.", "Input device.", "Output device.", "Network device."]
+},
+{
+    question: "Primary Memory සඳහා උදාහරණයක් කුමක්ද? / Which is an example of Primary Memory?",
+    correct: "RAM. (අහඹු ප්‍රවේශ මතකය)",
+    distractors: ["Hard Disk.", "DVD.", "Pen Drive.", "CD."]
+},
+{
+    question: "Secondary Storage සඳහා උදාහරණයක් කුමක්ද? / Which is an example of Secondary Storage?",
+    correct: "Hard Disk. (දෘඪ තැටිය)",
+    distractors: ["RAM.", "Cache.", "Register.", "ROM Chip."]
+},
+{
+    question: "File Extension .docx භාවිතා වන්නේ කුමන මෘදුකාංගය සඳහාද? / The .docx extension is used by which software?",
+    correct: "Microsoft Word.",
+    distractors: ["Excel.", "PowerPoint.", "Access.", "Photoshop."]
+},
+{
+    question: "File Extension .xlsx භාවිතා වන්නේ කුමන මෘදුකාංගය සඳහාද? / The .xlsx extension is used by which software?",
+    correct: "Microsoft Excel.",
+    distractors: ["Word.", "PowerPoint.", "Access.", "Paint."]
+},
+{
+    question: "File Extension .pptx භාවිතා වන්නේ කුමන මෘදුකාංගය සඳහාද? / The .pptx extension is used by which software?",
+    correct: "Microsoft PowerPoint.",
+    distractors: ["Word.", "Excel.", "Access.", "Notepad."]
+},
+{
+    question: "Folder එකක ප්‍රධාන කාර්යය කුමක්ද? / What is the main function of a Folder?",
+    correct: "Organize files. (ගොනු සංවිධානය කිරීම)",
+    distractors: ["Print files.", "Delete files.", "Scan files.", "Encrypt files."]
+},
+{
+    question: "Recycle Bin එකේ කාර්යය කුමක්ද? / What is the function of Recycle Bin?",
+    correct: "Temporarily store deleted files. (මකා දැමූ ගොනු තාවකාලිකව තබා ගැනීම)",
+    distractors: ["Print files.", "Scan files.", "Create folders.", "Install software."]
+},
+{
+    question: "Desktop යනු කුමක්ද? / What is Desktop?",
+    correct: "Main screen of the operating system. (මෙහෙයුම් පද්ධතියේ ප්‍රධාන තිරය)",
+    distractors: ["Input device.", "Database.", "Network.", "File format."]
+},
+{
+    question: "Icon එකක් යනු කුමක්ද? / What is an Icon?",
+    correct: "A graphical representation of a program or file. (වැඩසටහනක් හෝ ගොනුවක් නිරූපණය කරන චිත්‍රක සංකේතයක්)",
+    distractors: ["Database.", "Printer.", "Memory.", "Processor."]
+},
+{
+    question: "Window එකක් Minimize කිරීමෙන් සිදුවන්නේ කුමක්ද? / What happens when a window is minimized?",
+    correct: "It is sent to the taskbar. (Taskbar එකට යවනු ලැබේ)",
+    distractors: ["Deleted.", "Printed.", "Closed permanently.", "Moved to Recycle Bin."]
+},
+{
+    question: "Window එකක් Maximize කිරීමෙන් සිදුවන්නේ කුමක්ද? / What happens when a window is maximized?",
+    correct: "It fills the screen. (සම්පූර්ණ තිරය පුරවයි)",
+    distractors: ["Gets deleted.", "Gets hidden.", "Gets copied.", "Gets printed."]
+},
+{
+    question: "Window එකක් Close කිරීමෙන් සිදුවන්නේ කුමක්ද? / What happens when a window is closed?",
+    correct: "The application exits. (යෙදුම වසා දමයි)",
+    distractors: ["Gets printed.", "Gets copied.", "Gets saved automatically.", "Gets minimized."]
+},
+{
+    question: "Database එකක් යනු කුමක්ද? / What is a Database?",
+    correct: "An organized collection of data. (සංවිධානය කළ දත්ත එකතුවක්)",
+    distractors: ["Operating System.", "Hardware device.", "Network cable.", "Printer."]
+},
+{
+    question: "Internet යනු කුමක්ද? / What is the Internet?",
+    correct: "A global network of networks. (ලෝක ව්‍යාප්ත ජාලයන්ගේ ජාලය)",
+    distractors: ["Operating System.", "Database.", "Input Device.", "Spreadsheet."]
+},
+{
+    question: "WWW යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does WWW stand for?",
+    correct: "World Wide Web.",
+    distractors: ["World Web Window.", "Wide World Web.", "Web Wide World.", "World Window Web."]
+},
+{
+    question: "E-mail යනු කුමක්ද? / What is E-mail?",
+    correct: "Electronic Mail. (විද්‍යුත් තැපෑල)",
+    distractors: ["Express Mail.", "Easy Mail.", "External Mail.", "Encoded Mail."]
+},
+{
+    question: "Web Browser එකක් වන්නේ කුමක්ද? / Which is a Web Browser?",
+    correct: "Google Chrome.",
+    distractors: ["Microsoft Word.", "Windows.", "MS Access.", "Linux."]
+},
+{
+    question: "Search Engine එකක් වන්නේ කුමක්ද? / Which is a Search Engine?",
+    correct: "Google.",
+    distractors: ["Word.", "Excel.", "Windows.", "Linux."]
+},
+{
+    question: "URL යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does URL stand for?",
+    correct: "Uniform Resource Locator.",
+    distractors: ["Universal Resource Locator.", "Uniform Record Link.", "Universal Record Locator.", "Uniform Resource Link."]
+},
+{
+    question: "LAN යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does LAN stand for?",
+    correct: "Local Area Network.",
+    distractors: ["Large Area Network.", "Long Area Network.", "Linked Area Network.", "Logical Area Network."]
+},
+{
+    question: "WAN යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does WAN stand for?",
+    correct: "Wide Area Network.",
+    distractors: ["World Area Network.", "Wireless Area Network.", "Web Area Network.", "Wired Area Network."]
+},
+{
+    question: "Wi-Fi භාවිතා කරන්නේ කුමක් සඳහාද? / What is Wi-Fi used for?",
+    correct: "Wireless network connection. (රැහැන් රහිත ජාල සම්බන්ධතාවය)",
+    distractors: ["Printing.", "Scanning.", "Storage.", "Programming."]
+},
+{
+    question: "Malware යනු කුමක්ද? / What is Malware?",
+    correct: "Malicious Software. (හානිකර මෘදුකාංග)",
+    distractors: ["Word Processor.", "Operating System.", "Spreadsheet.", "Database."]
+},
+{
+    question: "Virus යනු කුමක්ද? / What is a Computer Virus?",
+    correct: "A type of malware. (හානිකර මෘදුකාංග වර්ගයකි)",
+    distractors: ["Operating System.", "Database.", "Browser.", "Network."]
+},
+{
+    question: "Firewall එකක කාර්යය කුමක්ද? / What is the function of a Firewall?",
+    correct: "Protect a network from unauthorized access. (අවසර නොලත් ප්‍රවේශ වලින් ජාලය ආරක්ෂා කිරීම)",
+    distractors: ["Print files.", "Store files.", "Edit images.", "Play music."]
+},
+{
+    question: "Password එකක් භාවිතා කරන්නේ කුමක් සඳහාද? / What is a Password used for?",
+    correct: "Security and authentication. (ආරක්ෂාව හා හඳුනාගැනීම)",
+    distractors: ["Printing.", "Storage.", "Scanning.", "Formatting."]
+},
+{
+    question: "Cloud Computing යනු කුමක්ද? / What is Cloud Computing?",
+    correct: "Using computing services over the Internet. (අන්තර්ජාලය හරහා පරිගණක සේවා භාවිතා කිරීම)",
+    distractors: ["Printing documents.", "Installing software.", "Deleting files.", "Formatting disks."]
+},
+{
+    question: "AI යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does AI stand for?",
+    correct: "Artificial Intelligence. (කෘත්‍රිම බුද්ධිය)",
+    distractors: ["Automatic Intelligence.", "Artificial Integration.", "Advanced Intelligence.", "Automated Interface."]
+},
+{
+    question: "ICT යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does ICT stand for?",
+    correct: "Information and Communication Technology. (තොරතුරු හා සන්නිවේදන තාක්ෂණය)",
+    distractors: ["Information Control Technology.", "Integrated Communication Technology.", "Information Computing Technology.", "International Communication Technology."]
+},
+{
+    question: "PDF යන්නෙන් අදහස් වන්නේ කුමක්ද? / What does PDF stand for?",
+    correct: "Portable Document Format.",
+    distractors: ["Printable Document Format.", "Personal Document File.", "Portable Data File.", "Printed Data Format."]
+},
+{
+    question: "JPEG යනු කුමක්ද? / What is JPEG?",
+    correct: "An image file format. (රූප ගොනු ආකෘතියක්)",
+    distractors: ["Video format.", "Audio format.", "Database format.", "Program file."]
+},
+{
+    question: "MP3 යනු කුමක්ද? / What is MP3?",
+    correct: "An audio file format. (ශ්‍රව්‍ය ගොනු ආකෘතියක්)",
+    distractors: ["Image format.", "Video format.", "Spreadsheet format.", "Database format."]
+}
+
+
 ]    
 	  let quizData = [...originalQuizData];
 
